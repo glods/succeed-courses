@@ -1,0 +1,3205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUCCEED — Niveau 1 : Fondements de l'Informatique</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════ VARIABLES ═══════════════════════ */
+:root {
+  --blue:       #004AAD;
+  --blue2:      #0561d4;
+  --blue-dark:  #002d6e;
+  --blue-glow:  rgba(0,74,173,.12);
+  --orange:     #ED991B;
+  --orange2:    #d4820a;
+  --orange-dk:  #b36800;
+  --green:      #2D9B4F;
+  --green2:     #1e7a3a;
+  --purple:     #6B46C1;
+  --teal:       #0891b2;
+  --red:        #dc2626;
+  --pink:       #db2777;
+
+  --bg:         #f0f4fb;
+  --bg2:        #e6ecf8;
+  --bg3:        #dde6f5;
+  --card:       #ffffff;
+  --card2:      #f5f8ff;
+  --card3:      #edf2fe;
+  --border:     rgba(0,74,173,.1);
+  --border2:    rgba(0,74,173,.2);
+  --text:       #1a2744;
+  --text2:      #3d5280;
+  --muted:      #6b7fa8;
+
+  --font-display: 'Baloo 2', cursive;
+  --font-body:    'Poppins', sans-serif;
+
+  --r:    20px;
+  --r-sm: 12px;
+  --shadow: 0 4px 20px rgba(0,74,173,.1);
+  --shadow-blue: 0 8px 30px rgba(0,74,173,.25);
+}
+
+/* ═══════════════════════ RESET ═══════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,.display { font-family: var(--font-display); }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+input, button, textarea { font-family: inherit; }
+
+/* ═══════════════════════ BACKGROUND ═══════════════════════ */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 5%,  rgba(0,74,173,.06)  0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 90%, rgba(45,155,79,.05)  0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 80% 10%, rgba(237,153,27,.04) 0%, transparent 55%);
+}
+
+/* Subtle dot pattern */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,74,173,.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ═══════════════════════ APP WRAPPER ═══════════════════════ */
+.app { position: relative; z-index: 1; }
+
+/* ═══════════════════════ TOPBAR ═══════════════════════ */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 60px;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0,74,173,.08);
+  display: flex; align-items: center;
+  padding: 0 28px; gap: 24px;
+}
+
+.topbar-logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem; font-weight: 800;
+  letter-spacing: 3px; color: var(--blue);
+  flex-shrink: 0;
+}
+.topbar-logo .s1 { color: var(--blue); }
+.topbar-logo .s2 { color: var(--orange); }
+
+.topbar-spacer { flex: 1; }
+
+.topbar-xp {
+  display: flex; align-items: center; gap: 10px;
+}
+.xp-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(237,153,27,.12);
+  border: 1px solid rgba(237,153,27,.35);
+  border-radius: 30px; padding: 5px 14px;
+}
+.xp-icon { font-size: 1rem; }
+.xp-val {
+  font-family: var(--font-display);
+  font-size: .9rem; font-weight: 700;
+  color: var(--orange2);
+}
+.xp-bar-track {
+  width: 90px; height: 6px;
+  background: rgba(0,74,173,.12);
+  border-radius: 3px; overflow: hidden;
+}
+.xp-bar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--orange));
+  border-radius: 3px;
+  transition: width .7s cubic-bezier(.4,0,.2,1);
+}
+
+/* ═══════════════════════ HERO ═══════════════════════ */
+#pageHome {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,74,173,.08);
+  border: 1.5px solid rgba(0,74,173,.2);
+  color: var(--blue); font-size: .78rem;
+  font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px; border-radius: 30px;
+  margin-bottom: 28px;
+  animation: fadeUp .6s ease both;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 800; line-height: 1.1;
+  color: var(--blue); margin-bottom: 6px;
+  animation: fadeUp .6s .08s ease both;
+}
+
+.hero-title .hl-blue   { color: var(--blue2); }
+.hero-title .hl-orange { color: var(--orange); }
+.hero-title .hl-green  { color: var(--green2); }
+
+.hero-sub {
+  font-size: 1.05rem; color: var(--text2);
+  max-width: 520px; margin: 12px auto 36px;
+  line-height: 1.8;
+  animation: fadeUp .6s .16s ease both;
+}
+
+.hero-mascots {
+  font-size: 4.5rem; line-height: 1; margin-bottom: 36px;
+  animation: floatBob 3.5s ease-in-out infinite, fadeUp .6s .22s ease both;
+}
+
+@keyframes floatBob {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-14px) rotate(1deg); }
+}
+
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color: white;
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  padding: 15px 34px; border-radius: 50px;
+  border: none; cursor: pointer;
+  box-shadow: var(--shadow-blue);
+  transition: all .22s; letter-spacing: .5px;
+  animation: fadeUp .6s .3s ease both;
+}
+.hero-btn:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,74,173,.5); }
+
+.hero-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-top: 60px; max-width: 580px; width: 100%;
+  animation: fadeUp .6s .38s ease both;
+}
+
+.hero-stat {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 18px 12px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.hero-stat-n {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 800; color: var(--blue); display: block;
+}
+.hero-stat-l { font-size: .76rem; color: var(--muted); }
+
+/* ═══════════════════════ MODULE NAV ═══════════════════════ */
+.mod-nav {
+  position: sticky; top: 60px; z-index: 100;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,74,173,.06);
+  padding: 0 16px;
+  overflow-x: auto;
+  display: none;
+}
+.mod-nav::-webkit-scrollbar { height: 3px; }
+.mod-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); }
+
+.mod-nav-inner {
+  display: flex; gap: 3px; max-width: 1100px; margin: 0 auto;
+  padding: 10px 0; white-space: nowrap;
+}
+
+.mod-tab {
+  flex-shrink: 0;
+  padding: 7px 15px; border-radius: 30px; border: none;
+  font-size: .76rem; font-weight: 600; cursor: pointer;
+  background: transparent; color: var(--muted);
+  transition: all .18s; display: flex; align-items: center; gap: 5px;
+}
+.mod-tab:hover { background: rgba(0,74,173,.07); color: var(--blue); }
+.mod-tab.active { background: var(--blue); color: white; }
+.mod-tab.done   { background: rgba(45,155,79,.12); color: var(--green); }
+.mod-tab.done::after { content: ' ✓'; font-weight: 900; }
+
+/* ═══════════════════════ PAGE ═══════════════════════ */
+.page { display: none; padding: 44px 24px 80px; max-width: 920px; margin: 0 auto; }
+.page.active { display: block; animation: pageIn .3s ease both; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════ MODULE BANNER ═══════════════════════ */
+.mod-banner {
+  border-radius: var(--r);
+  padding: 30px 34px;
+  margin-bottom: 34px;
+  display: flex; align-items: center; gap: 22px;
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.mod-banner::before {
+  content: '';
+  position: absolute; right: -50px; top: -50px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: rgba(255,255,255,.04);
+}
+.mod-banner::after {
+  content: '';
+  position: absolute; right: 40px; bottom: -30px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: rgba(255,255,255,.03);
+}
+
+.mod-banner.bb { background: linear-gradient(140deg, #003388, #0055cc); }
+.mod-banner.bo { background: linear-gradient(140deg, #8a4f00, #c07800); }
+.mod-banner.bg { background: linear-gradient(140deg, #1a5c2e, #2d9b4f); }
+.mod-banner.bp { background: linear-gradient(140deg, #4a2a9c, #6b46c1); }
+.mod-banner.bt { background: linear-gradient(140deg, #064a5e, #0891b2); }
+.mod-banner.br { background: linear-gradient(140deg, #7a1020, #c02030); }
+.mod-banner.bpk{ background: linear-gradient(140deg, #7a1040, #c0306a); }
+
+.banner-icon {
+  width: 76px; height: 76px; flex-shrink: 0;
+  background: rgba(255,255,255,.15);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  position: relative; z-index: 1;
+}
+.banner-meta { position: relative; z-index: 1; }
+.banner-tag {
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: 5px;
+}
+.banner-title {
+  font-size: 1.7rem; color: white; margin-bottom: 5px; line-height: 1.2;
+}
+.banner-desc { font-size: .88rem; color: rgba(255,255,255,.72); }
+
+/* ═══════════════════════ CARDS ═══════════════════════ */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 26px 28px;
+  margin-bottom: 22px;
+}
+.card-hd {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
+}
+.card-hd-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.card-hd-icon.i-blue   { background: rgba(0,74,173,.25);   }
+.card-hd-icon.i-orange { background: rgba(237,153,27,.2);  }
+.card-hd-icon.i-green  { background: rgba(45,155,79,.2);   }
+.card-hd-icon.i-purple { background: rgba(107,70,193,.2);  }
+.card-hd-icon.i-teal   { background: rgba(8,145,178,.2);   }
+
+.card-hd-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem; color: var(--text);
+}
+.badge {
+  font-size: .66rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .8px;
+  padding: 3px 10px; border-radius: 20px; flex-shrink: 0;
+}
+.b-lesson   { background: rgba(0,74,173,.1);    color: var(--blue); }
+.b-tip      { background: rgba(45,155,79,.12);  color: var(--green); }
+.b-warning  { background: rgba(237,153,27,.15); color: var(--orange2); }
+.b-practice { background: rgba(107,70,193,.1);  color: var(--purple); }
+.b-story    { background: rgba(219,39,119,.1);  color: var(--pink); }
+
+/* ═══════════════════════ BUBBLES ═══════════════════════ */
+.bubble {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 18px 20px; border-radius: var(--r-sm);
+  margin: 0 0 20px;
+}
+.bubble.amara {
+  background: rgba(0,74,173,.06);
+  border: 1px solid rgba(0,74,173,.15);
+  border-left: 4px solid var(--blue2);
+}
+.bubble.kofi {
+  background: rgba(237,153,27,.07);
+  border: 1px solid rgba(237,153,27,.2);
+  border-left: 4px solid var(--orange);
+}
+.bubble.tip {
+  background: rgba(45,155,79,.06);
+  border: 1px solid rgba(45,155,79,.15);
+  border-left: 4px solid var(--green);
+}
+.bav  { font-size: 2.4rem; flex-shrink: 0; line-height: 1; }
+.bname {
+  font-size: .68rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;
+}
+.bubble.amara .bname { color: var(--blue); }
+.bubble.kofi  .bname { color: var(--orange2); }
+.bubble.tip   .bname { color: var(--green); }
+.bubble p { font-size: .9rem; color: var(--text2); line-height: 1.75; }
+
+/* ═══════════════════════ CONCEPT GRID ═══════════════════════ */
+.cg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 12px; margin: 14px 0;
+}
+.cc {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 14px; text-align: center;
+  transition: all .2s; cursor: default;
+  box-shadow: var(--shadow);
+}
+.cc:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 8px 24px rgba(0,74,173,.15); }
+.cc .ci { font-size: 2.1rem; margin-bottom: 8px; display: block; }
+.cc h4  {
+  font-family: var(--font-display); font-size: .9rem;
+  color: var(--text); margin-bottom: 4px;
+}
+.cc p   { font-size: .75rem; color: var(--muted); line-height: 1.5; }
+
+/* ═══════════════════════ INFO PANELS ═══════════════════════ */
+.info-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin: 14px 0;
+}
+.info-panel {
+  border-radius: var(--r-sm); padding: 16px;
+  border: 1px solid transparent;
+}
+.ip-blue   { background: rgba(0,74,173,.1);  border-color: rgba(0,74,173,.2);   }
+.ip-orange { background: rgba(237,153,27,.08); border-color: rgba(237,153,27,.18); }
+.ip-green  { background: rgba(45,155,79,.08); border-color: rgba(45,155,79,.18); }
+.ip-red    { background: rgba(230,57,70,.08); border-color: rgba(230,57,70,.18); }
+
+.ip-title {
+  font-size: .76rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .8px;
+  margin-bottom: 8px;
+}
+.ip-blue   .ip-title { color: var(--blue); }
+.ip-orange .ip-title { color: var(--orange2); }
+.ip-green  .ip-title { color: var(--green); }
+.ip-red    .ip-title { color: var(--red); }
+.info-panel ul { padding: 0; }
+.info-panel li { font-size: .83rem; color: var(--text2); padding: 3px 0; display: flex; gap: 6px; align-items: baseline; }
+.info-panel li::before { content: '•'; color: var(--muted); flex-shrink: 0; }
+
+/* ═══════════════════════ KEYBOARD ═══════════════════════ */
+.keyboard {
+  background: #e8eef8;
+  border: 1px solid rgba(0,74,173,.15);
+  border-radius: 16px; padding: 20px;
+  display: flex; flex-direction: column; gap: 5px;
+  align-items: center; margin: 16px 0;
+}
+.key-row { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.key {
+  background: white;
+  border: 1px solid rgba(0,74,173,.12);
+  border-bottom: 3px solid rgba(0,74,173,.2);
+  border-radius: 6px; color: var(--text2);
+  font-family: monospace; font-size: .73rem; font-weight: 700;
+  padding: 8px 11px; min-width: 36px; text-align: center;
+  cursor: default; transition: all .12s; user-select: none;
+  box-shadow: 0 1px 3px rgba(0,74,173,.08);
+}
+.key:hover { background: var(--blue); color: white; border-bottom-color: var(--blue-dark); transform: translateY(-2px); }
+.key.hi  { background: var(--orange); color: white; border-bottom-color: var(--orange-dk); }
+.key.hiG { background: var(--green);  color: white; border-bottom-color: #1a5c2e; }
+.key.sp  { min-width: 60px; }
+.key.wd  { min-width: 90px; }
+.key.spc { min-width: 210px; }
+
+/* ═══════════════════════ SHORTCUT GRID ═══════════════════════ */
+.sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+.sc-item {
+  background: var(--card2); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 12px;
+  transition: all .15s;
+}
+.sc-item:hover { border-color: var(--blue); background: rgba(0,74,173,.04); }
+.kbd-grp { display: flex; gap: 3px; flex-shrink: 0; }
+.kbd {
+  background: #e8eef8; color: var(--blue);
+  font-family: monospace; font-size: .72rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 5px;
+  border: 1px solid rgba(0,74,173,.2);
+  border-bottom: 2px solid rgba(0,74,173,.3);
+}
+.sc-item p { font-size: .82rem; color: var(--text2); font-weight: 600; }
+
+/* ═══════════════════════ TABLES ═══════════════════════ */
+.tbl {
+  width: 100%; border-collapse: collapse;
+  font-size: .86rem; margin: 14px 0;
+  border-radius: 12px; overflow: hidden;
+}
+.tbl th {
+  padding: 11px 14px; text-align: left;
+  font-family: var(--font-display); font-weight: normal;
+  font-size: .92rem; color: white;
+}
+.tbl.t-blue   th { background: var(--blue); }
+.tbl.t-green  th { background: var(--green); }
+.tbl.t-orange th { background: var(--orange); }
+.tbl.t-purple th { background: var(--purple); }
+.tbl td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.tbl tr:nth-child(even) td { background: rgba(0,74,173,.03); }
+.tbl code { background: rgba(0,74,173,.07); padding: 2px 7px; border-radius: 4px; font-family: monospace; color: var(--green); font-size: .9em; }
+.tbl .mono { font-family: monospace; color: var(--green); font-size: 1rem; font-weight: 700; }
+
+/* ═══════════════════════ FILE TREE ═══════════════════════ */
+.file-tree {
+  background: #f8faff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 20px 24px;
+  font-family: 'Courier New', monospace;
+  font-size: .87rem; line-height: 2; color: var(--muted); margin: 14px 0;
+}
+.ft-root { color: var(--orange2); font-weight: 700; }
+.ft-dir  { color: var(--blue); }
+.ft-file { color: var(--green); }
+.ft-ind1 { padding-left: 22px; }
+.ft-ind2 { padding-left: 44px; }
+.ft-ind3 { padding-left: 66px; }
+
+/* ═══════════════════════ SECTION HEADING ═══════════════════════ */
+.sec-h {
+  font-family: var(--font-display); font-size: 1.1rem;
+  color: var(--blue); margin: 30px 0 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-h::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ═══════════════════════ INTERACTIVE — DRAG ═══════════════════════ */
+.drag-zone {
+  min-height: 80px;
+  background: var(--card2);
+  border: 2px dashed rgba(0,74,173,.2);
+  border-radius: 12px; padding: 12px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  align-content: flex-start;
+  transition: all .2s;
+}
+.drag-zone.over { border-color: var(--blue); background: rgba(0,74,173,.06); }
+.drag-zone .dz-label {
+  width: 100%; font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .8px;
+  margin-bottom: 4px; color: var(--muted);
+}
+
+.drag-chip {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 14px;
+  font-size: .83rem; font-weight: 600; color: var(--text);
+  cursor: grab; user-select: none; transition: all .15s;
+}
+.drag-chip:hover { border-color: var(--border2); transform: scale(1.04); }
+.drag-chip:active { cursor: grabbing; }
+
+/* ═══════════════════════ INTERACTIVE — QUIZ ═══════════════════════ */
+.quiz-q {
+  font-weight: 700; font-size: .95rem; color: var(--text);
+  margin-bottom: 13px; line-height: 1.45;
+  padding: 12px 16px;
+  background: rgba(0,74,173,.05);
+  border-radius: 10px;
+  border-left: 3px solid var(--blue);
+}
+.quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  background: var(--card2); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+  cursor: pointer; display: flex; align-items: center; gap: 12px;
+  font-size: .9rem; color: var(--text); transition: all .15s;
+}
+.quiz-opt:hover:not(.locked) { border-color: var(--blue); background: rgba(0,74,173,.05); }
+.quiz-opt.correct { border-color: var(--green);  background: rgba(45,155,79,.08);  }
+.quiz-opt.wrong   { border-color: var(--red);    background: rgba(220,38,38,.07);  }
+.quiz-opt.locked  { pointer-events: none; }
+.opt-let {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,74,173,.1);
+  color: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .76rem; flex-shrink: 0;
+  transition: all .15s;
+}
+.quiz-opt:hover:not(.locked) .opt-let { background: var(--blue); color: white; }
+.quiz-opt.correct .opt-let { background: var(--green);  color: white; }
+.quiz-opt.wrong   .opt-let { background: var(--red);    color: white; }
+.quiz-feedback {
+  display: none; margin-top: 10px; padding: 12px 16px;
+  border-radius: 10px; font-size: .86rem; font-weight: 600;
+  line-height: 1.55;
+}
+.quiz-fb-ok  { display: block; background: rgba(45,155,79,.08);  border: 1px solid rgba(45,155,79,.2);  color: var(--green); }
+.quiz-fb-err { display: block; background: rgba(220,38,38,.07);  border: 1px solid rgba(220,38,38,.18); color: var(--red); }
+.quiz-box { margin-bottom: 24px; }
+
+/* ═══════════════════════ STORY CARD ═══════════════════════ */
+.story-card {
+  background: linear-gradient(145deg, #fef3f8, #fdf0fb);
+  border: 1.5px solid rgba(219,39,119,.15);
+  border-left: 5px solid var(--pink);
+  border-radius: var(--r);
+  padding: 28px;
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(219,39,119,.08);
+}
+.story-card::before {
+  content: '📖';
+  position: absolute; right: 24px; top: 20px;
+  font-size: 3.5rem; opacity: .08;
+}
+.story-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(219,39,119,.08);
+  border: 1px solid rgba(219,39,119,.2);
+  color: var(--pink); font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 14px;
+}
+.story-title {
+  font-family: var(--font-display); font-size: 1.2rem;
+  color: var(--text); margin-bottom: 14px;
+}
+.story-body { font-size: .88rem; color: var(--text2); line-height: 1.85; }
+.story-body strong { color: var(--blue); }
+.story-body em { color: var(--green); font-style: normal; font-weight: 600; }
+.story-qs {
+  margin-top: 18px; padding-top: 16px;
+  border-top: 1px solid rgba(219,39,119,.12);
+}
+.story-q {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px 16px;
+  margin-bottom: 10px; font-size: .86rem; color: var(--text2);
+  box-shadow: var(--shadow);
+}
+.story-q strong { color: var(--text); display: block; margin-bottom: 6px; }
+.story-answer {
+  width: 100%; background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px; color: var(--text);
+  padding: 10px 14px; outline: none; resize: none;
+  font-size: .85rem; transition: border-color .2s;
+  margin-top: 6px;
+}
+.story-answer:focus { border-color: var(--pink); }
+
+/* ═══════════════════════ TYPING TRAINER ═══════════════════════ */
+.typing-tgt {
+  background: #f0f4ff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 16px 18px;
+  font-family: 'Courier New', monospace; font-size: .95rem;
+  letter-spacing: .5px; line-height: 1.9; margin-bottom: 10px;
+  color: var(--muted);
+}
+.t-done { color: var(--green); font-weight: 600; }
+.t-err  { color: var(--red); text-decoration: underline wavy; }
+.t-cur  { background: var(--blue); color: white; border-radius: 2px; padding: 0 1px; }
+
+.typing-inp {
+  width: 100%; background: white;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  color: var(--text); font-family: 'Courier New', monospace;
+  font-size: .9rem; padding: 12px 16px; outline: none;
+  transition: border-color .2s; box-shadow: var(--shadow);
+}
+.typing-inp:focus { border-color: var(--blue); }
+.typing-stats { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.t-stat {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 10px 18px; text-align: center;
+  flex: 1; box-shadow: var(--shadow);
+}
+.t-stat span {
+  display: block; font-family: var(--font-display);
+  font-size: 1.3rem; color: var(--blue); font-weight: 700;
+}
+.t-stat small { font-size: .7rem; color: var(--muted); }
+
+/* ═══════════════════════ BINARY CONVERTER ═══════════════════════ */
+.conv-wrap {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 14px; align-items: center; margin: 16px 0;
+}
+.conv-inp {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 12px; color: var(--text);
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+  padding: 16px; text-align: center; outline: none; width: 100%;
+  transition: border-color .2s; box-shadow: var(--shadow);
+}
+.conv-inp:focus { border-color: var(--green); }
+.conv-lbl { text-align: center; font-size: .7rem; color: var(--muted); font-weight: 700; margin-top: 5px; text-transform: uppercase; letter-spacing: .8px; }
+.conv-arrow { font-size: 1.8rem; color: var(--muted); text-align: center; font-weight: 700; }
+.conv-explain {
+  text-align: center; font-size: .86rem; color: var(--green);
+  margin-top: 10px; min-height: 22px; padding: 10px;
+  background: rgba(45,155,79,.07); border-radius: 8px;
+  border: 1px solid rgba(45,155,79,.15); font-weight: 600;
+}
+
+/* ═══════════════════════ FILE GAME ═══════════════════════ */
+.folder-drop {
+  border: 2px dashed rgba(0,74,173,.2);
+  border-radius: 12px; padding: 14px;
+  background: var(--card2);
+  min-height: 90px; transition: all .2s;
+}
+.folder-drop.over { border-color: var(--blue); background: rgba(0,74,173,.05); }
+.folder-drop h4 {
+  font-family: var(--font-display); font-size: .88rem;
+  color: var(--muted); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.drop-area { display: flex; flex-wrap: wrap; gap: 6px; min-height: 30px; }
+.file-chip {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 7px; padding: 5px 10px;
+  font-family: monospace; font-size: .78rem; color: var(--text);
+  cursor: grab; user-select: none; transition: all .15s;
+}
+.file-chip:hover { border-color: var(--border2); }
+
+/* ═══════════════════════ PASSWORD ═══════════════════════ */
+.pwd-inp {
+  width: 100%; background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: monospace; font-size: .95rem;
+  letter-spacing: 2px;
+  padding: 12px 16px; outline: none; transition: border-color .2s;
+  box-shadow: var(--shadow);
+}
+.pwd-inp:focus { border-color: var(--blue); }
+.pwd-bar-track { height: 7px; background: rgba(0,74,173,.1); border-radius: 4px; overflow: hidden; margin: 12px 0 8px; }
+.pwd-bar-fill  { height: 100%; border-radius: 4px; transition: all .35s; }
+.pwd-crits { display: flex; flex-direction: column; gap: 6px; }
+.pwd-crit  { display: flex; align-items: center; gap: 9px; font-size: .83rem; color: var(--muted); }
+.pwd-crit.ok { color: var(--green); font-weight: 600; }
+.pcd { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,74,173,.2); flex-shrink: 0; transition: .2s; }
+.pwd-crit.ok .pcd { background: var(--green); }
+
+/* ═══════════════════════ WORD SIM ═══════════════════════ */
+.app-mock { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin: 14px 0; box-shadow: var(--shadow); }
+.app-bar {
+  padding: 9px 14px; display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-size: .82rem; color: white;
+}
+.app-bar.word  { background: #0058b8; }
+.app-bar.excel { background: #1a6b3a; }
+.app-bar.ppt   { background: #b03a18; }
+
+.app-ribbon {
+  background: #f0f3fa;
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px; display: flex; gap: 6px; flex-wrap: wrap;
+}
+.rb {
+  background: white; border: 1px solid rgba(0,74,173,.15);
+  border-radius: 6px; padding: 4px 11px; font-size: .74rem; font-weight: 600;
+  color: var(--text2); cursor: pointer; transition: all .12s;
+  box-shadow: 0 1px 3px rgba(0,74,173,.06);
+}
+.rb:hover { background: var(--blue); color: white; border-color: var(--blue); }
+
+.word-body {
+  background: white; padding: 22px; min-height: 130px;
+  font-size: .9rem; color: var(--text); line-height: 1.85;
+  outline: none; border-top: 1px solid var(--border);
+}
+
+/* Excel grid */
+.xls-grid { padding: 14px; background: #fafcff; }
+.xls-row { display: flex; }
+.xls-cell {
+  border: 1px solid rgba(0,74,173,.08);
+  padding: 8px 12px; font-size: .78rem; min-width: 90px;
+  text-align: center; cursor: pointer; color: var(--text2); transition: .12s;
+}
+.xls-cell:hover { background: rgba(0,74,173,.06); }
+.xls-cell.xhd   { background: rgba(0,74,173,.08); font-weight: 700; color: var(--blue); cursor: default; }
+.xls-cell.xhd:hover { background: rgba(0,74,173,.08); }
+.xls-cell.xfml  { color: var(--green); font-family: monospace; font-weight: 600; cursor: pointer; }
+.xls-cell.xsel  { background: rgba(0,74,173,.08); border-color: var(--blue); }
+
+/* ═══════════════════════ OS CARDS ═══════════════════════ */
+.os-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px; margin: 14px 0;
+}
+.os-card {
+  background: white; border: 2px solid var(--border);
+  border-radius: 14px; padding: 18px 12px; text-align: center;
+  cursor: pointer; transition: all .2s; box-shadow: var(--shadow);
+}
+.os-card:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 8px 24px rgba(0,74,173,.15); }
+.os-card.sel   { border-color: var(--orange); background: rgba(237,153,27,.06); }
+.os-card .osi  { font-size: 2.8rem; margin-bottom: 8px; display: block; }
+.os-card h4    { font-family: var(--font-display); font-size: .9rem; color: var(--text); margin-bottom: 3px; }
+.os-card p     { font-size: .72rem; color: var(--muted); }
+
+/* ═══════════════════════ ALGO ═══════════════════════ */
+.algo-item {
+  display: flex; align-items: center; gap: 12px;
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; margin-bottom: 8px;
+  transition: all .15s; box-shadow: var(--shadow);
+}
+.algo-item:hover { border-color: var(--blue); }
+.algo-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,74,173,.1);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: .88rem; color: var(--blue);
+  flex-shrink: 0;
+}
+.algo-arrows { display: flex; flex-direction: column; gap: 2px; }
+.algo-arr {
+  background: rgba(0,74,173,.08); border: none;
+  color: var(--blue); cursor: pointer;
+  border-radius: 4px; padding: 2px 6px; font-size: .75rem;
+  transition: all .12s;
+}
+.algo-arr:hover { background: var(--blue); color: white; }
+
+/* ═══════════════════════ SCORE & BUTTONS ═══════════════════════ */
+.score-banner {
+  background: linear-gradient(135deg, rgba(0,74,173,.07), rgba(237,153,27,.06));
+  border: 1.5px solid rgba(0,74,173,.15);
+  border-radius: var(--r); padding: 22px 28px;
+  display: flex; align-items: center; gap: 22px;
+  margin-top: 24px; box-shadow: var(--shadow);
+}
+.score-num {
+  font-family: var(--font-display); font-size: 3rem;
+  color: var(--orange); font-weight: 800; line-height: 1; flex-shrink: 0;
+}
+.score-lbl  { font-size: .85rem; color: var(--muted); margin-top: 3px; }
+
+.star-row   { display: flex; gap: 7px; font-size: 1.8rem; margin: 8px 0; }
+.star-btn   { cursor: pointer; opacity: .25; transition: all .12s; }
+.star-btn.on{ opacity: 1; }
+.star-btn:hover { transform: scale(1.25); opacity: 1; }
+
+.next-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color: white; font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  padding: 14px 30px; border-radius: 50px;
+  border: none; cursor: pointer;
+  box-shadow: var(--shadow-blue);
+  transition: all .22s; margin-top: 24px; letter-spacing: .3px;
+}
+.next-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,74,173,.35); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border-radius: 30px; border: none;
+  font-weight: 600; font-size: .86rem; cursor: pointer; transition: all .15s;
+}
+.btn-blue   { background: var(--blue);   color: white; }
+.btn-green  { background: var(--green);  color: white; }
+.btn-orange { background: var(--orange); color: white; }
+.btn-ghost  { background: white; color: var(--text2); border: 1.5px solid var(--border); box-shadow: var(--shadow); }
+.btn:hover  { opacity: .88; transform: translateY(-1px); }
+
+/* ═══════════════════════ TOAST ═══════════════════════ */
+.toast {
+  position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 14px 20px;
+  font-size: .87rem; font-weight: 600; color: var(--text);
+  box-shadow: 0 8px 30px rgba(0,74,173,.15);
+  transform: translateY(80px); opacity: 0;
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+  display: flex; align-items: center; gap: 10px;
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.t-ok  { border-left: 4px solid var(--green); }
+.toast.t-xp  { border-left: 4px solid var(--orange); }
+.toast.t-err { border-left: 4px solid var(--red); }
+
+/* ═══════════════════════ SCROLLBAR ═══════════════════════ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: rgba(0,74,173,.2); border-radius: 3px; }
+
+/* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+@media (max-width: 600px) {
+  .hero-title  { font-size: 2.2rem; }
+  .info-row    { grid-template-columns: 1fr; }
+  .sc-grid     { grid-template-columns: 1fr; }
+  .conv-wrap   { grid-template-columns: 1fr; }
+  .conv-arrow  { transform: rotate(90deg); }
+  .hero-grid   { grid-template-columns: 1fr 1fr; }
+  .mod-banner  { flex-direction: column; text-align: center; }
+  .banner-icon { width: 60px; height: 60px; font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══════════ TOPBAR ══════════ -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <span class="s1">SUC</span><span class="s2">CEED</span>
+  </div>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-xp">
+    <div class="xp-pill">
+      <span class="xp-icon">⚡</span>
+      <span class="xp-val" id="xpVal">0 XP</span>
+    </div>
+    <div class="xp-bar-track"><div class="xp-bar-fill" id="xpBar"></div></div>
+  </div>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="pageHome">
+  <div class="hero-eyebrow">🌍 Niveau 1 — Fondements de l'Informatique</div>
+  <h1 class="hero-title">
+    Apprendre,<br>
+    <span class="hl-orange">Grandir</span>,
+    <span class="hl-green">S'épanouir</span>
+  </h1>
+  <p class="hero-sub">Deviens acteur du monde numérique avec Amara et Kofi. Chaque module te donne des connaissances, des exercices pratiques et une histoire du quotidien africain.</p>
+  <div class="hero-mascots">👧🏾🧒🏿</div>
+  <button class="hero-btn" onclick="goModule('m1')">Commencer le parcours 🚀</button>
+  <div class="hero-grid">
+    <div class="hero-stat"><span class="hero-stat-n">12</span><div class="hero-stat-l">Modules</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">60+</span><div class="hero-stat-l">Exercices</div></div>
+    <div class="hero-stat"><span class="hero-stat-n">12</span><div class="hero-stat-l">Histoires</div></div>
+  </div>
+</section>
+
+<!-- ══════════ MODULE NAV ══════════ -->
+<nav class="mod-nav" id="modNav">
+  <div class="mod-nav-inner">
+    <button class="mod-tab" id="tab-m1"  onclick="goModule('m1')">💻 Ordinateur</button>
+    <button class="mod-tab" id="tab-m2"  onclick="goModule('m2')">⌨️ Clavier</button>
+    <button class="mod-tab" id="tab-m3"  onclick="goModule('m3')">🔢 Binaire</button>
+    <button class="mod-tab" id="tab-m4"  onclick="goModule('m4')">🗂️ Fichiers</button>
+    <button class="mod-tab" id="tab-m5"  onclick="goModule('m5')">🌐 Internet</button>
+    <button class="mod-tab" id="tab-m6"  onclick="goModule('m6')">📧 E-mails</button>
+    <button class="mod-tab" id="tab-m7"  onclick="goModule('m7')">📝 Word</button>
+    <button class="mod-tab" id="tab-m8"  onclick="goModule('m8')">📊 Excel</button>
+    <button class="mod-tab" id="tab-m9"  onclick="goModule('m9')">🎞️ PowerPoint</button>
+    <button class="mod-tab" id="tab-m10" onclick="goModule('m10')">📹 Visio</button>
+    <button class="mod-tab" id="tab-m11" onclick="goModule('m11')">⚙️ Algorithmes</button>
+    <button class="mod-tab" id="tab-m12" onclick="goModule('m12')">🖥️ Systèmes OS</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     MODULE 1 — L'ORDINATEUR
+════════════════════════════════════════════════════ -->
+<div class="page" id="m1">
+  <div class="mod-banner bb">
+    <div class="banner-icon">💻</div>
+    <div class="banner-meta">
+      <div class="banner-tag">Module 1 / 12</div>
+      <div class="banner-title">Qu'est-ce qu'un ordinateur ?</div>
+      <div class="banner-desc">Composants matériels, périphériques d'entrée & sortie, types d'appareils</div>
+    </div>
+  </div>
+
+  <!-- COURS RICHE -->
+  <div class="bubble amara">
+    <div class="bav">👧🏾</div>
+    <div><div class="bname">Amara — Yaoundé, Cameroun</div>
+    <p>Tu sais, à Yaoundé il y a un cybercafé au coin de chaque rue. Chaque soir, des enfants de mon quartier font leurs devoirs là-bas. Mais sais-tu vraiment comment fonctionne cette machine que tu utilises tous les jours ? C'est ce qu'on va découvrir ensemble ! 🎉</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-blue">📖</div>
+      <div class="card-hd-title">Qu'est-ce qu'un ordinateur ?</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.9rem;margin-bottom:16px;line-height:1.8;">
+      Un <strong style="color:var(--text)">ordinateur</strong> est une machine électronique qui peut <strong style="color:var(--orange2)">recevoir</strong>, <strong style="color:var(--blue2)">traiter</strong> et <strong style="color:var(--green2)">restituer</strong> des informations de façon automatique. Il est composé de deux grandes parties :<br><br>
+      • <strong style="color:var(--text)">Le matériel (hardware)</strong> — ce que tu peux toucher : écran, clavier, souris, processeur…<br>
+      • <strong style="color:var(--text)">Le logiciel (software)</strong> — ce que tu ne peux pas toucher : Windows, Word, Chrome…
+    </p>
+    <div class="cg">
+      <div class="cc"><span class="ci">🖥️</span><h4>Écran / Moniteur</h4><p>Affiche tout ce qui se passe. C'est notre fenêtre sur l'ordinateur.</p></div>
+      <div class="cc"><span class="ci">⌨️</span><h4>Clavier</h4><p>Pour écrire, taper des commandes et naviguer dans les menus.</p></div>
+      <div class="cc"><span class="ci">🖱️</span><h4>Souris</h4><p>Pointe et clique sur l'écran. Notre « doigt numérique » !</p></div>
+      <div class="cc"><span class="ci">🗄️</span><h4>Unité centrale</h4><p>Le boîtier qui contient le cerveau : processeur, RAM, disque dur.</p></div>
+      <div class="cc"><span class="ci">🖨️</span><h4>Imprimante</h4><p>Met sur papier les documents créés sur l'ordinateur.</p></div>
+      <div class="cc"><span class="ci">🔊</span><h4>Haut-parleurs</h4><p>Diffuse les sons, la musique, les vidéos.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-blue">🧠</div>
+      <div class="card-hd-title">Le « cerveau » de l'ordinateur : le Processeur (CPU)</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.9rem;line-height:1.8;margin-bottom:14px;">
+      Le <strong style="color:var(--text)">CPU (Central Processing Unit)</strong> est la pièce la plus importante de l'ordinateur. Il se trouve à l'intérieur de l'unité centrale et exécute des milliards d'opérations chaque seconde. Sans lui, rien ne fonctionne.<br><br>
+      À ses côtés se trouvent :<br>
+      • <strong style="color:var(--blue2)">La RAM</strong> (mémoire vive) — stockage temporaire pendant que tu travailles. Quand tu éteins l'ordinateur, la RAM se vide.<br>
+      • <strong style="color:var(--orange2)">Le Disque dur (HDD/SSD)</strong> — stockage permanent. Tes fichiers y restent même après extinction.<br>
+      • <strong style="color:var(--green2)">La carte graphique (GPU)</strong> — gère l'affichage des images et des jeux.
+    </p>
+    <div style="background:rgba(0,74,173,.06);border-radius:12px;padding:16px 20px;border:1.5px solid rgba(0,74,173,.15);">
+      <div style="font-size:.76rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">💡 Pour mieux comprendre</div>
+      <p style="font-size:.87rem;color:var(--text2);line-height:1.75;">Imagine ton <strong style="color:var(--text)">cartable d'école</strong> : le <strong style="color:var(--text)">CPU</strong>, c'est toi — tu lis, tu réfléchis, tu décides. La <strong style="color:var(--text)">RAM</strong>, c'est ta table de travail — tu poses tes cahiers ouverts pendant que tu travailles, mais le soir tu ranges tout. Le <strong style="color:var(--text)">disque dur</strong>, c'est ton cartable — tout y reste même quand tu dors. L'<strong style="color:var(--text)">écran</strong>, c'est le tableau de la classe. Le <strong style="color:var(--text)">clavier</strong>, c'est ton stylo !</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-orange">🔌</div>
+      <div class="card-hd-title">Périphériques : Entrée vs Sortie</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.9rem;margin-bottom:16px;line-height:1.8;">
+      Les <strong style="color:var(--text)">périphériques</strong> sont tous les appareils connectés à l'ordinateur. Ils se divisent en deux catégories selon la direction des données :
+    </p>
+    <div class="info-row">
+      <div class="info-panel ip-blue">
+        <div class="ip-title">⬇️ Entrée — Envoie des données À l'ordinateur</div>
+        <ul>
+          <li>⌨️ Clavier — frappe du texte</li>
+          <li>🖱️ Souris — mouvements et clics</li>
+          <li>🎤 Microphone — capture la voix</li>
+          <li>📷 Webcam — capture vidéo/photo</li>
+          <li>📟 Scanner — numérise documents</li>
+          <li>🕹️ Manette de jeu</li>
+        </ul>
+      </div>
+      <div class="info-panel ip-orange">
+        <div class="ip-title">⬆️ Sortie — Reçoit des données DE l'ordinateur</div>
+        <ul>
+          <li>🖥️ Écran — affiche les images</li>
+          <li>🔊 Haut-parleurs — diffuse le son</li>
+          <li>🖨️ Imprimante — imprime sur papier</li>
+          <li>📡 Projecteur — projette l'écran</li>
+          <li>🎧 Casque audio</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bubble tip">
+      <div class="bav">💡</div>
+      <div><div class="bname">Le saviez-vous ?</div>
+      <p>Certains périphériques sont à la fois <strong>entrée ET sortie</strong> ! Par exemple, un écran tactile (comme ton smartphone) reçoit ta touche (entrée) ET affiche les informations (sortie). Une imprimante multifonction peut aussi scanner (entrée) et imprimer (sortie).</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-green">📱</div>
+      <div class="card-hd-title">Les différents types d'ordinateurs</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <table class="tbl t-blue">
+      <thead><tr><th>Type</th><th>Description</th><th>Usage typique</th></tr></thead>
+      <tbody>
+        <tr><td>🖥️ <strong>Ordinateur de bureau</strong></td><td>Unité centrale + écran séparés, fixe</td><td>Bureaux, cybercafés, écoles</td></tr>
+        <tr><td>💻 <strong>Ordinateur portable</strong></td><td>Tout-en-un, léger, batterie</td><td>Étudiants, travailleurs nomades</td></tr>
+        <tr><td>📱 <strong>Smartphone</strong></td><td>Ordinateur miniature de poche</td><td>Communication, apps, photos</td></tr>
+        <tr><td>📟 <strong>Tablette</strong></td><td>Grand écran tactile sans clavier physique</td><td>Lecture, dessin, vidéo</td></tr>
+        <tr><td>⌚ <strong>Montre connectée</strong></td><td>Micro-ordinateur au poignet</td><td>Santé, notifications</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EXERCICE -->
+  <div class="sec-h">🎮 Exercice — Classe chaque appareil</div>
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-purple">🎯</div>
+      <div class="card-hd-title">Glisse chaque appareil dans la bonne colonne</div>
+      <span class="badge b-practice">Pratique</span>
+    </div>
+    <div id="chips-pool" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding:12px;background:var(--card2);border-radius:10px;border:1.5px solid var(--border);">
+      <div class="drag-chip" draggable="true" data-val="Microphone" data-cat="entree">🎤 Microphone</div>
+      <div class="drag-chip" draggable="true" data-val="Imprimante" data-cat="sortie">🖨️ Imprimante</div>
+      <div class="drag-chip" draggable="true" data-val="Écran" data-cat="sortie">🖥️ Écran</div>
+      <div class="drag-chip" draggable="true" data-val="Clavier" data-cat="entree">⌨️ Clavier</div>
+      <div class="drag-chip" draggable="true" data-val="Webcam" data-cat="entree">📷 Webcam</div>
+      <div class="drag-chip" draggable="true" data-val="Haut-parleur" data-cat="sortie">🔊 Haut-parleur</div>
+      <div class="drag-chip" draggable="true" data-val="Scanner" data-cat="entree">📟 Scanner</div>
+      <div class="drag-chip" draggable="true" data-val="Projecteur" data-cat="sortie">📡 Projecteur</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="drag-zone" id="zone-entree" data-zone="entree">
+        <div class="dz-label" style="color:#7eb8ff;">⬇️ ENTRÉE — données vers l'ordinateur</div>
+      </div>
+      <div class="drag-zone" id="zone-sortie" data-zone="sortie">
+        <div class="dz-label" style="color:var(--orange2);">⬆️ SORTIE — données depuis l'ordinateur</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+      <button class="btn btn-green" onclick="checkDrag()">✓ Vérifier</button>
+      <button class="btn btn-ghost" onclick="resetDrag()">🔄 Recommencer</button>
+    </div>
+    <div id="drag-fb" style="margin-top:12px;font-size:.88rem;font-weight:600;"></div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="sec-h">❓ Mini Quiz — Module 1</div>
+  <div class="card"><div id="quiz-m1"></div></div>
+
+  <!-- HISTOIRE -->
+  <div class="sec-h">📖 Étude de cas — Le cybercafé d'Abdoulaye</div>
+  <div class="story-card">
+    <div class="story-badge">📖 Étude de cas réelle</div>
+    <div class="story-title">🏪 Le cybercafé du Quartier Bastos</div>
+    <div class="story-body">
+      <strong>Abdoulaye</strong> est propriétaire d'un cybercafé à Yaoundé depuis 5 ans. Il possède 8 ordinateurs de bureau, chacun équipé d'un écran, d'un clavier, d'une souris et d'une imprimante partagée.<br><br>
+      Un matin, un client arrive et dit : <em>« Mon fichier Word ne s'imprime pas. »</em> Abdoulaye vérifie et remarque que le câble entre l'ordinateur et l'imprimante est débranché.<br><br>
+      <strong>Problème 2 :</strong> Une étudiante en licence veut scanner ses relevés de notes pour les envoyer par e-mail à son université en France. Abdoulaye lui montre que le scanner est branché sur l'unité centrale mais que son pilote (logiciel) n'est pas installé.<br><br>
+      <strong>Problème 3 :</strong> Un commerçant veut utiliser la webcam pour une visioconférence avec son fournisseur à Abidjan, mais l'image est floue et le son mauvais parce que le microphone intégré du casque est défectueux.
+    </div>
+    <div class="story-qs">
+      <div class="story-q">
+        <strong>❓ Question 1 — L'imprimante est un périphérique de quel type ?</strong>
+        <textarea class="story-answer" rows="2" placeholder="Écris ta réponse ici…"></textarea>
+      </div>
+      <div class="story-q">
+        <strong>❓ Question 2 — Cite 2 périphériques d'entrée utilisés dans cette histoire.</strong>
+        <textarea class="story-answer" rows="2" placeholder="Écris ta réponse ici…"></textarea>
+      </div>
+      <div class="story-q">
+        <strong>❓ Question 3 — Si Abdoulaye achète une tablette pour son cybercafé, quelle différence avec un ordinateur de bureau ?</strong>
+        <textarea class="story-answer" rows="3" placeholder="Écris ta réponse ici…"></textarea>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;background:rgba(45,155,79,.06);border-radius:10px;border:1.5px solid rgba(45,155,79,.2);">
+      <div style="font-size:.74rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px;">✅ Corrigé</div>
+      <div style="font-size:.84rem;color:var(--text2);line-height:1.75;" class="story-corrige-body">
+        1. L'imprimante est un périphérique de <strong style="color:var(--text)">sortie</strong> — elle reçoit les données de l'ordinateur et les imprime sur papier.<br>
+        2. Périphériques d'entrée : le <strong style="color:var(--text)">scanner</strong> et le <strong style="color:var(--text)">microphone</strong> (du casque).<br>
+        3. Une tablette n'a pas d'unité centrale séparée — tout est intégré dans l'écran. Elle est portable et tactile mais généralement moins puissante qu'un ordinateur de bureau pour des tâches intensives.
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div>
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Comment tu te sens sur ce module ?</div>
+      <div class="star-row" id="sr-m1">
+        <span class="star-btn" onclick="rate('sr-m1',1)">⭐</span><span class="star-btn" onclick="rate('sr-m1',2)">⭐</span>
+        <span class="star-btn" onclick="rate('sr-m1',3)">⭐</span><span class="star-btn" onclick="rate('sr-m1',4)">⭐</span>
+        <span class="star-btn" onclick="rate('sr-m1',5)">⭐</span>
+      </div>
+    </div>
+    <button class="next-btn" onclick="nextMod('m1','m2')">Module suivant ⌨️ →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     MODULE 2 — CLAVIER & DACTYLOGRAPHIE
+════════════════════════════════════════════════════ -->
+<div class="page" id="m2">
+  <div class="mod-banner bo">
+    <div class="banner-icon">⌨️</div>
+    <div class="banner-meta">
+      <div class="banner-tag">Module 2 / 12</div>
+      <div class="banner-title">Clavier, souris & dactylographie</div>
+      <div class="banner-desc">Raccourcis essentiels, actions de la souris, technique de frappe efficace</div>
+    </div>
+  </div>
+
+  <div class="bubble kofi">
+    <div class="bav">🧒🏿</div>
+    <div><div class="bname">Kofi — Abidjan, Côte d'Ivoire</div>
+    <p>Mon grand-père jouait de la kora 🪗 au village. <em style="background:rgba(237,153,27,.1);border-radius:5px;padding:1px 6px;font-style:normal;color:var(--orange2);font-size:.85em;">La kora est un instrument de musique traditionnel d'Afrique de l'Ouest, à 21 cordes, qui ressemble à une harpe.</em> Il me disait : « Au début, tu regardes tes mains. Puis un jour, tes doigts connaissent les cordes par cœur. » La dactylographie, c'est exactement pareil ! 10 minutes d'entraînement par jour, et en 3 mois tu feras 40 mots/minute les yeux fermés. C'est moi qui te le dis !</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-orange">⌨️</div>
+      <div class="card-hd-title">Anatomie du clavier AZERTY</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.88rem;line-height:1.8;margin-bottom:14px;">
+      Le clavier AZERTY (utilisé en France et en Afrique francophone) comporte environ <strong style="color:var(--text)">105 touches</strong> organisées en zones. Voici les touches les plus importantes à connaître (surlignées en orange) :
+    </p>
+    <div class="keyboard">
+      <div class="key-row">
+        <div class="key hi">Échap</div>
+        <div class="key">F1</div><div class="key">F2</div><div class="key">F3</div><div class="key">F4</div>
+        <div class="key">F5</div><div class="key">F6</div><div class="key">F7</div><div class="key">F8</div>
+        <div class="key">F9</div><div class="key">F10</div><div class="key">F11</div><div class="key">F12</div>
+      </div>
+      <div class="key-row">
+        <div class="key">²</div><div class="key">1</div><div class="key">2</div><div class="key">3</div>
+        <div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div>
+        <div class="key">8</div><div class="key">9</div><div class="key">0</div>
+        <div class="key wd hi">⌫ Suppr</div>
+      </div>
+      <div class="key-row">
+        <div class="key sp">Tab ↹</div>
+        <div class="key">A</div><div class="key">Z</div><div class="key">E</div><div class="key">R</div>
+        <div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div>
+        <div class="key">O</div><div class="key">P</div>
+        <div class="key sp hi">↵ Entrée</div>
+      </div>
+      <div class="key-row">
+        <div class="key wd">⇪ Verr.Maj</div>
+        <div class="key">Q</div><div class="key">S</div><div class="key">D</div><div class="key">F</div>
+        <div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div>
+        <div class="key">L</div><div class="key">M</div>
+      </div>
+      <div class="key-row">
+        <div class="key wd hi">⇧ Maj</div>
+        <div class="key">W</div><div class="key">X</div><div class="key">C</div><div class="key">V</div>
+        <div class="key">B</div><div class="key">N</div><div class="key">,</div><div class="key">;</div>
+        <div class="key wd hi">⇧ Maj</div>
+      </div>
+      <div class="key-row">
+        <div class="key sp hi">Ctrl</div>
+        <div class="key sp">Alt</div>
+        <div class="key spc">Barre Espace</div>
+        <div class="key sp">Alt Gr</div>
+        <div class="key sp hi">Ctrl</div>
+      </div>
+    </div>
+    <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:6px;">🟠 Touches essentielles surlignées — apprends-les en priorité !</p>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-orange">⚡</div>
+      <div class="card-hd-title">Les raccourcis clavier indispensables</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.88rem;line-height:1.8;margin-bottom:14px;">
+      Ces raccourcis fonctionnent dans <strong style="color:var(--text)">presque tous les logiciels</strong> (Word, Excel, navigateur, etc.). Les mémoriser te fait gagner énormément de temps — un professionnel utilise des raccourcis des dizaines de fois par heure !
+    </p>
+    <div class="sc-grid">
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">C</span></div><p>Copier la sélection</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">V</span></div><p>Coller</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">X</span></div><p>Couper</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">Z</span></div><p>Annuler la dernière action</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">S</span></div><p>Sauvegarder le document</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">A</span></div><p>Sélectionner tout</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">P</span></div><p>Imprimer</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">F</span></div><p>Rechercher dans le document</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">H</span></div><p>Rechercher & Remplacer</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Alt</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">F4</span></div><p>Fermer la fenêtre</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Alt</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">Tab</span></div><p>Basculer entre les fenêtres</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Win</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">D</span></div><p>Afficher le bureau</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-orange">🖱️</div>
+      <div class="card-hd-title">Les 5 actions de la souris</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <table class="tbl t-orange">
+      <thead><tr><th>Action</th><th>Comment faire</th><th>Effet</th></tr></thead>
+      <tbody>
+        <tr><td>👆 <strong>Clic gauche</strong></td><td>Appuie une fois sur le bouton gauche</td><td>Sélectionner un élément</td></tr>
+        <tr><td>👆👆 <strong>Double-clic</strong></td><td>Appuie deux fois rapidement</td><td>Ouvrir un fichier ou une application</td></tr>
+        <tr><td>👉 <strong>Clic droit</strong></td><td>Appuie sur le bouton droit</td><td>Afficher le menu contextuel (options)</td></tr>
+        <tr><td>🔄 <strong>Molette</strong></td><td>Fais tourner la roulette</td><td>Faire défiler la page (haut/bas)</td></tr>
+        <tr><td>✊ <strong>Glisser-déposer</strong></td><td>Maintiens clic gauche + déplace</td><td>Déplacer un fichier ou un élément</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EXERCICE DACTYLOGRAPHIE -->
+  <div class="sec-h">⌨️ Entraîneur de dactylographie</div>
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-orange">⏱️</div>
+      <div class="card-hd-title">Recopie ce texte aussi vite et précisément que possible</div>
+      <span class="badge b-practice">Pratique</span>
+    </div>
+    <div class="typing-tgt"><span id="typing-display"></span></div>
+    <input class="typing-inp" id="typing-input" placeholder="Clique ici et commence à taper…" oninput="checkTyping()" autocomplete="off" autocorrect="off" spellcheck="false">
+    <div class="typing-stats">
+      <div class="t-stat"><span id="t-wpm">0</span><small>mots / min</small></div>
+      <div class="t-stat"><span id="t-acc">100%</span><small>précision</small></div>
+      <div class="t-stat"><span id="t-time">0s</span><small>temps</small></div>
+      <div class="t-stat"><span id="t-err">0</span><small>erreurs</small></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+      <button class="btn btn-ghost" onclick="resetTyping()">🔄 Réinitialiser</button>
+      <button class="btn btn-blue" onclick="newTypingText()">📝 Nouveau texte</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="sec-h">❓ Mini Quiz — Module 2</div>
+  <div class="card"><div id="quiz-m2"></div></div>
+
+  <!-- HISTOIRE -->
+  <div class="sec-h">📖 Histoire — La secrétaire et le raccourci magique</div>
+  <div class="story-card">
+    <div class="story-badge">✨ Histoire vraie inspirée</div>
+    <div class="story-title">⌨️ Mariama et le rapport urgent</div>
+    <div class="story-body">
+      <strong>Mariama</strong> est secrétaire dans une ONG à Dakar. Son responsable lui demande de terminer un rapport de 30 pages pour 17h — il est 16h45.<br><br>
+      Elle doit <em>changer le mot « projet »</em> en « programme » dans tout le document (il apparaît 47 fois), corriger la mise en forme des titres et imprimer 5 exemplaires.<br><br>
+      Sans connaître les raccourcis, elle ferait chaque modification à la main : <strong>47 × 3 clics = 141 clics</strong> juste pour les remplacements ! Mais Mariama connaît ses raccourcis :<br><br>
+      • <strong>Ctrl+H</strong> → Remplace « projet » par « programme » partout en 3 secondes.<br>
+      • <strong>Ctrl+A</strong> puis formatage → Mise en forme globale en 5 secondes.<br>
+      • <strong>Ctrl+P</strong> → Lance l'impression de 5 copies en 2 secondes.<br><br>
+      Elle finit à <strong>16h52</strong> au lieu de dépasser 18h. Son responsable lui dit : <em>« Mariama, comment fais-tu ça aussi vite ? »</em> Elle sourit et répond : <em>« J'ai appris avec SUCCEED quand j'avais 10 ans. »</em>
+    </div>
+    <div class="story-qs">
+      <div class="story-q">
+        <strong>❓ Quel raccourci Mariama aurait-elle dû utiliser si elle avait fait une erreur de remplacement ?</strong>
+        <textarea class="story-answer" rows="2" placeholder="Écris ta réponse…"></textarea>
+      </div>
+      <div class="story-q">
+        <strong>❓ Sans raccourcis, combien de clics environ pour remplacer 47 occurrences manuellement (3 clics par occurrence) ?</strong>
+        <textarea class="story-answer" rows="2" placeholder="Calcule et écris ta réponse…"></textarea>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;background:rgba(45,155,79,.06);border-radius:10px;border:1.5px solid rgba(45,155,79,.2);">
+      <div style="font-size:.74rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px;">✅ Corrigé</div>
+      <div style="font-size:.84rem;color:var(--text2);line-height:1.75;" class="story-corrige-body">
+        1. <strong>Ctrl+Z</strong> (Annuler) — pour revenir en arrière après une erreur.<br>
+        2. <strong>47 × 3 = 141 clics</strong>, plus le temps de trouver chaque occurrence = environ 20 minutes de travail manuel.
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div>
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Comment tu te sens ?</div>
+      <div class="star-row" id="sr-m2">
+        <span class="star-btn" onclick="rate('sr-m2',1)">⭐</span><span class="star-btn" onclick="rate('sr-m2',2)">⭐</span>
+        <span class="star-btn" onclick="rate('sr-m2',3)">⭐</span><span class="star-btn" onclick="rate('sr-m2',4)">⭐</span>
+        <span class="star-btn" onclick="rate('sr-m2',5)">⭐</span>
+      </div>
+    </div>
+    <button class="next-btn" onclick="nextMod('m2','m3')">Module suivant 🔢 →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     MODULE 3 — BINAIRE
+════════════════════════════════════════════════════ -->
+<div class="page" id="m3">
+  <div class="mod-banner bg">
+    <div class="banner-icon">🔢</div>
+    <div class="banner-meta">
+      <div class="banner-tag">Module 3 / 12</div>
+      <div class="banner-title">Les données & le code binaire</div>
+      <div class="banner-desc">Bits, octets, base 2 vs base 10 — comment les ordinateurs pensent</div>
+    </div>
+  </div>
+
+  <div class="bubble amara">
+    <div class="bav">👧🏾</div>
+    <div><div class="bname">Amara dit</div>
+    <p>Imagine que tu dois écrire un message secret avec seulement deux symboles : ⚫ (zéro) et ⚪ (un). C'est exactement ce que fait l'ordinateur ! Tout — chaque photo, chanson, vidéo, texte — n'est qu'une très longue série de 0 et de 1. C'est fascinant, non ? 🤯</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-green">💡</div>
+      <div class="card-hd-title">Pourquoi le binaire ?</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.9rem;line-height:1.85;margin-bottom:16px;">
+      Un ordinateur est une machine électronique. À l'intérieur, des millions de minuscules interrupteurs (les <strong style="color:var(--text)">transistors</strong>) peuvent être soit <strong style="color:var(--orange2)">allumés (1)</strong>, soit <strong style="color:var(--text2)">éteints (0)</strong>. C'est pour cela que l'ordinateur ne comprend que deux états : 0 et 1.<br><br>
+      Ces deux chiffres forment le <strong style="color:var(--text)">système binaire</strong> (base 2), contrairement à notre système décimal habituel qui utilise 10 chiffres (0 à 9).
+    </p>
+    <div class="info-row">
+      <div class="info-panel ip-blue">
+        <div class="ip-title">👨‍👩‍👧 Nous — Base 10 (Décimal)</div>
+        <ul>
+          <li>10 chiffres : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</li>
+          <li>Chaque position vaut ×10</li>
+          <li>Ex : 253 = 2×100 + 5×10 + 3×1</li>
+          <li>Naturel pour les humains (10 doigts !)</li>
+        </ul>
+      </div>
+      <div class="info-panel ip-green">
+        <div class="ip-title">💻 Ordinateur — Base 2 (Binaire)</div>
+        <ul>
+          <li>2 chiffres : 0 et 1</li>
+          <li>Chaque position vaut ×2</li>
+          <li>Ex : 1011 = 1×8 + 0×4 + 1×2 + 1×1 = 11</li>
+          <li>Naturel pour les circuits électroniques !</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-green">🔢</div>
+      <div class="card-hd-title">Lire le binaire — les positions</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.88rem;line-height:1.8;margin-bottom:14px;">
+      En binaire, chaque position (de droite à gauche) vaut une puissance de 2 : <strong style="color:var(--text)">1, 2, 4, 8, 16, 32, 64, 128…</strong><br>
+      Pour lire un nombre binaire, tu multiplies chaque chiffre par sa position et tu additionnes :
+    </p>
+    <table class="tbl t-green">
+      <thead><tr><th>Décimal</th><th>Binaire</th><th>Calcul détaillé</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td class="mono">0000</td><td>0</td></tr>
+        <tr><td>1</td><td class="mono">0001</td><td>1×1 = 1</td></tr>
+        <tr><td>2</td><td class="mono">0010</td><td>1×2 = 2</td></tr>
+        <tr><td>3</td><td class="mono">0011</td><td>1×2 + 1×1 = 3</td></tr>
+        <tr><td>5</td><td class="mono">0101</td><td>1×4 + 0×2 + 1×1 = 5</td></tr>
+        <tr><td>8</td><td class="mono">1000</td><td>1×8 = 8</td></tr>
+        <tr><td>10</td><td class="mono">1010</td><td>1×8 + 0×4 + 1×2 + 0×1 = 10</td></tr>
+        <tr><td>15</td><td class="mono">1111</td><td>1×8 + 1×4 + 1×2 + 1×1 = 15</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-green">💾</div>
+      <div class="card-hd-title">Bit, Octet et unités de stockage</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <table class="tbl t-green">
+      <thead><tr><th>Unité</th><th>Équivalent</th><th>Exemple concret</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 bit</strong></td><td>0 ou 1 (le plus petit)</td><td>Un interrupteur allumé/éteint</td></tr>
+        <tr><td><strong>1 octet</strong></td><td>8 bits</td><td>1 caractère (lettre « A » = 01000001)</td></tr>
+        <tr><td><strong>1 Ko (kilo-octet)</strong></td><td>1 000 octets</td><td>Un très court message texte</td></tr>
+        <tr><td><strong>1 Mo (méga-octet)</strong></td><td>1 000 Ko</td><td>1 photo de qualité moyenne</td></tr>
+        <tr><td><strong>1 Go (giga-octet)</strong></td><td>1 000 Mo</td><td>1 film de qualité HD</td></tr>
+        <tr><td><strong>1 To (téra-octet)</strong></td><td>1 000 Go</td><td>Disque dur d'un ordinateur standard</td></tr>
+      </tbody>
+    </table>
+    <div class="bubble tip">
+      <div class="bav">💡</div>
+      <div><div class="bname">Astuce mémo</div>
+      <p>Retiens <strong>oct = 8</strong> (comme l'octopus qui a 8 bras 🐙). Donc 1 <strong>oct</strong>et = 8 bits. Et les préfixes : Kilo (×1 000), Méga (×1 000 000), Giga (×1 milliard) — les mêmes que pour les grammes et les mètres en sciences !</p></div>
+    </div>
+  </div>
+
+  <!-- CONVERTISSEUR -->
+  <div class="sec-h">🔄 Convertisseur interactif</div>
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-green">⚙️</div>
+      <div class="card-hd-title">Convertis entre décimal et binaire en temps réel</div>
+      <span class="badge b-practice">Pratique</span>
+    </div>
+    <div class="conv-wrap">
+      <div>
+        <input class="conv-inp" id="dec-inp" type="number" min="0" max="255" placeholder="13" oninput="dec2bin()">
+        <div class="conv-lbl">Décimal (0–255)</div>
+      </div>
+      <div class="conv-arrow">⇄</div>
+      <div>
+        <input class="conv-inp" id="bin-inp" placeholder="1101" oninput="bin2dec()">
+        <div class="conv-lbl">Binaire</div>
+      </div>
+    </div>
+    <div class="conv-explain" id="conv-expl">👆 Tape un nombre pour voir la conversion et l'explication.</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="sec-h">❓ Mini Quiz — Module 3</div>
+  <div class="card"><div id="quiz-m3"></div></div>
+
+  <!-- HISTOIRE -->
+  <div class="sec-h">📖 Histoire — Le code secret d'Ibrahima</div>
+  <div class="story-card">
+    <div class="story-badge">🎭 Histoire inspirante</div>
+    <div class="story-title">🔐 Le message binaire caché</div>
+    <div class="story-body">
+      <strong>Ibrahima</strong>, 11 ans, élève de CM2 à Conakry (Guinée), a découvert le binaire dans son cours SUCCEED. Pour épater ses amis, il a inventé un <em>code secret binaire</em> pour envoyer des messages.<br><br>
+      Il écrit à sa cousine au Sénégal : <strong>01000001 01101101 01100001 01110010 01100001</strong><br><br>
+      Sa cousine, qui a aussi suivi SUCCEED, sait que chaque groupe de 8 bits est une lettre. Elle consulte la table ASCII et découvre que :<br>
+      • 01000001 = 65 = <strong style="color:var(--orange2);">A</strong><br>
+      • 01101101 = 109 = <strong style="color:var(--orange2);">m</strong><br>
+      • 01100001 = 97 = <strong style="color:var(--orange2);">a</strong><br>
+      • 01110010 = 114 = <strong style="color:var(--orange2);">r</strong><br>
+      • 01100001 = 97 = <strong style="color:var(--orange2);">a</strong><br><br>
+      Le message secret dit : <em>« Amara »</em> — le prénom de leur amie commune !
+    </div>
+    <div class="story-qs">
+      <div class="story-q">
+        <strong>❓ Combien de bits contient le message complet d'Ibrahima (5 lettres) ?</strong>
+        <textarea class="story-answer" rows="2" placeholder="Calcule : 5 lettres × ? bits par lettre = ?"></textarea>
+      </div>
+      <div class="story-q">
+        <strong>❓ Convertis le nombre 13 en binaire en utilisant la méthode des positions (8, 4, 2, 1).</strong>
+        <textarea class="story-answer" rows="3" placeholder="8 → ? | 4 → ? | 2 → ? | 1 → ? → résultat = ?"></textarea>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;background:rgba(45,155,79,.06);border-radius:10px;border:1.5px solid rgba(45,155,79,.2);">
+      <div style="font-size:.74rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px;">✅ Corrigé</div>
+      <div style="font-size:.84rem;color:var(--text2);line-height:1.75;" class="story-corrige-body">
+        1. 5 lettres × 8 bits = <strong style="color:var(--text)">40 bits</strong>.<br>
+        2. 13 = 8+4+1 → position 8 = <strong>1</strong>, position 4 = <strong>1</strong>, position 2 = <strong>0</strong>, position 1 = <strong>1</strong> → <strong style="color:var(--green2);">1101</strong> en binaire.
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m3"><span class="star-btn" onclick="rate('sr-m3',1)">⭐</span><span class="star-btn" onclick="rate('sr-m3',2)">⭐</span><span class="star-btn" onclick="rate('sr-m3',3)">⭐</span><span class="star-btn" onclick="rate('sr-m3',4)">⭐</span><span class="star-btn" onclick="rate('sr-m3',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m3','m4')">Module suivant 🗂️ →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     MODULE 4 — FICHIERS
+════════════════════════════════════════════════════ -->
+<div class="page" id="m4">
+  <div class="mod-banner bp">
+    <div class="banner-icon">🗂️</div>
+    <div class="banner-meta">
+      <div class="banner-tag">Module 4 / 12</div>
+      <div class="banner-title">Gestion des dossiers & fichiers</div>
+      <div class="banner-desc">Extensions, arborescence, nommage et organisation efficace</div>
+    </div>
+  </div>
+
+  <div class="bubble kofi">
+    <div class="bav">🧒🏿</div>
+    <div><div class="bname">Kofi dit</div>
+    <p>Un ordinateur mal organisé, c'est comme le marché d'Adjamé à Abidjan quand tout est mélangé : tu perds un temps fou à retrouver tes affaires ! Avec de bons dossiers bien nommés, tu retrouves n'importe quel fichier en 3 secondes chrono. C'est un super-pouvoir ! ⏱️</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-purple">📄</div>
+      <div class="card-hd-title">Les extensions de fichiers les plus courantes</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <p style="color:var(--text2);font-size:.88rem;line-height:1.8;margin-bottom:14px;">
+      L'<strong style="color:var(--text)">extension</strong> est la partie après le point dans le nom d'un fichier (ex: <code style="background:rgba(0,74,173,.08);padding:2px 6px;border-radius:4px;font-family:monospace;color:var(--green);">.docx</code>). Elle indique à l'ordinateur quel logiciel utiliser pour ouvrir ce fichier.
+    </p>
+    <table class="tbl t-purple">
+      <thead><tr><th>Icône</th><th>Extension</th><th>Type de fichier</th><th>Exemple</th></tr></thead>
+      <tbody>
+        <tr><td>📄</td><td><code>.docx / .txt</code></td><td>Document texte</td><td>redaction-francais.docx</td></tr>
+        <tr><td>📊</td><td><code>.xlsx</code></td><td>Tableur Excel</td><td>budget-famille.xlsx</td></tr>
+        <tr><td>🎞️</td><td><code>.pptx</code></td><td>Présentation PowerPoint</td><td>expose-histoire.pptx</td></tr>
+        <tr><td>🖼️</td><td><code>.jpg / .png</code></td><td>Image / Photo</td><td>photo-anniversaire.jpg</td></tr>
+        <tr><td>🎵</td><td><code>.mp3</code></td><td>Audio / Musique</td><td>chanson-makossa.mp3</td></tr>
+        <tr><td>🎬</td><td><code>.mp4</code></td><td>Vidéo</td><td>cours-succeed.mp4</td></tr>
+        <tr><td>📦</td><td><code>.zip</code></td><td>Archive compressée</td><td>documents-ecole.zip</td></tr>
+        <tr><td>📜</td><td><code>.pdf</code></td><td>Document portable (non modifiable)</td><td>diplome.pdf</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-purple">📏</div>
+      <div class="card-hd-title">Les règles d'or du nommage de fichiers</div>
+      <span class="badge b-tip">Conseil</span>
+    </div>
+    <div class="info-row">
+      <div class="info-panel ip-green">
+        <div class="ip-title">✅ Bonne pratique</div>
+        <ul>
+          <li>Utiliser des tirets (-) à la place des espaces</li>
+          <li>Éviter les accents et caractères spéciaux</li>
+          <li>Inclure la date : cours-2026-03-15.docx</li>
+          <li>Nom descriptif et concis</li>
+          <li>Ex : expose-histoire-afrique.pptx</li>
+        </ul>
+      </div>
+      <div class="info-panel ip-red">
+        <div class="ip-title">❌ À éviter</div>
+        <ul>
+          <li>Espaces : « cours informatique.docx » ❌</li>
+          <li>Accents : « réfléxion.docx » ❌</li>
+          <li>Noms vagues : « document1.docx » ❌</li>
+          <li>Caractères spéciaux : « cours&amp;notes!.pdf » ❌</li>
+          <li>Noms trop longs difficiles à retrouver</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-purple">🌳</div>
+      <div class="card-hd-title">Arborescence exemple — Organisation d'un élève SUCCEED</div>
+      <span class="badge b-lesson">Leçon</span>
+    </div>
+    <div class="file-tree">
+      <div>📁 <span class="ft-root">Mes Documents</span></div>
+      <div class="ft-ind1">📁 <span class="ft-dir">SUCCEED-Niveau1</span></div>
+      <div class="ft-ind2">📄 <span class="ft-file">cours-ordinateur.docx</span></div>
+      <div class="ft-ind2">📊 <span class="ft-file">exercices-excel.xlsx</span></div>
+      <div class="ft-ind2">🎞️ <span class="ft-file">projet-final.pptx</span></div>
+      <div class="ft-ind1">📁 <span class="ft-dir">Ecole-CM2</span></div>
+      <div class="ft-ind2">📁 <span class="ft-dir">Mathematiques</span></div>
+      <div class="ft-ind3">📄 <span class="ft-file">fractions-2026-03.docx</span></div>
+      <div class="ft-ind2">📁 <span class="ft-dir">Francais</span></div>
+      <div class="ft-ind3">📄 <span class="ft-file">dictee-lundi.txt</span></div>
+      <div class="ft-ind3">📄 <span class="ft-file">redaction-vacances.docx</span></div>
+      <div class="ft-ind1">📁 <span class="ft-dir">Photos-Famille</span></div>
+      <div class="ft-ind2">🖼️ <span class="ft-file">noel-2025.jpg</span></div>
+      <div class="ft-ind2">🖼️ <span class="ft-file">vacances-douala.png</span></div>
+      <div class="ft-ind1">📁 <span class="ft-dir">Musique</span></div>
+      <div class="ft-ind2">🎵 <span class="ft-file">makossa-favorites.mp3</span></div>
+    </div>
+  </div>
+
+  <!-- EXERCICE FILES -->
+  <div class="sec-h">🗂️ Jeu — Range les fichiers dans les bons dossiers !</div>
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-icon i-purple">🎯</div>
+      <div class="card-hd-title">Glisse chaque fichier dans le dossier correspondant</div>
+      <span class="badge b-practice">Pratique</span>
+    </div>
+    <div id="file-pool" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding:12px;background:var(--card2);border-radius:10px;border:1.5px solid var(--border);">
+      <div class="file-chip" draggable="true" data-cat="image">photo-fete.jpg</div>
+      <div class="file-chip" draggable="true" data-cat="document">recette-ndole.docx</div>
+      <div class="file-chip" draggable="true" data-cat="audio">chanson-makossa.mp3</div>
+      <div class="file-chip" draggable="true" data-cat="document">cours-maths.docx</div>
+      <div class="file-chip" draggable="true" data-cat="image">amara-portrait.png</div>
+      <div class="file-chip" draggable="true" data-cat="video">cours-succeed.mp4</div>
+      <div class="file-chip" draggable="true" data-cat="document">expose-afrique.pptx</div>
+      <div class="file-chip" draggable="true" data-cat="image">vacances-kribi.jpg</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+      <div class="folder-drop" id="fd-image"    data-cat="image">   <h4>🖼️ Images & Photos</h4><div class="drop-area" id="da-image"></div></div>
+      <div class="folder-drop" id="fd-document" data-cat="document"><h4>📄 Documents</h4><div class="drop-area" id="da-document"></div></div>
+      <div class="folder-drop" id="fd-audio"    data-cat="audio">   <h4>🎵 Musique & Audio</h4><div class="drop-area" id="da-audio"></div></div>
+      <div class="folder-drop" id="fd-video"    data-cat="video">   <h4>🎬 Vidéos</h4><div class="drop-area" id="da-video"></div></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px;">
+      <button class="btn btn-green" onclick="checkFiles()">✓ Vérifier</button>
+      <button class="btn btn-ghost" onclick="resetFiles()">🔄 Recommencer</button>
+    </div>
+    <div id="file-fb" style="margin-top:12px;font-size:.88rem;font-weight:600;"></div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="sec-h">❓ Mini Quiz — Module 4</div>
+  <div class="card"><div id="quiz-m4"></div></div>
+
+  <!-- HISTOIRE -->
+  <div class="sec-h">📖 Histoire — Le devoir perdu d'Aïssatou</div>
+  <div class="story-card">
+    <div class="story-badge">😱 Situation réelle</div>
+    <div class="story-title">💾 « Mon devoir a disparu ! »</div>
+    <div class="story-body">
+      <strong>Aïssatou</strong>, 12 ans à Bamako (Mali), a passé 3 heures à rédiger un devoir de géographie sur son ordinateur. Elle le sauvegarde sous le nom : <em>« devoir »</em> dans <em>« Mes Documents »</em>.<br><br>
+      Le lendemain, quand elle cherche son fichier, elle trouve <strong>47 fichiers</strong> qui s'appellent « devoir1 », « devoir2 », « devoir »… Elle ne sait plus lequel est le bon ! Elle ouvre plusieurs fichiers et réalise qu'elle avait écrasé son travail avec un ancien devoir de maths.<br><br>
+      Son devoir de géographie est perdu. Elle doit tout recommencer la veille de la remise.<br><br>
+      <strong>Ce qu'elle aurait dû faire :</strong><br>
+      → Nommer le fichier : <em style="color:var(--green2);">geographie-afrique-subsaharienne-2026-03-15.docx</em><br>
+      → Le ranger dans : <em style="color:var(--blue2);">Ecole → CM2 → Geographie</em><br>
+      → Faire une copie de sauvegarde sur Google Drive
+    </div>
+    <div class="story-qs">
+      <div class="story-q">
+        <strong>❓ Propose un meilleur nom pour son devoir de géographie. Applique les règles de nommage !</strong>
+        <textarea class="story-answer" rows="2" placeholder="Ex : geographie-..."></textarea>
+      </div>
+      <div class="story-q">
+        <strong>❓ Crée une arborescence de dossiers pour Aïssatou qui a des matières : Géographie, Maths, Français, SUCCEED.</strong>
+        <textarea class="story-answer" rows="4" placeholder="📁 Mes Documents&#10;   📁 ...&#10;   📁 ..."></textarea>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;background:rgba(45,155,79,.06);border-radius:10px;border:1.5px solid rgba(45,155,79,.2);">
+      <div style="font-size:.74rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px;">✅ Exemple de bonne réponse</div>
+      <div style="font-size:.84rem;color:var(--text2);line-height:1.75;" class="story-corrige-body">
+        1. <strong style="color:var(--text);">geographie-afrique-subsaharienne-2026-03.docx</strong> — date incluse, tirets, pas d'accents.<br>
+        2. 📁 Mes Documents → 📁 Ecole-CM2 → 📁 Geographie / 📁 Maths / 📁 Francais / 📁 SUCCEED
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m4"><span class="star-btn" onclick="rate('sr-m4',1)">⭐</span><span class="star-btn" onclick="rate('sr-m4',2)">⭐</span><span class="star-btn" onclick="rate('sr-m4',3)">⭐</span><span class="star-btn" onclick="rate('sr-m4',4)">⭐</span><span class="star-btn" onclick="rate('sr-m4',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m4','m5')">Module suivant 🌐 →</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     MODULE 5 — INTERNET & BUREAUTIQUE
+════════════════════════════════════════════════════ -->
+<div class="page" id="m5">
+  <div class="mod-banner bt">
+    <div class="banner-icon">🌐</div>
+    <div class="banner-meta">
+      <div class="banner-tag">Module 5 / 12</div>
+      <div class="banner-title">Internet & bureautique</div>
+      <div class="banner-desc">Navigation, URL, moteurs de recherche, cloud et services en ligne</div>
+    </div>
+  </div>
+  <div class="bubble amara">
+    <div class="bav">👧🏾</div>
+    <div><div class="bname">Amara dit</div>
+    <p>Internet c'est comme les routes qui relient Yaoundé, Douala et toutes les villes d'Afrique — mais pour les informations ! En quelques secondes, tu peux accéder à une bibliothèque de millions de livres, parler à quelqu'un en France ou regarder un cours depuis le Canada. C'est magique ! 🌍✨</p></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-teal">🌐</div><div class="card-hd-title">Comment fonctionne Internet ?</div><span class="badge b-lesson">Leçon</span></div>
+    <p style="color:var(--text2);font-size:.9rem;line-height:1.85;margin-bottom:14px;">
+      Internet est un <strong style="color:var(--text)">réseau mondial d'ordinateurs</strong> interconnectés. Quand tu tapes une adresse dans ton navigateur, voici ce qui se passe en moins d'une seconde :<br><br>
+      1. Ton ordinateur envoie une <strong style="color:var(--blue2)">requête</strong> via ton box/modem Internet.<br>
+      2. La requête voyage par <strong style="color:var(--orange2)">câbles, fibres optiques ou satellites</strong> jusqu'au serveur cible.<br>
+      3. Le serveur renvoie la <strong style="color:var(--green2)">page web</strong> à ton navigateur.<br>
+      4. Ton navigateur affiche la page sur ton écran.
+    </p>
+    <div style="background:rgba(8,145,178,.05);border-radius:12px;padding:16px 20px;border:1.5px solid rgba(8,145,178,.2);">
+      <div style="font-size:.76rem;font-weight:700;color:#67e8f9;text-transform:uppercase;margin-bottom:10px;">📡 Le trajet d'une requête depuis Abidjan</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.82rem;color:var(--text2);">
+        <span style="background:rgba(0,74,173,.07);padding:6px 12px;border-radius:8px;border:1px solid var(--border);">💻 Ton ordi<br><small style="color:var(--muted)">Abidjan</small></span>
+        <span style="color:var(--muted)">→</span>
+        <span style="background:rgba(0,74,173,.07);padding:6px 12px;border-radius:8px;border:1px solid var(--border);">📡 Box Internet</span>
+        <span style="color:var(--muted)">→</span>
+        <span style="background:rgba(0,74,173,.07);padding:6px 12px;border-radius:8px;border:1px solid var(--border);">🌊 Câble sous-marin<br><small style="color:var(--muted)">SAT-3 / ACE</small></span>
+        <span style="color:var(--muted)">→</span>
+        <span style="background:rgba(0,74,173,.07);padding:6px 12px;border-radius:8px;border:1px solid var(--border);">🖥️ Serveur<br><small style="color:var(--muted)">Europe/USA</small></span>
+        <span style="color:var(--muted)">→</span>
+        <span style="background:rgba(0,74,173,.07);padding:6px 12px;border-radius:8px;border:1px solid var(--border);">📄 Page web<br><small style="color:var(--muted)">← retour en 0,2s</small></span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-teal">🔗</div><div class="card-hd-title">Décomposer une URL</div><span class="badge b-lesson">Leçon</span></div>
+    <div style="background:#f0f4ff;border-radius:10px;padding:16px 20px;font-family:monospace;font-size:.96rem;margin-bottom:16px;border:1.5px solid var(--border);letter-spacing:.3px;">
+      <span style="color:#f472b6;">https://</span><span style="color:#60a5fa;">www.succeed-edu.com</span><span style="color:var(--green2);">/niveau1/module5</span><span style="color:var(--orange2);">?lang=fr</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:.8rem;text-align:center;">
+      <div style="background:rgba(244,114,182,.08);border:1px solid rgba(244,114,182,.2);border-radius:9px;padding:10px;"><div style="color:#f472b6;font-weight:700;margin-bottom:4px;">https://</div><div style="color:var(--muted)">Protocole sécurisé (le S = Sécurisé)</div></div>
+      <div style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:9px;padding:10px;"><div style="color:#60a5fa;font-weight:700;margin-bottom:4px;">domaine.com</div><div style="color:var(--muted)">Adresse principale du site</div></div>
+      <div style="background:rgba(45,155,79,.08);border:1px solid rgba(45,155,79,.2);border-radius:9px;padding:10px;"><div style="color:var(--green2);font-weight:700;margin-bottom:4px;">/chemin</div><div style="color:var(--muted)">Page spécifique du site</div></div>
+      <div style="background:rgba(237,153,27,.06);border:1px solid rgba(237,153,27,.18);border-radius:9px;padding:10px;"><div style="color:var(--orange2);font-weight:700;margin-bottom:4px;">?paramètre</div><div style="color:var(--muted)">Options supplémentaires</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-teal">☁️</div><div class="card-hd-title">Services cloud essentiels</div><span class="badge b-lesson">Leçon</span></div>
+    <div class="cg" style="grid-template-columns:repeat(3,1fr)">
+      <div class="cc"><span class="ci">☁️</span><h4>Google Drive</h4><p>Stocker & partager des fichiers. 15 Go gratuits !</p></div>
+      <div class="cc"><span class="ci">📬</span><h4>Gmail</h4><p>E-mails gratuits avec 15 Go de stockage</p></div>
+      <div class="cc"><span class="ci">📅</span><h4>Google Agenda</h4><p>Organiser son emploi du temps en ligne</p></div>
+      <div class="cc"><span class="ci">📝</span><h4>Google Docs</h4><p>Traitement de texte collaboratif en ligne</p></div>
+      <div class="cc"><span class="ci">📊</span><h4>Google Sheets</h4><p>Tableur en ligne, comme Excel</p></div>
+      <div class="cc"><span class="ci">🔍</span><h4>Google</h4><p>Moteur de recherche n°1 mondial</p></div>
+    </div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz — Module 5</div>
+  <div class="card"><div id="quiz-m5"></div></div>
+  <div class="sec-h">📖 Histoire — Fatou et la bourse universitaire</div>
+  <div class="story-card">
+    <div class="story-badge">🎓 Étude de cas</div>
+    <div class="story-title">🌍 Fatou candidate à une bourse en France</div>
+    <div class="story-body">
+      <strong>Fatou</strong>, 18 ans à Dakar, veut postuler à une bourse universitaire pour étudier l'informatique en France. Elle doit soumettre son dossier en ligne. Elle n'a jamais utilisé les services cloud.<br><br>
+      Son amie Kofi lui explique : <em>« Va sur <strong>drive.google.com</strong>, crée un dossier "Bourse-France-2026", uploade tes documents et partage le lien avec l'université. »</em><br><br>
+      Fatou apprend aussi que le site de candidature utilise <strong>HTTPS</strong> (connexion sécurisée). Elle voit le cadenas 🔒 dans son navigateur et se sent rassurée — ses données personnelles sont protégées.<br><br>
+      Elle recherche les conditions sur Google avec les mots-clés : <em style="color:var(--green2)">« bourse informatique Cameroun France 2026 critères »</em> plutôt que <em style="color:var(--red)">« comment avoir une bourse en France »</em> (trop vague).
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Pourquoi Fatou est-elle rassurée en voyant HTTPS et le cadenas 🔒 ?</strong><textarea class="story-answer" rows="2" placeholder="Écris ta réponse…"></textarea></div>
+      <div class="story-q"><strong>❓ Améliore cette requête Google : « bourse étudiant ». Comment la rendre plus précise pour Fatou ?</strong><textarea class="story-answer" rows="2" placeholder="Écris ta requête améliorée…"></textarea></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m5"><span class="star-btn" onclick="rate('sr-m5',1)">⭐</span><span class="star-btn" onclick="rate('sr-m5',2)">⭐</span><span class="star-btn" onclick="rate('sr-m5',3)">⭐</span><span class="star-btn" onclick="rate('sr-m5',4)">⭐</span><span class="star-btn" onclick="rate('sr-m5',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m5','m6')">Module suivant 📧 →</button>
+  </div>
+</div>
+
+<!-- MODULE 6 — EMAIL & SECURITE -->
+<div class="page" id="m6">
+  <div class="mod-banner br">
+    <div class="banner-icon">📧</div>
+    <div class="banner-meta"><div class="banner-tag">Module 6 / 12</div><div class="banner-title">E-mails, sécurité & vie privée</div><div class="banner-desc">Rédiger pro, HTTPS, mots de passe solides, phishing et protection</div></div>
+  </div>
+  <div class="bubble kofi"><div class="bav">🧒🏿</div><div><div class="bname">Kofi dit</div><p>Un e-mail mal écrit à ton futur employeur ou directeur d'école, c'est comme arriver à un entretien en pagne froissé — ça fait mauvaise impression même si tu es brilliant(e) ! Et un mot de passe faible, c'est laisser la porte de ta maison grande ouverte la nuit. Apprenons à bien faire les deux ! 🔐</p></div></div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">📧</div><div class="card-hd-title">Structure d'un e-mail professionnel</div><span class="badge b-lesson">Leçon</span></div>
+    <div style="background:#f0f4ff;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:14px;">
+      <div style="background:#eef3ff;padding:14px 18px;border-bottom:1.5px solid var(--border);">
+        <div style="display:flex;gap:10px;align-items:center;font-size:.83rem;margin-bottom:7px;"><span style="color:var(--muted);min-width:52px;font-weight:700;">De :</span><span style="color:#7eb8ff;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbbab6baa9baf5b5bcaebeb6b49bbcb6bab2b7f5b8b4b6">[email&#160;protected]</a></span></div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:.83rem;margin-bottom:7px;"><span style="color:var(--muted);min-width:52px;font-weight:700;">À :</span><span style="color:var(--text);">directeur@lycee-yaoundé.cm</span></div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:.83rem;"><span style="color:var(--muted);min-width:52px;font-weight:700;">Objet :</span><span style="color:var(--text);font-weight:600;">Demande d'inscription — Rentrée 2026</span></div>
+      </div>
+      <div style="padding:18px;font-size:.87rem;color:var(--text2);line-height:1.9;background:white;">
+        Bonjour Monsieur le Directeur,<br><br>
+        Je me permets de vous contacter afin de vous demander des informations concernant les modalités d'inscription pour la rentrée 2026 au sein de votre établissement.<br><br>
+        Élève en classe de CM2, j'ai obtenu une moyenne générale de 17/20 lors du dernier trimestre. Je joins à ce message mon bulletin scolaire.<br><br>
+        Je reste disponible pour tout renseignement complémentaire et vous remercie de l'attention que vous porterez à ma demande.<br><br>
+        Cordialement,<br>
+        <strong style="color:#7eb8ff;">Amara Nguemo</strong><br>
+        <span style="color:var(--muted);font-size:.8rem;">📱 +237 6XX XX XX XX</span>
+      </div>
+    </div>
+    <table class="tbl t-blue">
+      <thead><tr><th>Partie</th><th>Rôle</th><th>Exemple</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Objet</strong></td><td>Résume le sujet en 1 phrase précise</td><td>« Demande de stage — Juillet 2026 »</td></tr>
+        <tr><td><strong>Salutation</strong></td><td>S'adresser poliment à la personne</td><td>« Bonjour Madame Diallo, »</td></tr>
+        <tr><td><strong>Corps</strong></td><td>Message clair, paragraphes courts</td><td>Contexte → Demande → Justification</td></tr>
+        <tr><td><strong>Formule</strong></td><td>Clore poliment</td><td>« Cordialement, » ou « Bien à vous, »</td></tr>
+        <tr><td><strong>Signature</strong></td><td>Prénom, nom, contact</td><td>Kofi Asante — +225 XX XX XX XX</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">🔒</div><div class="card-hd-title">Sécurité numérique : les règles essentielles</div><span class="badge b-lesson">Leçon</span></div>
+    <div class="cg">
+      <div class="cc"><span class="ci">🔑</span><h4>Mot de passe fort</h4><p>8+ caractères, majuscules, chiffres, symboles. Jamais ton prénom !</p></div>
+      <div class="cc"><span class="ci">🛡️</span><h4>HTTPS</h4><p>Le cadenas 🔒 = connexion chiffrée. Toujours vérifier avant de saisir tes données.</p></div>
+      <div class="cc"><span class="ci">🎣</span><h4>Phishing</h4><p>Faux sites ou e-mails qui imitent les vrais. Vérifie toujours l'URL !</p></div>
+      <div class="cc"><span class="ci">🤐</span><h4>Vie privée</h4><p>Jamais ton adresse, école ou téléphone à des inconnus en ligne.</p></div>
+    </div>
+  </div>
+  <div class="sec-h">🔐 Testeur de mot de passe</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">🧪</div><div class="card-hd-title">Teste la force de ton mot de passe</div><span class="badge b-practice">Pratique</span></div>
+    <input class="pwd-inp" id="pwd-inp" type="text" placeholder="Tape ton mot de passe ici…" oninput="checkPwd()">
+    <div class="pwd-bar-track"><div class="pwd-bar-fill" id="pwd-fill"></div></div>
+    <div id="pwd-lbl" style="font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:12px;">Commence à taper…</div>
+    <div class="pwd-crits">
+      <div class="pwd-crit" id="pc-len"><div class="pcd"></div>Au moins 8 caractères</div>
+      <div class="pwd-crit" id="pc-maj"><div class="pcd"></div>Au moins une majuscule (A-Z)</div>
+      <div class="pwd-crit" id="pc-num"><div class="pcd"></div>Au moins un chiffre (0-9)</div>
+      <div class="pwd-crit" id="pc-sym"><div class="pcd"></div>Au moins un symbole (! @ # $ % …)</div>
+    </div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz — Module 6</div>
+  <div class="card"><div id="quiz-m6"></div></div>
+  <div class="sec-h">📖 Histoire — L'arnaque au faux prix Orange Money</div>
+  <div class="story-card">
+    <div class="story-badge">⚠️ Cas de phishing réel</div>
+    <div class="story-title">📱 Le faux SMS de « Orange Money »</div>
+    <div class="story-body">
+      <strong>Sékou</strong>, 14 ans à Bamako, reçoit un SMS : <em>« Félicitations ! Vous avez gagné 50 000 FCFA. Cliquez ici pour recevoir votre argent : bit.ly/orange-prix »</em>.<br><br>
+      Sékou est excité et clique. Le site lui demande son numéro Orange Money et son <strong>code PIN secret</strong>. Il est sur le point de saisir quand il se souvient de sa leçon SUCCEED :<br><br>
+      ✅ Il vérifie l'URL : <em style="color:var(--red)">bit.ly/orange-prix</em> au lieu de <em style="color:var(--green2)">orangemoney.com</em><br>
+      ✅ Il voit que le site n'a PAS de 🔒 HTTPS<br>
+      ✅ Il remarque que le « r » dans « Orange » est en fait un « o » différent (caractère unicode truqué)<br><br>
+      Sékou ferme le site et prévient sa mère. C'était une arnaque de phishing. Si il avait saisi son PIN, les escrocs auraient vidé son compte en quelques secondes.
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Cite 3 signes qui indiquent que ce site est frauduleux.</strong><textarea class="story-answer" rows="3" placeholder="1. ...\n2. ...\n3. ..."></textarea></div>
+      <div class="story-q"><strong>❓ Crée un mot de passe fort pour un compte Orange Money. Applique toutes les règles !</strong><textarea class="story-answer" rows="2" placeholder="Ex: …"></textarea></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m6"><span class="star-btn" onclick="rate('sr-m6',1)">⭐</span><span class="star-btn" onclick="rate('sr-m6',2)">⭐</span><span class="star-btn" onclick="rate('sr-m6',3)">⭐</span><span class="star-btn" onclick="rate('sr-m6',4)">⭐</span><span class="star-btn" onclick="rate('sr-m6',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m6','m7')">Module suivant 📝 →</button>
+  </div>
+</div>
+
+<!-- MODULE 7 — WORD -->
+<div class="page" id="m7">
+  <div class="mod-banner bb">
+    <div class="banner-icon">📝</div>
+    <div class="banner-meta"><div class="banner-tag">Module 7 / 12</div><div class="banner-title">Word : mise en forme de documents</div><div class="banner-desc">Styles, raccourcis, mise en page professionnelle</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">📖</div><div class="card-hd-title">Les raccourcis Word essentiels</div><span class="badge b-lesson">Leçon</span></div>
+    <div class="sc-grid">
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">G</span></div><p>Mettre en Gras</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">I</span></div><p>Italique</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">U</span></div><p>Souligner</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">H</span></div><p>Rechercher & Remplacer</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">Entrée</span></div><p>Saut de page</p></div>
+      <div class="sc-item"><div class="kbd-grp"><span class="kbd">Ctrl</span><span style="color:var(--muted);font-size:.75rem;margin:0 2px">+</span><span class="kbd">E</span></div><p>Centrer le texte</p></div>
+    </div>
+  </div>
+  <div class="sec-h">📝 Simulateur Word</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">⚙️</div><div class="card-hd-title">Sélectionne du texte et applique une mise en forme</div><span class="badge b-practice">Pratique</span></div>
+    <div class="app-mock">
+      <div class="app-bar word">📝 Microsoft Word — mon-document.docx</div>
+      <div class="app-ribbon">
+        <button class="rb" onclick="wfmt('bold')"><b>G</b></button>
+        <button class="rb" onclick="wfmt('italic')"><i>I</i></button>
+        <button class="rb" onclick="wfmt('underline')"><u>S</u></button>
+        <button class="rb" onclick="wfmt('formatBlock','H2')">Titre 1</button>
+        <button class="rb" onclick="wfmt('formatBlock','H3')">Titre 2</button>
+        <button class="rb" onclick="wfmt('justifyLeft')">⬅</button>
+        <button class="rb" onclick="wfmt('justifyCenter')">⬛</button>
+        <button class="rb" onclick="wfmt('justifyRight')">➡</button>
+        <button class="rb" onclick="wfmt('insertUnorderedList')">• Liste</button>
+        <button class="rb" onclick="wfmt('insertOrderedList')">1. Numérotée</button>
+        <button class="rb" style="color:var(--green2);" onclick="wfmt('foreColor','#38c464')">🎨 Vert</button>
+        <button class="rb" style="color:var(--orange2);" onclick="wfmt('foreColor','#f5ad46')">🎨 Orange</button>
+      </div>
+      <div class="word-body" id="word-area" contenteditable="true">Clique ici et tape ton texte. Sélectionne des mots avec la souris puis utilise les boutons ci-dessus pour mettre en forme.<br><br>Exemple : <b>Ce texte est en gras.</b> <i>Celui-ci est en italique.</i> <u>Et celui-là est souligné.</u></div>
+    </div>
+    <div style="font-size:.78rem;color:var(--muted);margin-top:8px;">💡 <kbd class="kbd">Ctrl+G</kbd> = Gras &nbsp; <kbd class="kbd">Ctrl+I</kbd> = Italique &nbsp; <kbd class="kbd">Ctrl+U</kbd> = Souligné &nbsp; <kbd class="kbd">Ctrl+Z</kbd> = Annuler</div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz — Module 7</div>
+  <div class="card"><div id="quiz-m7"></div></div>
+  <div class="sec-h">📖 Histoire — Le rapport de stage d'Adama</div>
+  <div class="story-card">
+    <div class="story-badge">💼 Cas professionnel</div>
+    <div class="story-title">📄 Le rapport qui a impressionné le directeur</div>
+    <div class="story-body">
+      <strong>Adama</strong>, 17 ans à Ouagadougou (Burkina Faso), fait un stage dans une entreprise de construction. Son maître de stage lui demande de rédiger un rapport de 15 pages sur son expérience.<br><br>
+      Son ami qui n'a pas suivi SUCCEED remet un document avec du texte tout collé, même taille partout, sans titres ni structure. Son maître de stage dit : <em>« C'est illisible. »</em><br><br>
+      Adama, lui, utilise les <strong>styles Word</strong> : Titre 1 pour les grandes parties, Titre 2 pour les sous-parties. Il génère une <strong>table des matières automatique</strong> en 2 clics. Il utilise des listes à puces pour les tâches effectuées. La police est calibri 12pts pour le corps, 16pts pour les titres.<br><br>
+      Son directeur de stage lit et dit : <em>« C'est du travail professionnel. Tu as appris ça où ? »</em>
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Quels raccourcis Word Adama a-t-il probablement utilisés pour : mettre les titres en Gras, Centrer le titre principal, et Rechercher un mot à corriger partout ?</strong><textarea class="story-answer" rows="3" placeholder="Gras = ?\nCentrer = ?\nRechercher = ?"></textarea></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m7"><span class="star-btn" onclick="rate('sr-m7',1)">⭐</span><span class="star-btn" onclick="rate('sr-m7',2)">⭐</span><span class="star-btn" onclick="rate('sr-m7',3)">⭐</span><span class="star-btn" onclick="rate('sr-m7',4)">⭐</span><span class="star-btn" onclick="rate('sr-m7',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m7','m8')">Module suivant 📊 →</button>
+  </div>
+</div>
+
+<!-- MODULE 8 — EXCEL -->
+<div class="page" id="m8">
+  <div class="mod-banner bg">
+    <div class="banner-icon">📊</div>
+    <div class="banner-meta"><div class="banner-tag">Module 8 / 12</div><div class="banner-title">Excel : tableaux, formules & graphiques</div><div class="banner-desc">Cellules, formules de base, analyse de données visuelles</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-green">📊</div><div class="card-hd-title">Formules Excel essentielles</div><span class="badge b-lesson">Leçon</span></div>
+    <table class="tbl t-green">
+      <thead><tr><th>Formule</th><th>Rôle</th><th>Exemple concret</th></tr></thead>
+      <tbody>
+        <tr><td><code>=SOMME(B2:B10)</code></td><td>Additionne une plage de cellules</td><td>Total des ventes du mois</td></tr>
+        <tr><td><code>=MOYENNE(C1:C5)</code></td><td>Calcule la moyenne</td><td>Moyenne des notes du trimestre</td></tr>
+        <tr><td><code>=MAX(D1:D8)</code></td><td>Trouve la valeur maximum</td><td>Meilleur score de la classe</td></tr>
+        <tr><td><code>=MIN(D1:D8)</code></td><td>Trouve la valeur minimum</td><td>Mois de plus faible vente</td></tr>
+        <tr><td><code>=A1-B1</code></td><td>Soustraction</td><td>Bénéfice = Ventes − Charges</td></tr>
+        <tr><td><code>=SI(A1>10;"Oui";"Non")</code></td><td>Condition logique</td><td>Admis si moyenne > 10 ?</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sec-h">📊 Simulateur Excel — Budget boutique</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-green">🖱️</div><div class="card-hd-title">Clique sur les cellules en vert pour voir les formules</div><span class="badge b-practice">Pratique</span></div>
+    <div class="app-mock">
+      <div class="app-bar excel">📊 Excel — budget-boutique-mokolo.xlsx</div>
+      <div class="xls-grid" id="xls-grid"></div>
+    </div>
+    <div id="xls-fb" style="margin-top:10px;font-size:.84rem;color:var(--text2);"></div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz — Module 8</div>
+  <div class="card"><div id="quiz-m8"></div></div>
+  <div class="sec-h">📖 Histoire — Le budget d'Awa pour son mariage</div>
+  <div class="story-card">
+    <div class="story-badge">💍 Étude de cas familiale</div>
+    <div class="story-title">💐 Awa organise son mariage avec Excel</div>
+    <div class="story-body">
+      <strong>Awa</strong>, 24 ans à Douala, doit gérer le budget de son mariage de 150 invités. Sa famille pense que tout va coûter environ <em>2 millions FCFA</em>, mais personne n'a fait de calcul précis.<br><br>
+      Awa crée un tableau Excel avec les colonnes : Poste, Budget prévu, Coût réel, Différence.<br>
+      Elle entre les données : Traiteur (850 000), Location salle (300 000), Tenues (250 000), Décoration (180 000), Photographe (150 000), Invitations (40 000)…<br><br>
+      Avec <strong>=SOMME(B2:B7)</strong>, elle découvre que le total prévu est <strong>1 770 000 FCFA</strong> — sous son budget ! Mais avec <strong>=SOMME(C2:C7)</strong> après les dépenses réelles, elle réalise que le traiteur a coûté 1 100 000 FCFA au lieu de 850 000.<br><br>
+      La formule <strong>=C2-B2</strong> lui montre immédiatement le dépassement de <strong>250 000 FCFA</strong>. Elle peut ainsi demander une réduction ailleurs.
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Quelle formule Awa utiliserait-elle pour calculer la MOYENNE de toutes ses dépenses réelles (C2 à C7) ?</strong><textarea class="story-answer" rows="2" placeholder="=…"></textarea></div>
+      <div class="story-q"><strong>❓ Pour trouver le poste le plus cher (valeur max des coûts réels), quelle formule utilise-t-elle ?</strong><textarea class="story-answer" rows="2" placeholder="=…"></textarea></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m8"><span class="star-btn" onclick="rate('sr-m8',1)">⭐</span><span class="star-btn" onclick="rate('sr-m8',2)">⭐</span><span class="star-btn" onclick="rate('sr-m8',3)">⭐</span><span class="star-btn" onclick="rate('sr-m8',4)">⭐</span><span class="star-btn" onclick="rate('sr-m8',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m8','m9')">Module suivant 🎞️ →</button>
+  </div>
+</div>
+
+<!-- MODULE 9 — POWERPOINT -->
+<div class="page" id="m9">
+  <div class="mod-banner bo">
+    <div class="banner-icon">🎞️</div>
+    <div class="banner-meta"><div class="banner-tag">Module 9 / 12</div><div class="banner-title">PowerPoint : présenter des idées</div><div class="banner-desc">Règles des diapositives, structure percutante, design efficace</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-orange">📐</div><div class="card-hd-title">Les règles d'or d'une bonne présentation</div><span class="badge b-lesson">Leçon</span></div>
+    <div class="info-row">
+      <div class="info-panel ip-green"><div class="ip-title">✅ Bonne pratique</div><ul><li>1 idée principale par diapositive</li><li>Police minimum 24pts (lisible en salle)</li><li>Image forte + peu de texte</li><li>Contraste fort (fond sombre/texte clair)</li><li>Thème cohérent sur toutes les slides</li><li>Titres courts et percutants</li></ul></div>
+      <div class="info-panel ip-red"><div class="ip-title">❌ À éviter absolument</div><ul><li>Trop de texte sur une slide</li><li>Police trop petite (&lt; 20pts)</li><li>5 polices différentes</li><li>Fond et texte de même couleur</li><li>Animations excessives qui distraient</li><li>Lire ses slides mot à mot</li></ul></div>
+    </div>
+  </div>
+  <div class="sec-h">🎨 Constructeur de slide</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-orange">🎨</div><div class="card-hd-title">Crée ta diapositive de titre</div><span class="badge b-practice">Pratique</span></div>
+    <div class="app-mock">
+      <div class="app-bar ppt">🎞️ PowerPoint — ma-presentation.pptx</div>
+      <div id="ppt-slide" style="background:#f3f0ff;padding:30px 24px;text-align:center;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:background .3s;">
+        <input id="ppt-title" placeholder="Titre de ta présentation…" style="background:transparent;border:none;border-bottom:2px solid rgba(0,74,173,.3);color:var(--text);font-family:var(--font-display);font-size:1.5rem;text-align:center;outline:none;width:90%;padding:8px;">
+        <input id="ppt-sub" placeholder="Sous-titre ou ton nom…" style="background:transparent;border:none;border-bottom:1px solid rgba(0,74,173,.2);color:var(--muted);font-size:.9rem;text-align:center;outline:none;width:65%;padding:6px;">
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+      <button class="btn btn-ghost" onclick="pptTheme('#f3f0ff','#7c3aed')">🟣 Violet</button>
+      <button class="btn btn-ghost" onclick="pptTheme('#eff6ff','#0561d4')">🔵 Bleu</button>
+      <button class="btn btn-ghost" onclick="pptTheme('#f0fdf4','#2d9b4f')">🟢 Vert</button>
+      <button class="btn btn-ghost" onclick="pptTheme('#fff5f5','#c02030')">🔴 Rouge</button>
+      <button class="btn btn-ghost" onclick="pptTheme('#fffbeb','#c07800')">🟠 Orange</button>
+    </div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz — Module 9</div>
+  <div class="card"><div id="quiz-m9"></div></div>
+  <div class="sec-h">📖 Histoire — Kofi gagne le concours entrepreneuriat</div>
+  <div class="story-card">
+    <div class="story-badge">🏆 Histoire inspirante</div>
+    <div class="story-title">🎤 La présentation qui a tout changé</div>
+    <div class="story-body">
+      <strong>Kofi</strong>, 16 ans à Abidjan, participe à un concours d'entrepreneuriat jeunes de la CEDEAO. Il présente son projet d'application de livraison de repas traditionnels africains.<br><br>
+      Sur scène, face à 200 personnes et un jury de 5 experts, il a exactement <strong>8 minutes</strong> et <strong>10 slides</strong>.<br><br>
+      Grâce à son cours SUCCEED sur PowerPoint :<br>
+      → Slide 1 : Titre fort + photo choc du problème<br>
+      → Slides 2-3 : Le problème en 2 statistiques visuelles<br>
+      → Slides 4-6 : Sa solution avec captures d'écran<br>
+      → Slide 7 : Business model en tableau simple<br>
+      → Slide 8-9 : Impact attendu + équipe<br>
+      → Slide 10 : Appel à l'action (« Investissez avec nous »)<br><br>
+      Le jury remarque : <em>« Ses slides sont épurées, lisibles, chaque slide a un seul message fort. C'est rare chez les jeunes. »</em><br><br>
+      Kofi remporte le <strong>1er prix</strong> de 500 000 FCFA.
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Kofi a 10 slides pour 8 minutes. Combien de secondes par slide en moyenne ?</strong><textarea class="story-answer" rows="2" placeholder="Calcule : 8 minutes = ? secondes ÷ 10 slides = ?"></textarea></div>
+      <div class="story-q"><strong>❓ Cite 3 règles de bonne présentation que Kofi a respectées selon l'histoire.</strong><textarea class="story-answer" rows="3" placeholder="1. ...\n2. ...\n3. ..."></textarea></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m9"><span class="star-btn" onclick="rate('sr-m9',1)">⭐</span><span class="star-btn" onclick="rate('sr-m9',2)">⭐</span><span class="star-btn" onclick="rate('sr-m9',3)">⭐</span><span class="star-btn" onclick="rate('sr-m9',4)">⭐</span><span class="star-btn" onclick="rate('sr-m9',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m9','m10')">Module suivant 📹 →</button>
+  </div>
+</div>
+
+<!-- MODULE 10 — VISIO -->
+<div class="page" id="m10">
+  <div class="mod-banner bp">
+    <div class="banner-icon">📹</div>
+    <div class="banner-meta"><div class="banner-tag">Module 10 / 12</div><div class="banner-title">Visioconférence (Zoom, Meet, Teams)</div><div class="banner-desc">Communiquer en vidéo professionnellement depuis n'importe où</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-purple">📹</div><div class="card-hd-title">Les 3 plateformes principales</div><span class="badge b-lesson">Leçon</span></div>
+    <div class="cg" style="grid-template-columns:repeat(3,1fr)">
+      <div class="cc"><span class="ci">🟦</span><h4>Zoom</h4><p>Populaire, facile, 100 participants. Cours SUCCEED en ligne.</p></div>
+      <div class="cc"><span class="ci">🟢</span><h4>Google Meet</h4><p>Intégré à Gmail, fonctionne dans le navigateur, gratuit.</p></div>
+      <div class="cc"><span class="ci">🟣</span><h4>Microsoft Teams</h4><p>Entreprises, intégré à Office 365, idéal pour le travail en équipe.</p></div>
+    </div>
+    <div class="card-hd" style="margin-top:18px"><div class="card-hd-icon i-purple">✅</div><div class="card-hd-title">L'étiquette en visioconférence</div><span class="badge b-tip">Conseil</span></div>
+    <div id="visio-rules-detail"></div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz — Module 10</div>
+  <div class="card"><div id="quiz-m10"></div></div>
+  <div class="sec-h">📖 Histoire — Amara en cours depuis le Cameroun</div>
+  <div class="story-card">
+    <div class="story-badge">🌍 Connexion Afrique-Europe</div>
+    <div class="story-title">📡 Le cours de SUCCEED depuis Yaoundé</div>
+    <div class="story-body">
+      <strong>Amara</strong>, 11 ans à Yaoundé, suit ses cours SUCCEED sur Zoom avec son instructrice Marie, basée à Lyon (France). Elles sont à <strong>5 000 km de distance</strong> mais apprennent ensemble comme dans une vraie classe.<br><br>
+      Un jour, la connexion Internet d'Amara est instable. Elle se rappelle les conseils SUCCEED :<br>
+      ✅ Elle coupe sa vidéo pour économiser la bande passante<br>
+      ✅ Elle se met en sourdine quand elle n'a pas la parole<br>
+      ✅ Elle utilise la fonction « Lever la main ✋ » pour demander à parler<br>
+      ✅ Elle tape ses questions dans le chat pour ne pas couper le cours<br><br>
+      Marie dit : <em>« Amara, tu es exemplaire ! Même avec une connexion difficile, tu es professionnelle. »</em><br><br>
+      Cette expérience apprend à Amara que les compétences numériques lui permettent d'accéder à des cours de qualité depuis l'Afrique — <strong>le monde est devenu son école</strong>.
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Cite 2 bonnes pratiques de visioconférence qu'Amara a appliquées.</strong><textarea class="story-answer" rows="3" placeholder="1. ...\n2. ..."></textarea></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m10"><span class="star-btn" onclick="rate('sr-m10',1)">⭐</span><span class="star-btn" onclick="rate('sr-m10',2)">⭐</span><span class="star-btn" onclick="rate('sr-m10',3)">⭐</span><span class="star-btn" onclick="rate('sr-m10',4)">⭐</span><span class="star-btn" onclick="rate('sr-m10',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m10','m11')">Module suivant ⚙️ →</button>
+  </div>
+</div>
+
+<!-- MODULE 11 — ALGORITHMES -->
+<div class="page" id="m11">
+  <div class="mod-banner bb">
+    <div class="banner-icon">⚙️</div>
+    <div class="banner-meta"><div class="banner-tag">Module 11 / 12</div><div class="banner-title">Introduction aux algorithmes</div><div class="banner-desc">Qu'est-ce qu'un algorithme ? Exemples du quotidien, activités ludiques et logique</div></div>
+  </div>
+
+  <!-- ── 1. DÉFINITION ── -->
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">💡</div><div class="card-hd-title">C'est quoi un algorithme ?</div><span class="badge b-lesson">Leçon</span></div>
+    <div style="background:linear-gradient(135deg,rgba(0,74,173,.06),rgba(45,155,79,.04));border:1.5px solid rgba(0,74,173,.15);border-radius:14px;padding:20px 24px;margin-bottom:18px;">
+      <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--blue);margin-bottom:10px;">🤖 Un algorithme, c'est une recette !</div>
+      <p style="font-size:.95rem;color:var(--text);line-height:1.85;">
+        Un <strong>algorithme</strong>, c'est une <strong>liste d'instructions à suivre dans un ordre précis</strong> pour accomplir une action ou résoudre un problème.<br><br>
+        Tout comme une recette de cuisine te dit exactement quoi faire et dans quel ordre pour réussir un plat, un algorithme dit à l'ordinateur exactement quoi faire, étape par étape.
+      </p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="background:rgba(45,155,79,.06);border:1.5px solid rgba(45,155,79,.2);border-radius:12px;padding:16px;">
+        <div style="font-size:.76rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;">✅ Un bon algorithme doit être :</div>
+        <div style="font-size:.86rem;color:var(--text2);line-height:1.8;">
+          📋 <strong>Ordonné</strong> — les étapes ont un ordre précis<br>
+          🔍 <strong>Clair</strong> — chaque étape est facile à comprendre<br>
+          🏁 <strong>Fini</strong> — il a un début et une fin<br>
+          🎯 <strong>Précis</strong> — pas d'ambiguïté, pas de flou
+        </div>
+      </div>
+      <div style="background:rgba(220,38,38,.05);border:1.5px solid rgba(220,38,38,.15);border-radius:12px;padding:16px;">
+        <div style="font-size:.76rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;">❌ Un mauvais algorithme :</div>
+        <div style="font-size:.86rem;color:var(--text2);line-height:1.8;">
+          🔀 Des étapes dans le mauvais ordre<br>
+          ❓ Des instructions floues ou incomplètes<br>
+          ♾️ Une boucle infinie sans fin<br>
+          🤷 Un résultat imprévisible
+        </div>
+      </div>
+    </div>
+    <div class="bubble amara" style="margin-top:16px;">
+      <div class="bav">👧🏾</div>
+      <div><div class="bname">Amara explique</div>
+      <p>Imagine que tu expliques à un robot comment aller de chez toi au marché. Si tu lui dis « tourne à droite » AVANT de lui dire « sors de la maison », il va se cogner dans le mur ! L'ordre des instructions est <strong>essentiel</strong>. C'est ça, un algorithme. 🤖</p></div>
+    </div>
+  </div>
+
+  <!-- ── 2. EXEMPLES DU QUOTIDIEN ── -->
+  <div class="sec-h">🌟 Des algorithmes dans ta vie de tous les jours</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-green">🦷</div><div class="card-hd-title">Exemple 1 — Se brosser les dents</div><span class="badge b-lesson">Leçon</span></div>
+    <p style="color:var(--text2);font-size:.87rem;margin-bottom:14px;">Voici l'algorithme complet pour te brosser les dents. Chaque étape doit être dans le bon ordre !</p>
+    <div id="steps-teeth" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-green">🖐️</div><div class="card-hd-title">Exemple 2 — Se laver les mains</div><span class="badge b-lesson">Leçon</span></div>
+    <div id="steps-hands" style="display:flex;flex-direction:column;gap:8px;"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-orange">🥪</div><div class="card-hd-title">Exemple 3 — Préparer un sandwich</div><span class="badge b-lesson">Leçon</span></div>
+    <div id="steps-sandwich" style="display:flex;flex-direction:column;gap:8px;"></div>
+    <div class="bubble kofi" style="margin-top:16px;">
+      <div class="bav">🧒🏿</div>
+      <div><div class="bname">Kofi dit</div>
+      <p>Tu vois ? Ces actions que tu fais chaque jour sans y penser sont en fait de vrais algorithmes ! Si tu mettais le pain de mie <em>après</em> la garniture ou que tu te rinçais les mains <em>avant</em> de mettre le savon, ça ne marcherait pas. <strong>L'ordre, c'est tout !</strong> 😄</p></div>
+    </div>
+  </div>
+
+  <!-- ── 3. ACTIVITÉ 1 : REMETS DANS L'ORDRE ── -->
+  <div class="sec-h">🎮 Activité 1 — Remets les étapes dans le bon ordre !</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-purple">🔀</div><div class="card-hd-title">Algorithme : Se préparer pour l'école le matin 🎒</div><span class="badge b-practice">Pratique</span></div>
+    <p style="color:var(--text2);font-size:.86rem;margin-bottom:14px;">Ces étapes sont dans le <strong>désordre</strong>. Utilise les flèches <strong>▲ ▼</strong> pour les remettre dans le bon ordre logique :</p>
+    <div id="sort-school"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+      <button class="btn btn-green" onclick="checkSort('school')">✓ Vérifier l'ordre</button>
+      <button class="btn btn-ghost" onclick="resetSort('school')">🔀 Mélanger à nouveau</button>
+    </div>
+    <div id="sort-school-fb" style="margin-top:12px;font-size:.88rem;font-weight:600;min-height:24px;"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-purple">🌽</div><div class="card-hd-title">Algorithme : Préparer le ndolé de grand-mère 🍲</div><span class="badge b-practice">Pratique</span></div>
+    <p style="color:var(--text2);font-size:.86rem;margin-bottom:14px;">Remets les étapes de la recette dans le bon ordre :</p>
+    <div id="algo-list"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+      <button class="btn btn-green" onclick="checkAlgo()">✓ Vérifier l'ordre</button>
+      <button class="btn btn-ghost" onclick="shuffleAlgo()">🔀 Mélanger</button>
+    </div>
+    <div id="algo-fb" style="margin-top:12px;font-size:.88rem;font-weight:600;min-height:24px;"></div>
+  </div>
+
+  <!-- ── 4. ACTIVITÉ 2 : VRAI OU FAUX ── -->
+  <div class="sec-h">🟢🔴 Activité 2 — Est-ce un bon algorithme ?</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-orange">🧐</div><div class="card-hd-title">Vrai ou Faux — Ces instructions forment-elles un bon algorithme ?</div><span class="badge b-practice">Pratique</span></div>
+    <p style="color:var(--text2);font-size:.87rem;margin-bottom:16px;">
+      Lis chaque liste d'instructions. Clique sur <strong style="color:var(--green);">✅ Bon algorithme</strong> si les étapes sont dans le bon ordre et logiques, ou sur <strong style="color:var(--red);">❌ Mauvais algorithme</strong> si ce n'est pas correct. Explique pourquoi !
+    </p>
+    <div id="vf-container"></div>
+  </div>
+
+  <!-- ── 5. ACTIVITÉ 3 : CRÉE TON PROPRE ALGO ── -->
+  <div class="sec-h">✍️ Activité 3 — Crée ton propre algorithme !</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-green">🎨</div><div class="card-hd-title">À toi de jouer — Écris l'algorithme de ton choix</div><span class="badge b-practice">Pratique</span></div>
+    <p style="color:var(--text2);font-size:.87rem;margin-bottom:14px;">Choisis une activité et écris son algorithme étape par étape. Rappelle-toi : <strong>ordre précis, clair, logique !</strong></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;" id="algo-topic-btns">
+      <button class="btn btn-ghost" onclick="setAlgoTopic('🎽 S\'habiller le matin')">🎽 S'habiller</button>
+      <button class="btn btn-ghost" onclick="setAlgoTopic('📚 Faire ses devoirs')">📚 Faire ses devoirs</button>
+      <button class="btn btn-ghost" onclick="setAlgoTopic('🍚 Préparer du riz')">🍚 Préparer du riz</button>
+      <button class="btn btn-ghost" onclick="setAlgoTopic('📱 Envoyer un message WhatsApp')">📱 WhatsApp</button>
+    </div>
+    <div id="algo-topic-label" style="font-size:.8rem;color:var(--muted);margin-bottom:8px;">Clique sur un sujet ou écris le tien :</div>
+    <input id="algo-topic-input" style="width:100%;background:white;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-size:.9rem;color:var(--text);outline:none;margin-bottom:10px;" placeholder="Mon sujet : ex. Préparer le petit-déjeuner…">
+    <div id="algo-steps-write" style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;"></div>
+    <button class="btn btn-blue" onclick="addAlgoStep()" style="margin-bottom:6px;">➕ Ajouter une étape</button>
+    <button class="btn btn-ghost" onclick="checkAlgoWrite()">🔍 Faire évaluer mon algorithme par ROBI !</button>
+    <div id="algo-write-fb" style="margin-top:12px;font-size:.87rem;line-height:1.7;min-height:20px;"></div>
+  </div>
+
+  <!-- ── OBJECTIF PÉDAGOGIQUE ── -->
+  <div class="sec-h">🎯 Ce que tu dois retenir</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-orange">🏆</div><div class="card-hd-title">Objectif du module — Les 3 clés des algorithmes</div><span class="badge b-tip">À retenir</span></div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px;">
+      <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(0,74,173,.05);border:1.5px solid rgba(0,74,173,.15);border-radius:12px;padding:16px;">
+        <div style="font-size:2rem;flex-shrink:0;">👉</div>
+        <div><div style="font-family:var(--font-display);font-size:1rem;color:var(--blue);margin-bottom:4px;">L'ordre des instructions est essentiel</div>
+        <div style="font-size:.86rem;color:var(--text2);">Changer l'ordre d'une seule étape peut tout faire rater. Un algorithme qui dit « rincer avant de savonner » ne fonctionne pas !</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(45,155,79,.05);border:1.5px solid rgba(45,155,79,.15);border-radius:12px;padding:16px;">
+        <div style="font-size:2rem;flex-shrink:0;">👉</div>
+        <div><div style="font-family:var(--font-display);font-size:1rem;color:var(--green);margin-bottom:4px;">Un algorithme doit être logique et clair</div>
+        <div style="font-size:.86rem;color:var(--text2);">Chaque étape doit avoir du sens. Une instruction vague comme « prépare-toi » n'est pas un bon algorithme — il faut détailler.</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(237,153,27,.06);border:1.5px solid rgba(237,153,27,.2);border-radius:12px;padding:16px;">
+        <div style="font-size:2rem;flex-shrink:0;">👉</div>
+        <div><div style="font-family:var(--font-display);font-size:1rem;color:var(--orange2);margin-bottom:4px;">Un algorithme doit avoir une fin</div>
+        <div style="font-size:.86rem;color:var(--text2);">Un algorithme qui tourne sans jamais s'arrêter est une erreur. Chaque algorithme doit mener à un résultat final.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LES 3 STRUCTURES ── -->
+  <div class="sec-h">📐 Les 3 structures de base</div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-blue">🧩</div><div class="card-hd-title">Séquence, Condition, Boucle</div><span class="badge b-lesson">Leçon</span></div>
+    <div class="cg" style="grid-template-columns:repeat(3,1fr)">
+      <div class="cc"><span class="ci">📋</span><h4>Séquence</h4><p>Étapes dans un ordre précis, l'une après l'autre. Étape 1 → Étape 2 → Étape 3…</p></div>
+      <div class="cc"><span class="ci">🔀</span><h4>Condition</h4><p><strong>SI</strong> [condition] <strong>ALORS</strong> [action A] <strong>SINON</strong> [action B]. Permet de choisir.</p></div>
+      <div class="cc"><span class="ci">🔁</span><h4>Boucle</h4><p><strong>RÉPÉTER</strong> [action] <strong>TANT QUE</strong> [condition]. Évite de répéter les instructions.</p></div>
+    </div>
+    <div class="bubble amara" style="margin-top:14px;"><div class="bav">👧🏾</div><div><div class="bname">Amara dit</div><p>L'algorithme de ma journée scolaire : (1) Se réveiller → (2) Se laver → (3) Prendre le petit-déjeuner → (4) <strong>SI</strong> bus disponible <strong>ALORS</strong> prendre le bus <strong>SINON</strong> marcher → (5) Aller en classe → <strong>RÉPÉTER</strong> : relire la leçon <strong>TANT QUE</strong> pas compris → (6) Rentrer à la maison. Voilà un algorithme complet de ma vraie vie ! 😄</p></div></div>
+  </div>
+
+  <!-- ── QUIZ ── -->
+  <div class="sec-h">❓ Mini Quiz — Module 11</div>
+  <div class="card"><div id="quiz-m11"></div></div>
+
+  <!-- ── HISTOIRE ── -->
+  <div class="sec-h">📖 Histoire — L'algorithme de Maman Cissé</div>
+  <div class="story-card">
+    <div class="story-badge">🍲 Histoire du quotidien</div>
+    <div class="story-title">👵 Les secrets algorithmiques de la cuisine africaine</div>
+    <div class="story-body">
+      <strong>Maman Cissé</strong>, traiteur à Conakry, prépare chaque matin 50 portions de riz gras pour livrer aux entreprises à 12h. Elle ne sait pas lire, mais elle utilise un <em>algorithme parfait sans le savoir</em>.<br><br>
+      Son algorithme quotidien :<br>
+      1. Se lever à 5h30<br>
+      2. Acheter les ingrédients frais au marché Madina<br>
+      3. <strong>SI poulet disponible</strong> ALORS faire riz gras au poulet SINON faire riz gras au poisson<br>
+      4. Laver le riz (<strong>RÉPÉTER</strong> 3 fois jusqu'à eau claire)<br>
+      5. Cuire la sauce 45 minutes<br>
+      6. Mélanger le riz et la sauce<br>
+      7. Conditionner en portions<br>
+      8. Livrer avant 12h<br><br>
+      Son fils Ibrahima, après ses cours SUCCEED, lui dit : <em>« Maman, tu fais de la programmation depuis 20 ans ! »</em>. Elle éclate de rire.
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Dans l'algorithme de Maman Cissé, identifie : 1 séquence, 1 condition, 1 boucle.</strong><textarea class="story-answer" rows="4" placeholder="Séquence : ...\nCondition : ...\nBoucle : ..."></textarea></div>
+      <div class="story-q"><strong>❓ Que se passerait-il si Maman Cissé inversait les étapes 5 et 6 (mélangeait avant de cuire la sauce) ?</strong><textarea class="story-answer" rows="2" placeholder="Écris ta réponse…"></textarea></div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;background:rgba(45,155,79,.06);border-radius:10px;border:1.5px solid rgba(45,155,79,.2);">
+      <div style="font-size:.74rem;font-weight:700;color:var(--green);text-transform:uppercase;margin-bottom:6px;">✅ Corrigé</div>
+      <div style="font-size:.84rem;color:var(--text2);line-height:1.75;">
+        Séquence : <strong>toutes les étapes 1 à 8 forment une séquence.</strong><br>
+        Condition : <strong>SI poulet disponible ALORS… SINON…</strong> (étape 3).<br>
+        Boucle : <strong>RÉPÉTER laver le riz TANT QUE l'eau n'est pas claire</strong> (étape 4).<br>
+        Si elle mélangeait avant de cuire la sauce : <strong>le plat serait raté</strong> — la sauce serait crue et le riz pas bien cuit !
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m11"><span class="star-btn" onclick="rate('sr-m11',1)">⭐</span><span class="star-btn" onclick="rate('sr-m11',2)">⭐</span><span class="star-btn" onclick="rate('sr-m11',3)">⭐</span><span class="star-btn" onclick="rate('sr-m11',4)">⭐</span><span class="star-btn" onclick="rate('sr-m11',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="nextMod('m11','m12')">Module Bonus 🖥️ →</button>
+  </div>
+</div>
+
+<!-- MODULE 12 — OS BONUS -->
+<div class="page" id="m12">
+  <div class="mod-banner bpk">
+    <div class="banner-icon">🖥️</div>
+    <div class="banner-meta"><div class="banner-tag">Module Bonus</div><div class="banner-title">Les systèmes d'exploitation</div><div class="banner-desc">Windows, macOS, Linux, Android, iOS — le chef d'orchestre de l'ordinateur</div></div>
+  </div>
+  <div class="card">
+    <div class="card-hd"><div class="card-hd-icon i-purple">🖥️</div><div class="card-hd-title">Qu'est-ce qu'un OS ? Clique pour explorer !</div><span class="badge b-lesson">Leçon</span></div>
+    <p style="color:var(--text2);font-size:.88rem;line-height:1.8;margin-bottom:16px;">Le <strong style="color:var(--text)">système d'exploitation (OS)</strong> est le logiciel principal qui démarre en premier quand tu allumes ton ordinateur. Il gère tout le matériel et permet aux autres logiciels de fonctionner. Sans lui, l'ordinateur est inutilisable.</p>
+    <div class="os-grid" id="os-grid">
+      <div class="os-card" onclick="showOS('win')"><span class="osi">🪟</span><h4>Windows</h4><p>Microsoft</p></div>
+      <div class="os-card" onclick="showOS('mac')"><span class="osi">🍎</span><h4>macOS</h4><p>Apple</p></div>
+      <div class="os-card" onclick="showOS('lnx')"><span class="osi">🐧</span><h4>Linux</h4><p>Open source</p></div>
+      <div class="os-card" onclick="showOS('and')"><span class="osi">🤖</span><h4>Android</h4><p>Google</p></div>
+      <div class="os-card" onclick="showOS('ios')"><span class="osi">📱</span><h4>iOS</h4><p>Apple Mobile</p></div>
+    </div>
+    <div id="os-detail" style="display:none;background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;margin-top:16px;box-shadow:var(--shadow);"></div>
+  </div>
+  <div class="sec-h">❓ Mini Quiz Final — Module 12</div>
+  <div class="card"><div id="quiz-m12"></div></div>
+  <div class="sec-h">📖 Histoire — Thierno et le choix de son OS</div>
+  <div class="story-card">
+    <div class="story-badge">💻 Cas pratique</div>
+    <div class="story-title">🤔 Quel ordinateur choisir pour son école ?</div>
+    <div class="story-body">
+      <strong>Thierno</strong>, directeur d'une école primaire à Conakry, reçoit une donation de 20 ordinateurs. Le donateur lui propose le choix : installer <strong>Windows 11</strong> (payant, ~100€/licence) ou <strong>Ubuntu Linux</strong> (100% gratuit).<br><br>
+      Pour 20 ordinateurs, Windows coûterait <strong>2 000€</strong> de licences. Avec Linux Ubuntu :<br>
+      • Coût des licences : <strong>0€</strong><br>
+      • LibreOffice (équivalent gratuit de Word/Excel) : inclus<br>
+      • Mise à jour automatique : gratuite pour toujours<br>
+      • Virus Windows : quasi inexistants sous Linux<br><br>
+      Thierno choisit Ubuntu. Avec les 2 000€ économisés, il achète 4 tablettes Android supplémentaires pour les élèves qui ne peuvent pas se déplacer.
+    </div>
+    <div class="story-qs">
+      <div class="story-q"><strong>❓ Quelle est la différence principale entre Linux et Windows en termes de coût et de liberté d'utilisation ?</strong><textarea class="story-answer" rows="3" placeholder="Écris ta réponse…"></textarea></div>
+    </div>
+  </div>
+
+  <!-- SCORE FINAL -->
+  <div class="score-banner" id="final-score" style="display:none;">
+    <div class="score-num" id="final-xp">0</div>
+    <div>
+      <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--blue);font-weight:700;margin-bottom:4px;">🏆 Niveau 1 SUCCEED terminé !</div>
+      <div class="score-lbl">Tu as gagné ces points XP. Tu es prêt(e) pour l'examen !</div>
+      <div style="margin-top:8px;font-size:.86rem;color:var(--text2);">Prochaine étape : <strong style="color:var(--orange2);">Niveau 2 — Scratch 🐱</strong></div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;">
+    <div><div style="font-size:.8rem;color:var(--muted);margin-bottom:5px;">⭐ Mon ressenti :</div>
+    <div class="star-row" id="sr-m12"><span class="star-btn" onclick="rate('sr-m12',1)">⭐</span><span class="star-btn" onclick="rate('sr-m12',2)">⭐</span><span class="star-btn" onclick="rate('sr-m12',3)">⭐</span><span class="star-btn" onclick="rate('sr-m12',4)">⭐</span><span class="star-btn" onclick="rate('sr-m12',5)">⭐</span></div></div>
+    <button class="next-btn" onclick="finishCourse()" style="background:linear-gradient(135deg,var(--orange),var(--orange2));">🏆 Terminer le parcours !</button>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════════ */
+var XP = 0;
+var done = {};
+
+/* ══════════════════════════════════════════════════════
+   QUIZ DATA
+══════════════════════════════════════════════════════ */
+var QD = {
+  m1:[
+    {q:"Quel composant est le « cerveau » de l'ordinateur ?",o:["L'écran","Le CPU (unité centrale)","La souris","L'imprimante"],a:1,e:"Le CPU traite toutes les instructions. Sans lui, rien ne fonctionne !"},
+    {q:"Le microphone est un périphérique d'ENTRÉE ou de SORTIE ?",o:["Sortie — il reçoit des données de l'ordi","Entrée — il envoie des données à l'ordi","Les deux à la fois","Aucun des deux"],a:1,e:"Le micro capte ta voix et l'envoie À l'ordinateur → ENTRÉE !"},
+    {q:"La RAM est un composant :",o:["Externe — connecté par câble","Interne — à l'intérieur de l'unité centrale","Optionnel — pas indispensable","Le même chose que le disque dur"],a:1,e:"La RAM est à l'intérieur de l'unité centrale. Elle stocke temporairement les données en cours d'utilisation."}
+  ],
+  m2:[
+    {q:"Quel raccourci pour COPIER du texte sélectionné ?",o:["Ctrl+V","Ctrl+C","Ctrl+Z","Ctrl+X"],a:1,e:"C comme Copier ! Ctrl+V = Coller, Ctrl+Z = Annuler, Ctrl+X = Couper."},
+    {q:"Que fait Ctrl+Z ?",o:["Sauvegarder","Annuler la dernière action","Tout sélectionner","Imprimer"],a:1,e:"Z comme Zut j'ai fait une erreur ! Ctrl+Z annule la dernière action."},
+    {q:"Un double-clic sur un fichier permet de :",o:["Le supprimer","L'ouvrir","Le copier","Le renommer"],a:1,e:"Double-clic = ouvrir. Simple clic = sélectionner. Clic droit = menu options."}
+  ],
+  m3:[
+    {q:"Combien de chiffres utilise le système binaire ?",o:["10 chiffres (0-9)","8 chiffres","2 chiffres (0 et 1)","16 chiffres"],a:2,e:"Bi-naire = 2. Seulement 0 et 1, comme un interrupteur allumé/éteint."},
+    {q:"Combien de bits dans un OCTET ?",o:["4 bits","16 bits","2 bits","8 bits"],a:3,e:"1 octet = 8 bits. Oct = 8 (comme octopus à 8 bras)."},
+    {q:"101 en binaire vaut combien en décimal ?",o:["3","5","7","10"],a:1,e:"1×4 + 0×2 + 1×1 = 4 + 0 + 1 = 5 !"}
+  ],
+  m4:[
+    {q:"Quelle extension pour une IMAGE ?",o:[".mp3",".docx",".xlsx",".jpg"],a:3,e:".jpg et .png sont des formats d'image. .mp3 = audio, .docx = Word, .xlsx = Excel."},
+    {q:"Comment bien nommer un fichier ?",o:["mon cours.docx","mon-cours.docx","MON COURS.docx","mon_cours!.docx"],a:1,e:"Tirets (-) au lieu d'espaces, pas d'accents, nom descriptif."},
+    {q:"L'extension .pptx correspond à :",o:["Un fichier Word","Un fichier Excel","Une présentation PowerPoint","Une vidéo"],a:2,e:".pptx = PowerPoint Presentation. .docx = Word, .xlsx = Excel."}
+  ],
+  m5:[
+    {q:"Qu'est-ce que le cloud ?",o:["Un antivirus","Stockage sur serveurs distants via Internet","Un navigateur web","Un type de clavier"],a:1,e:"Le cloud = tes fichiers stockés sur des serveurs accessibles depuis n'importe où via Internet."},
+    {q:"Dans 'https://succeed-edu.com/n1', quel est le domaine ?",o:["https://","succeed-edu.com","/n1","www"],a:1,e:"succeed-edu.com est l'adresse principale = le domaine. https:// = protocole, /n1 = chemin."},
+    {q:"Quel moteur de recherche est le plus utilisé au monde ?",o:["Bing","Yahoo","DuckDuckGo","Google"],a:3,e:"Google traite environ 90% des recherches mondiales."}
+  ],
+  m6:[
+    {q:"Que signifie le « S » dans HTTPS ?",o:["Site populaire","Sécurisé (connexion chiffrée)","Super rapide","Service en ligne"],a:1,e:"HTTPS = HTTP Secure. Le cadenas 🔒 signifie que ta connexion est chiffrée et sécurisée."},
+    {q:"Quel est le mot de passe le plus solide ?",o:["123456","kofi2015","amara","C@m3r0un#2026!"],a:3,e:"C@m3r0un#2026! : majuscules + chiffres + symboles + 8+ caractères. Les autres sont trop simples !"},
+    {q:"Le phishing (hameçonnage) c'est :",o:["Un jeu vidéo","Une arnaque imitant un vrai site pour voler tes données","Un antivirus","Un moteur de recherche"],a:1,e:"Les escrocs créent de faux sites ou e-mails identiques aux vrais pour voler tes identifiants."}
+  ],
+  m7:[
+    {q:"Ctrl+G dans Word sert à :",o:["Italique","Souligné","Mettre en Gras","Centrer"],a:2,e:"G comme Gras ! Ctrl+I = Italique, Ctrl+U = Souligné (Under en anglais)."},
+    {q:"À quoi servent les Styles (Titre 1, Normal) dans Word ?",o:["Changer le fond de page","Mise en forme cohérente + table des matières auto","Insérer des images","Corriger l'orthographe"],a:1,e:"Les styles garantissent une mise en forme cohérente et permettent de créer une table des matières en 1 clic."},
+    {q:"Quel raccourci pour un SAUT DE PAGE ?",o:["Ctrl+Entrée","Alt+P","Shift+Entrée","Ctrl+N"],a:0,e:"Ctrl+Entrée force le texte suivant à commencer sur une nouvelle page."}
+  ],
+  m8:[
+    {q:"Quelle formule additionne B2 à B10 dans Excel ?",o:["=TOTAL(B2:B10)","=PLUS(B2;B10)","=SOMME(B2:B10)","SOMME B2 B10"],a:2,e:"=SOMME(B2:B10). Toute formule Excel commence par =."},
+    {q:"Une cellule Excel c'est :",o:["Un graphique","L'intersection d'une colonne et d'une ligne (ex: A1)","Un onglet","Un nom de fichier"],a:1,e:"A1 = colonne A + ligne 1. B5 = colonne B, ligne 5. C'est la case de base d'Excel."},
+    {q:"=MOYENNE(C1:C5) calcule :",o:["La somme","La valeur maximale","La moyenne arithmétique","Le nombre de valeurs"],a:2,e:"MOYENNE = (somme de toutes les valeurs) ÷ (nombre de valeurs). Parfait pour les notes !"}
+  ],
+  m9:[
+    {q:"La règle d'or d'une bonne diapositive ?",o:["Mettre le max d'infos","1 idée principale + peu de texte","Utiliser 5 polices différentes","Fond et texte de même couleur"],a:1,e:"1 idée / 1 slide. Les meilleures présentations ont peu de texte et des images fortes."},
+    {q:"Taille de police minimum en présentation projetée ?",o:["8 pts","12 pts","24 pts","48 pts"],a:2,e:"24pts minimum pour être lisible depuis le fond d'une salle. Les titres font souvent 36-44pts."},
+    {q:"L'extension d'un fichier PowerPoint est :",o:[".docx",".xlsx",".pptx",".mp4"],a:2,e:".pptx = PowerPoint Presentation XML. .docx = Word, .xlsx = Excel."}
+  ],
+  m10:[
+    {q:"Que faire quand on n'a pas la parole en visioconférence ?",o:["Continuer à parler fort","Se mettre en sourdine","Quitter la réunion","Éteindre l'écran"],a:1,e:"La sourdine (mute) évite les bruits parasites pour tous les participants."},
+    {q:"Google Meet est intégré à :",o:["Microsoft Office","Gmail & Google Agenda","Zoom","Skype"],a:1,e:"Google Meet = outil Google → intégré nativement à Gmail, Google Agenda et Google Classroom."},
+    {q:"Microsoft Teams est principalement utilisé :",o:["Pour les jeux vidéo","En entreprise avec Microsoft 365","Pour les enfants","Pour les appels vocaux uniquement"],a:1,e:"Teams = solution pro Microsoft, intégrée à tout l'écosystème Office 365."}
+  ],
+  m11:[
+    {q:"Un algorithme c'est :",o:["Un composant électronique","Une suite d'instructions ordonnées pour résoudre un problème","Un type de virus","Un logiciel de calcul"],a:1,e:"Un algorithme = une recette précise. Étapes claires, dans l'ordre, avec un début et une fin."},
+    {q:"SI il pleut ALORS prendre parapluie SINON porter lunettes. C'est une :",o:["Boucle","Séquence","Condition","Fonction"],a:2,e:"SI…ALORS…SINON est une structure conditionnelle. Elle permet à l'ordinateur (ou à toi !) de prendre des décisions."},
+    {q:"Une boucle c'est :",o:["Une erreur dans le programme","Une répétition d'instructions tant qu'une condition est vraie","Le début d'un algorithme","Une condition impossible"],a:1,e:"La boucle répète des actions. RÉPÉTER [lire] TANT QUE [pas compris] = tu relis jusqu'à comprendre !"}
+  ],
+  m12:[
+    {q:"Que fait un système d'exploitation (OS) ?",o:["Crée des documents Word","Gère le matériel et permet aux logiciels de fonctionner","Protège contre les virus","Navigue sur Internet"],a:1,e:"L'OS est le chef d'orchestre : il gère CPU, mémoire, fichiers, et permet à toutes les applications de tourner."},
+    {q:"Quel OS est fabriqué par Microsoft ?",o:["macOS","Linux","Windows","iOS"],a:2,e:"Microsoft → Windows. Apple → macOS (ordi) et iOS (iPhone). Google → Android. Linux = libre et gratuit."},
+    {q:"La particularité de Linux est :",o:["Il ne fonctionne que sur Mac","Il est gratuit et son code source est ouvert à tous","Il appartient à Microsoft","Il ne se connecte pas à Internet"],a:1,e:"Linux = libre, gratuit, open source. Android (les téléphones) est basé sur Linux ! Ubuntu, Debian = versions populaires."}
+  ]
+};
+
+/* ══════════════════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════════════════ */
+function goModule(id) {
+  document.getElementById('pageHome').style.display = 'none';
+  document.getElementById('modNav').style.display = 'block';
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.mod-tab').forEach(function(t){ t.classList.remove('active'); });
+  var tab = document.getElementById('tab-'+id);
+  if (tab){ tab.classList.add('active'); tab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderQuiz(id);
+}
+
+function nextMod(cur, nxt) {
+  markDone(cur);
+  goModule(nxt);
+}
+
+function quizAnsweredCount(mid) {
+  var qs = QD[mid];
+  if (!qs) return 0;
+  var count = 0;
+  qs.forEach(function(q, i) {
+    var box = document.getElementById('qb-'+mid+'-'+i);
+    if (box && box.dataset.done) count++;
+  });
+  return count;
+}
+
+function markDone(id) {
+  done[id] = true;
+  var tab = document.getElementById('tab-'+id);
+  if (tab){ tab.classList.remove('active'); tab.classList.add('done'); }
+  var answered = quizAnsweredCount(id);
+  var total = QD[id] ? QD[id].length : 0;
+  if (answered === 0) {
+    showToast('💡 Module vu — réponds au quiz pour gagner des XP !', 't-err');
+  } else if (answered < total) {
+    addXP(20);
+    showToast('👍 Partiellement complété ! +20 XP — finis le quiz pour plus !', 't-ok');
+  } else {
+    addXP(50);
+    showToast('✅ Module complété ! +50 XP', 't-ok');
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   XP
+══════════════════════════════════════════════════════ */
+function addXP(n) {
+  XP += n;
+  document.getElementById('xpVal').textContent = XP + ' XP';
+  document.getElementById('xpBar').style.width = Math.min(XP/15,100)+'%';
+}
+
+/* ══════════════════════════════════════════════════════
+   QUIZ
+══════════════════════════════════════════════════════ */
+function renderQuiz(mid) {
+  var qs = QD[mid];
+  if (!qs) return;
+  var box = document.getElementById('quiz-'+mid);
+  if (!box || box.innerHTML.trim()!=='') return;
+  var html = '';
+  qs.forEach(function(q,i){
+    html += '<div class="quiz-box" id="qb-'+mid+'-'+i+'">';
+    html += '<div class="quiz-q">Q'+(i+1)+'. '+q.q+'</div>';
+    html += '<div class="quiz-opts">';
+    ['A','B','C','D'].forEach(function(l,j){
+      html += '<div class="quiz-opt" onclick="ansQ(\''+mid+'\','+i+','+j+',this)"><div class="opt-let">'+l+'</div>'+q.o[j]+'</div>';
+    });
+    html += '</div><div class="quiz-feedback" id="qfb-'+mid+'-'+i+'"></div></div>';
+  });
+  box.innerHTML = html;
+}
+
+function ansQ(mid, qi, choice, el) {
+  var q = QD[mid][qi];
+  var box = document.getElementById('qb-'+mid+'-'+qi);
+  var fb  = document.getElementById('qfb-'+mid+'-'+qi);
+  if (!box || box.dataset.done) return;
+  box.dataset.done='1';
+  box.querySelectorAll('.quiz-opt').forEach(function(o){ o.classList.add('locked'); });
+  if (choice===q.a){
+    el.classList.add('correct');
+    fb.textContent='✅ Bravo ! '+q.e; fb.className='quiz-feedback quiz-fb-ok';
+    addXP(20); burst();
+  } else {
+    el.classList.add('wrong');
+    box.querySelectorAll('.quiz-opt')[q.a].classList.add('correct');
+    fb.textContent='❌ Pas encore. '+q.e; fb.className='quiz-feedback quiz-fb-err';
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   STARS
+══════════════════════════════════════════════════════ */
+function rate(id, n) {
+  document.getElementById(id).querySelectorAll('.star-btn').forEach(function(b,i){
+    b.classList.toggle('on', i<n);
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   DRAG & DROP — PÉRIPHÉRIQUES
+══════════════════════════════════════════════════════ */
+function initDrag() {
+  document.querySelectorAll('#chips-pool .drag-chip').forEach(function(chip){
+    chip.addEventListener('dragstart', function(e){
+      e.dataTransfer.setData('text/plain', JSON.stringify({val:chip.dataset.val,cat:chip.dataset.cat,txt:chip.textContent}));
+    });
+  });
+  document.querySelectorAll('.drag-zone').forEach(function(zone){
+    zone.addEventListener('dragover', function(e){ e.preventDefault(); zone.classList.add('over'); });
+    zone.addEventListener('dragleave', function(){ zone.classList.remove('over'); });
+    zone.addEventListener('drop', function(e){
+      e.preventDefault(); zone.classList.remove('over');
+      var d = JSON.parse(e.dataTransfer.getData('text/plain'));
+      var chip = document.createElement('div');
+      chip.className='drag-chip'; chip.textContent=d.txt;
+      chip.dataset.cat=d.cat; chip.draggable=true;
+      chip.addEventListener('dragstart',function(e2){
+        e2.dataTransfer.setData('text/plain',JSON.stringify({val:d.val,cat:d.cat,txt:d.txt}));
+      });
+      zone.appendChild(chip);
+    });
+  });
+}
+
+function checkDrag() {
+  var zones=document.querySelectorAll('.drag-zone'), ok=0, total=0;
+  zones.forEach(function(zone){
+    Array.from(zone.children).forEach(function(c){
+      if(c.dataset.cat){ total++; if(c.dataset.cat===zone.dataset.zone) ok++; }
+    });
+  });
+  var fb=document.getElementById('drag-fb');
+  if(!total){ fb.textContent='⚠️ Glisse d\'abord des appareils !'; fb.style.color='var(--orange2)'; return; }
+  if(ok===total){ fb.textContent='🎉 Parfait ! Tous bien classés !'; fb.style.color='var(--green)'; addXP(30); showToast('+30 XP !','t-ok'); }
+  else { fb.textContent='❌ '+ok+'/'+total+' corrects. Réessaie !'; fb.style.color='var(--red)'; }
+}
+
+function resetDrag() {
+  document.getElementById('drag-fb').textContent='';
+  document.querySelectorAll('.drag-zone').forEach(function(z){
+    Array.from(z.children).forEach(function(c){ if(c.dataset.cat) c.remove(); });
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   DRAG & DROP — FICHIERS
+══════════════════════════════════════════════════════ */
+function initFiles() {
+  document.querySelectorAll('#file-pool .file-chip').forEach(function(chip){
+    chip.addEventListener('dragstart',function(e){
+      e.dataTransfer.setData('text/plain',JSON.stringify({name:chip.textContent,cat:chip.dataset.cat}));
+    });
+  });
+  document.querySelectorAll('.folder-drop').forEach(function(fd){
+    fd.addEventListener('dragover',function(e){ e.preventDefault(); fd.classList.add('over'); });
+    fd.addEventListener('dragleave',function(){ fd.classList.remove('over'); });
+    fd.addEventListener('drop',function(e){
+      e.preventDefault(); fd.classList.remove('over');
+      var d=JSON.parse(e.dataTransfer.getData('text/plain'));
+      var area=fd.querySelector('.drop-area');
+      var chip=document.createElement('div');
+      chip.className='file-chip'; chip.textContent=d.name;
+      chip.dataset.cat=d.cat; chip.dataset.zone=fd.dataset.cat;
+      chip.draggable=true;
+      chip.addEventListener('dragstart',function(e2){
+        e2.dataTransfer.setData('text/plain',JSON.stringify({name:d.name,cat:d.cat}));
+      });
+      area.appendChild(chip);
+    });
+  });
+}
+
+function checkFiles() {
+  var chips=document.querySelectorAll('.folder-drop .file-chip'), ok=0, total=chips.length;
+  chips.forEach(function(c){ if(c.dataset.cat===c.dataset.zone) ok++; });
+  var fb=document.getElementById('file-fb');
+  if(!total){ fb.textContent='⚠️ Glisse des fichiers !'; fb.style.color='var(--orange2)'; return; }
+  if(ok===total){ fb.textContent='🎉 Excellent ! Tous les fichiers bien rangés !'; fb.style.color='var(--green)'; addXP(30); showToast('+30 XP !','t-ok'); }
+  else { fb.textContent='❌ '+ok+'/'+total+'. Vérifie les extensions !'; fb.style.color='var(--red)'; }
+}
+
+function resetFiles() {
+  document.getElementById('file-fb').textContent='';
+  document.querySelectorAll('.folder-drop .drop-area').forEach(function(a){ a.innerHTML=''; });
+}
+
+/* ══════════════════════════════════════════════════════
+   TYPING
+══════════════════════════════════════════════════════ */
+var TEXTS = [
+  "Amara apprend l informatique avec SUCCEED a Yaounde.",
+  "Kofi utilise Excel pour gerer le budget de la boutique.",
+  "La dactylographie permet de taper vite sans regarder le clavier.",
+  "Internet relie des millions d ordinateurs dans le monde entier."
+];
+var tStart=null, tDone=false, tIdx=0;
+
+function resetTyping(){
+  tStart=null; tDone=false;
+  var inp=document.getElementById('typing-input');
+  if(inp) inp.value='';
+  document.getElementById('t-wpm').textContent='0';
+  document.getElementById('t-acc').textContent='100%';
+  document.getElementById('t-time').textContent='0s';
+  document.getElementById('t-err').textContent='0';
+  renderTypingDisplay();
+}
+
+function newTypingText(){
+  tIdx=(tIdx+1)%TEXTS.length;
+  resetTyping();
+}
+
+function renderTypingDisplay(){
+  var el=document.getElementById('typing-display');
+  if(!el) return;
+  var text=TEXTS[tIdx];
+  var inp=document.getElementById('typing-input');
+  var typed=inp?inp.value:'';
+  var html='';
+  for(var i=0;i<text.length;i++){
+    if(i<typed.length){
+      if(typed[i]===text[i]) html+='<span class="t-done">'+esc(text[i])+'</span>';
+      else html+='<span class="t-err">'+esc(text[i])+'</span>';
+    } else if(i===typed.length){
+      html+='<span class="t-cur">'+esc(text[i])+'</span>';
+    } else {
+      html+=esc(text[i]);
+    }
+  }
+  el.innerHTML=html;
+}
+
+function esc(c){ return c==='<'?'&lt;':c==='>'?'&gt;':c; }
+
+function checkTyping(){
+  var text=TEXTS[tIdx];
+  var inp=document.getElementById('typing-input');
+  var typed=inp.value;
+  if(!tStart&&typed.length>0) tStart=Date.now();
+  if(!tStart) return;
+  renderTypingDisplay();
+  var elapsed=(Date.now()-tStart)/1000;
+  document.getElementById('t-time').textContent=Math.round(elapsed)+'s';
+  var words=typed.trim().split(/\s+/).filter(function(w){return w.length>0;}).length;
+  document.getElementById('t-wpm').textContent=elapsed>0?Math.round((words/elapsed)*60):0;
+  var ok=0,err=0;
+  for(var i=0;i<typed.length;i++){
+    if(typed[i]===text[i]) ok++; else err++;
+  }
+  document.getElementById('t-acc').textContent=typed.length>0?Math.round((ok/typed.length)*100)+'%':'100%';
+  document.getElementById('t-err').textContent=err;
+  if(typed===text&&!tDone){
+    tDone=true;
+    var wpm=Math.round((words/elapsed)*60);
+    addXP(40); showToast('⌨️ Terminé ! '+wpm+' mots/min ! +40 XP','t-xp');
+    burst();
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   BINARY CONVERTER
+══════════════════════════════════════════════════════ */
+function dec2bin(){
+  var v=parseInt(document.getElementById('dec-inp').value);
+  if(isNaN(v)||v<0||v>255) return;
+  var bin=v.toString(2);
+  document.getElementById('bin-inp').value=bin;
+  explainConv(bin,v);
+}
+function bin2dec(){
+  var v=document.getElementById('bin-inp').value.trim();
+  if(!/^[01]+$/.test(v)) return;
+  var dec=parseInt(v,2);
+  document.getElementById('dec-inp').value=dec;
+  explainConv(v,dec);
+}
+function explainConv(bin,dec){
+  var padded=bin.padStart(8,'0');
+  var powers=[128,64,32,16,8,4,2,1];
+  var parts=[];
+  for(var i=0;i<8;i++){ if(padded[i]==='1') parts.push('1×'+powers[i]); }
+  var s=parts.length?parts.join(' + ')+' = '+dec:'= 0';
+  document.getElementById('conv-expl').textContent='💡 '+s;
+}
+
+/* ══════════════════════════════════════════════════════
+   PASSWORD
+══════════════════════════════════════════════════════ */
+function checkPwd(){
+  var pwd=document.getElementById('pwd-inp').value;
+  var len=pwd.length>=8, maj=/[A-Z]/.test(pwd), num=/[0-9]/.test(pwd), sym=/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pwd);
+  setCrit('pc-len',len); setCrit('pc-maj',maj); setCrit('pc-num',num); setCrit('pc-sym',sym);
+  var score=[len,maj,num,sym].filter(Boolean).length;
+  var fill=document.getElementById('pwd-fill');
+  var lbl=document.getElementById('pwd-lbl');
+  var colors=['#e63946','#e63946','#ED991B','#ED991B','#2D9B4F'];
+  var labels=['','⛔ Très faible','⚠️ Faible','🟡 Moyen','🟠 Bien','✅ Fort et sécurisé !'];
+  fill.style.width=(score*25)+'%'; fill.style.background=colors[score]||colors[0];
+  lbl.textContent=labels[score]||''; lbl.style.color=colors[score]||colors[0];
+}
+function setCrit(id,ok){ var el=document.getElementById(id); if(ok)el.classList.add('ok'); else el.classList.remove('ok'); }
+
+/* ══════════════════════════════════════════════════════
+   WORD SIMULATOR
+══════════════════════════════════════════════════════ */
+function wfmt(cmd,val){
+  var area=document.getElementById('word-area');
+  if(!area) return;
+  area.focus();
+  if(cmd==='formatBlock') document.execCommand('formatBlock',false,val||'p');
+  else if(cmd==='foreColor') document.execCommand('foreColor',false,val);
+  else document.execCommand(cmd);
+  showToast('Formatage appliqué !','t-ok');
+}
+
+/* ══════════════════════════════════════════════════════
+   EXCEL SIMULATOR
+══════════════════════════════════════════════════════ */
+function buildExcel(){
+  var g=document.getElementById('xls-grid');
+  if(!g) return;
+  var data=[
+    [{t:'',hd:1},{t:'A : Produit',hd:1},{t:'B : Ventes (FCFA)',hd:1},{t:'C : Dépenses',hd:1},{t:'D : Bénéfice',hd:1}],
+    [{t:'1',hd:1},{t:'Ndolé'},{t:'125 000'},{t:'80 000'},{t:'=B2-C2',f:1,v:'45 000',x:'=B2−C2 → 125 000 − 80 000 = 45 000 FCFA'}],
+    [{t:'2',hd:1},{t:'Thiéboudienne'},{t:'142 000'},{t:'75 000'},{t:'=B3-C3',f:1,v:'67 000',x:'=B3−C3 → 142 000 − 75 000 = 67 000 FCFA'}],
+    [{t:'3',hd:1},{t:'Mafé'},{t:'98 000'},{t:'60 000'},{t:'=B4-C4',f:1,v:'38 000',x:'=B4−C4 → 98 000 − 60 000 = 38 000 FCFA'}],
+    [{t:'',hd:1},{t:'TOTAL',hd:1},{t:'=SOMME(B2:B4)',f:1,v:'365 000',x:'=SOMME(B2:B4) = 125 000 + 142 000 + 98 000 = 365 000 FCFA'},{t:'=SOMME(C2:C4)',f:1,v:'215 000',x:'=SOMME(C2:C4) = 215 000 FCFA'},{t:'=SOMME(D2:D4)',f:1,v:'150 000',x:'=SOMME(D2:D4) = Bénéfice total 150 000 FCFA !'}]
+  ];
+  var html='';
+  data.forEach(function(row){
+    html+='<div class="xls-row">';
+    row.forEach(function(cell){
+      var cls='xls-cell'+(cell.hd?' xhd':'')+(cell.f?' xfml':'');
+      var clk=cell.f?'onclick="showXlsFb(\''+cell.v+' — '+cell.x.replace(/'/g,'`')+'\')"':'';
+      html+='<div class="'+cls+'" '+clk+'>'+cell.t+'</div>';
+    });
+    html+='</div>';
+  });
+  g.innerHTML=html;
+}
+function showXlsFb(msg){
+  var fb=document.getElementById('xls-fb');
+  if(fb){ fb.textContent='💡 Résultat : '+msg; fb.style.color='var(--green)'; }
+}
+
+/* ══════════════════════════════════════════════════════
+   POWERPOINT THEME
+══════════════════════════════════════════════════════ */
+function pptTheme(bg,accent){
+  var slide=document.getElementById('ppt-slide');
+  if(slide){ slide.style.background=bg; }
+  var sub=document.getElementById('ppt-sub');
+  if(sub){ sub.style.borderBottomColor=accent; }
+  showToast('Thème appliqué !','t-ok');
+}
+
+/* ══════════════════════════════════════════════════════
+   VISIO RULES
+══════════════════════════════════════════════════════ */
+function buildVisio(){
+  var el=document.getElementById('visio-rules-detail');
+  if(!el) return;
+  var rules=[
+    {ok:true,t:'Se mettre en sourdine quand on n\'a pas la parole'},
+    {ok:true,t:'Vérifier connexion, caméra et micro 5 min avant'},
+    {ok:true,t:'Avoir un fond d\'écran propre ou fond virtuel neutre'},
+    {ok:false,t:'Manger ou boire visiblement devant sa caméra'},
+    {ok:true,t:'Lever la main ✋ avant de prendre la parole'},
+    {ok:false,t:'Laisser son téléphone allumé avec des notifications'}
+  ];
+  el.innerHTML=rules.map(function(r){
+    return '<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:white;border-radius:9px;border:1.5px solid var(--border);font-size:.85rem;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,74,173,.06);"><span>'+(r.ok?'✅':'❌')+'</span><span style="color:'+(r.ok?'var(--green2)':'#fca5a5')+';font-weight:600;">'+r.t+'</span></div>';
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   ALGO GAME
+══════════════════════════════════════════════════════ */
+var ALGO_STEPS=[
+  {id:0,o:1,t:'🛒 Acheter les ingrédients frais au marché'},
+  {id:1,o:2,t:'🌿 Nettoyer et hacher les feuilles de ndolé'},
+  {id:2,o:3,t:'🔥 Faire chauffer l\'huile et faire revenir les oignons'},
+  {id:3,o:4,t:'🥩 Ajouter viande et crevettes — cuire 20 min'},
+  {id:4,o:5,t:'🌱 Incorporer les feuilles — mélanger doucement'},
+  {id:5,o:6,t:'🍽️ Servir chaud avec plantain et manioc'}
+];
+var algoArr=[];
+
+function initAlgo(){
+  algoArr=ALGO_STEPS.slice().sort(function(){return Math.random()-.5;});
+  renderAlgo();
+}
+
+function shuffleAlgo(){
+  algoArr=algoArr.slice().sort(function(){return Math.random()-.5;});
+  renderAlgo();
+  document.getElementById('algo-fb').textContent='';
+}
+
+function renderAlgo(){
+  var el=document.getElementById('algo-list');
+  if(!el) return;
+  el.innerHTML=algoArr.map(function(s,i){
+    return '<div class="algo-item"><div class="algo-arrows"><button class="algo-arr" onclick="moveAlgo('+i+',-1)">▲</button><button class="algo-arr" onclick="moveAlgo('+i+',1)">▼</button></div><div class="algo-num">'+(i+1)+'</div><div style="font-size:.88rem;color:var(--text);">'+s.t+'</div></div>';
+  }).join('');
+}
+
+function moveAlgo(i,dir){
+  var j=i+dir;
+  if(j<0||j>=algoArr.length) return;
+  var tmp=algoArr[i]; algoArr[i]=algoArr[j]; algoArr[j]=tmp;
+  renderAlgo();
+}
+
+function checkAlgo(){
+  var correct=algoArr.every(function(s,i){return s.o===i+1;});
+  var fb=document.getElementById('algo-fb');
+  if(correct){ fb.textContent='🎉 Parfait ! L\'algorithme est dans le bon ordre !'; fb.style.color='var(--green)'; addXP(40); showToast('⚙️ +40 XP !','t-xp'); burst(); }
+  else { fb.textContent='❌ Pas encore ! Réfléchis à l\'ordre logique. Qu\'est-ce qu\'on fait en premier ?'; fb.style.color='var(--red)'; }
+}
+
+/* ══════════════════════════════════════════════════════
+   OS DETAIL
+══════════════════════════════════════════════════════ */
+var OS_DATA={
+  win:{title:'🪟 Windows',co:'Microsoft',cl:'#0078d7',facts:['OS le plus utilisé au monde sur PC (73% de parts de marché)','Versions : Windows 10, Windows 11','Interface : Bureau + Barre des tâches en bas','Compatible avec la quasi-totalité des logiciels professionnels','Payant : environ 100-200€ par licence']},
+  mac:{title:'🍎 macOS',co:'Apple',cl:'#888',facts:['Exclusif aux ordinateurs Apple (MacBook Air, MacBook Pro, iMac)','Reconnu pour sa stabilité, sa sécurité et son design épuré','Interface : Dock en bas, menu en haut','Très utilisé par les créatifs, designers, développeurs','Inclus gratuitement avec l\'achat d\'un Mac']},
+  lnx:{title:'🐧 Linux',co:'Communauté open source mondiale',cl:'#f0c040',facts:['100% gratuit et libre — code source accessible à tous','Très stable et sécurisé — quasi aucun virus','Versions populaires : Ubuntu, Debian, Fedora, Linux Mint','Android (ton téléphone !) est basé sur le noyau Linux','Idéal pour les écoles et pays en développement']},
+  and:{title:'🤖 Android',co:'Google',cl:'#3ddc84',facts:['OS mobile n°1 mondial — 72% des smartphones','Très présent en Afrique subsaharienne et francophone','Basé sur le noyau Linux','Millions d\'applications sur Google Play Store','Ouvert aux fabricants (Samsung, Tecno, Infinix...)']},
+  ios:{title:'📱 iOS',co:'Apple',cl:'#007aff',facts:['Exclusif aux iPhones et iPads d\'Apple','Reconnu pour sa fluidité, sa sécurité et sa longévité','Synchronisation native avec macOS et iCloud','Applications disponibles sur l\'App Store (contrôle qualité strict)','Mis à jour pendant 5-6 ans après la sortie de l\'appareil']}
+};
+
+function showOS(key){
+  var d=OS_DATA[key];
+  if(!d) return;
+  var det=document.getElementById('os-detail');
+  det.style.display='block';
+  det.innerHTML='<div style="font-family:var(--font-display);font-size:1.1rem;color:var(--blue);font-weight:700;margin-bottom:4px;">'+d.title+'</div>'+
+    '<div style="font-size:.78rem;color:var(--muted);margin-bottom:14px;">Développé par : <strong style="color:'+d.cl+';">'+d.co+'</strong></div>'+
+    d.facts.map(function(f){ return '<div style="display:flex;gap:8px;margin-bottom:7px;font-size:.84rem;color:var(--text2);"><span style="color:'+d.cl+'">•</span>'+f+'</div>'; }).join('');
+  document.querySelectorAll('.os-card').forEach(function(c){ c.classList.remove('sel'); });
+  var keys=['win','mac','lnx','and','ios'];
+  document.querySelectorAll('.os-card').forEach(function(c,i){ if(keys[i]===key) c.classList.add('sel'); });
+}
+
+/* ══════════════════════════════════════════════════════
+   TOAST & BURST
+══════════════════════════════════════════════════════ */
+var toastT;
+function showToast(msg,type){
+  var el=document.getElementById('toast');
+  el.textContent=msg; el.className='toast '+(type||'')+' show';
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){ el.classList.remove('show'); },2800);
+}
+
+function burst(){
+  var emojis=['🎉','⭐','🌟','✨','🎊'];
+  for(var i=0;i<7;i++){
+    (function(n){
+      setTimeout(function(){
+        var el=document.createElement('div');
+        el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+        el.style.cssText='position:fixed;z-index:9999;pointer-events:none;font-size:'+(1.3+Math.random())+'rem;left:'+(20+Math.random()*60)+'vw;top:'+(25+Math.random()*35)+'vh;animation:burstAnim .9s ease forwards;';
+        document.body.appendChild(el);
+        setTimeout(function(){ el.remove(); },950);
+      },n*70);
+    })(i);
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   FINISH
+══════════════════════════════════════════════════════ */
+function finishCourse(){
+  addXP(100);
+  var scoreEl=document.getElementById('final-score');
+  var numEl=document.getElementById('final-xp');
+  if(scoreEl) scoreEl.style.display='flex';
+  if(numEl) numEl.textContent=XP;
+  markDone('m12');
+  burst(); burst();
+  showToast('🏆 Niveau 1 terminé ! Tu es prêt(e) pour l\'examen !','t-xp');
+}
+
+/* ══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   ALGO INTRO — STEP DISPLAYS (daily examples)
+══════════════════════════════════════════════════════ */
+var DAILY_ALGOS = {
+  teeth: {
+    color: 'var(--blue)',
+    steps: [
+      { n:1, icon:'🚿', t:'Prendre ta brosse à dents' },
+      { n:2, icon:'🪥', t:'Mettre du dentifrice sur la brosse' },
+      { n:3, icon:'💧', t:'Mouiller légèrement la brosse' },
+      { n:4, icon:'🦷', t:'Brosser les dents pendant 2 minutes (haut, bas, devant, derrière)' },
+      { n:5, icon:'🌀', t:'Rincer ta bouche avec de l\'eau' },
+      { n:6, icon:'💦', t:'Rincer la brosse à dents' },
+      { n:7, icon:'😁', t:'Sourire — tes dents sont propres !' }
+    ]
+  },
+  hands: {
+    color: 'var(--green)',
+    steps: [
+      { n:1, icon:'🚿', t:'Ouvrir le robinet d\'eau' },
+      { n:2, icon:'💧', t:'Mouiller les deux mains sous l\'eau' },
+      { n:3, icon:'🧴', t:'Prendre du savon et le frotter sur les deux mains' },
+      { n:4, icon:'👐', t:'Frotter les paumes, le dos des mains et entre les doigts pendant 20 secondes' },
+      { n:5, icon:'🚿', t:'Rincer abondamment les mains sous l\'eau' },
+      { n:6, icon:'🚰', t:'Fermer le robinet' },
+      { n:7, icon:'🧻', t:'Se sécher les mains avec une serviette propre' }
+    ]
+  },
+  sandwich: {
+    color: 'var(--orange)',
+    steps: [
+      { n:1, icon:'🍞', t:'Prendre deux tranches de pain de mie' },
+      { n:2, icon:'🧈', t:'Étaler du beurre ou de la mayonnaise sur une tranche' },
+      { n:3, icon:'🥬', t:'Poser une feuille de laitue sur la tranche beurrée' },
+      { n:4, icon:'🍅', t:'Ajouter des rondelles de tomate' },
+      { n:5, icon:'🧀', t:'Ajouter le fromage ou la garniture choisie' },
+      { n:6, icon:'🍞', t:'Poser la deuxième tranche de pain par-dessus' },
+      { n:7, icon:'🔪', t:'Couper le sandwich en deux (facultatif)' },
+      { n:8, icon:'🥪', t:'Déguster !' }
+    ]
+  }
+};
+
+function buildDailyAlgo(key, containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  var algo = DAILY_ALGOS[key];
+  el.innerHTML = algo.steps.map(function(s) {
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:white;border:1.5px solid var(--border);border-radius:10px;box-shadow:0 2px 6px rgba(0,74,173,.06);">' +
+      '<div style="width:30px;height:30px;border-radius:50%;background:' + algo.color + ';color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.85rem;font-weight:700;flex-shrink:0;">' + s.n + '</div>' +
+      '<div style="font-size:1.2rem;flex-shrink:0;">' + s.icon + '</div>' +
+      '<div style="font-size:.88rem;color:var(--text);">' + s.t + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   ACTIVITÉ 1 — SORT SCHOOL (reordering game)
+══════════════════════════════════════════════════════ */
+var SORT_DATA = {
+  school: {
+    steps: [
+      { id:0, o:1, t:'⏰ L\'alarme sonne — se lever du lit' },
+      { id:1, o:2, t:'🚿 Aller à la salle de bain et faire sa toilette' },
+      { id:2, o:3, t:'👕 S\'habiller avec l\'uniforme scolaire' },
+      { id:3, o:4, t:'🍳 Prendre son petit-déjeuner' },
+      { id:4, o:5, t:'🎒 Vérifier son sac à dos (cahiers, livres, stylos)' },
+      { id:5, o:6, t:'👋 Dire au revoir à la famille' },
+      { id:6, o:7, t:'🚶 Partir pour l\'école' }
+    ]
+  }
+};
+var sortArrs = {};
+
+function initSort(key) {
+  sortArrs[key] = SORT_DATA[key].steps.slice().sort(function(){ return Math.random() - .5; });
+  renderSort(key);
+}
+
+function renderSort(key) {
+  var el = document.getElementById('sort-' + key);
+  if (!el) return;
+  el.innerHTML = sortArrs[key].map(function(s, i) {
+    return '<div style="display:flex;align-items:center;gap:10px;background:white;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;margin-bottom:7px;box-shadow:0 2px 6px rgba(0,74,173,.05);">' +
+      '<div style="display:flex;flex-direction:column;gap:2px;">' +
+        '<button onclick="moveSort(\'' + key + '\',' + i + ',-1)" style="background:rgba(0,74,173,.08);border:none;color:var(--blue);cursor:pointer;border-radius:4px;padding:2px 7px;font-size:.72rem;font-weight:700;" title="Monter">▲</button>' +
+        '<button onclick="moveSort(\'' + key + '\',' + i + ',1)"  style="background:rgba(0,74,173,.08);border:none;color:var(--blue);cursor:pointer;border-radius:4px;padding:2px 7px;font-size:.72rem;font-weight:700;" title="Descendre">▼</button>' +
+      '</div>' +
+      '<div style="width:26px;height:26px;border-radius:50%;background:rgba(0,74,173,.1);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.82rem;color:var(--blue);font-weight:700;flex-shrink:0;">' + (i+1) + '</div>' +
+      '<div style="font-size:.88rem;color:var(--text);">' + s.t + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function moveSort(key, i, dir) {
+  var arr = sortArrs[key];
+  var j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  renderSort(key);
+}
+
+function checkSort(key) {
+  var arr = sortArrs[key];
+  var correct = arr.every(function(s, i){ return s.o === i + 1; });
+  var fb = document.getElementById('sort-' + key + '-fb');
+  if (correct) {
+    fb.textContent = '🎉 Parfait ! Tu as remis toutes les étapes dans le bon ordre !';
+    fb.style.color = 'var(--green)';
+    addXP(25); burst();
+    showToast('🧠 Algorithme correct ! +25 XP', 't-ok');
+  } else {
+    var score = arr.filter(function(s, i){ return s.o === i + 1; }).length;
+    fb.textContent = '🤔 ' + score + '/' + arr.length + ' étapes bien placées. Réfléchis à ce qu\'on fait en premier le matin !';
+    fb.style.color = 'var(--red)';
+  }
+}
+
+function resetSort(key) {
+  sortArrs[key] = SORT_DATA[key].steps.slice().sort(function(){ return Math.random() - .5; });
+  renderSort(key);
+  document.getElementById('sort-' + key + '-fb').textContent = '';
+}
+
+/* ══════════════════════════════════════════════════════
+   ACTIVITÉ 2 — VRAI / FAUX
+══════════════════════════════════════════════════════ */
+var VF_DATA = [
+  {
+    id: 'vf0',
+    title: '🦷 Algorithme : Se brosser les dents',
+    steps: ['1. Prendre la brosse à dents', '2. Mettre du dentifrice', '3. Mouiller la brosse', '4. Brosser les dents 2 min', '5. Rincer la bouche', '6. Rincer la brosse'],
+    correct: true,
+    explanation: '✅ C\'est un bon algorithme ! Les étapes sont dans le bon ordre logique. On prend la brosse avant de mettre le dentifrice, et on rince à la fin.'
+  },
+  {
+    id: 'vf1',
+    title: '👕 Algorithme : S\'habiller',
+    steps: ['1. Mettre ses chaussures', '2. Mettre son pantalon', '3. Mettre sa chemise', '4. Mettre ses chaussettes', '5. Mettre sa veste'],
+    correct: false,
+    explanation: '❌ Ce n\'est pas un bon algorithme ! On ne peut pas mettre les chaussures AVANT les chaussettes et le pantalon. L\'ordre est incorrect : il faut d\'abord sous-vêtements → pantalon → chemise → chaussettes → chaussures → veste.'
+  },
+  {
+    id: 'vf2',
+    title: '🍚 Algorithme : Préparer du riz',
+    steps: ['1. Mesurer la quantité de riz', '2. Rincer le riz à l\'eau', '3. Mettre le riz dans la casserole', '4. Ajouter de l\'eau (double du volume de riz)', '5. Allumer le feu', '6. Cuire 20 minutes à feu doux', '7. Éteindre le feu et laisser reposer 5 min'],
+    correct: true,
+    explanation: '✅ Excellent algorithme ! Chaque étape est claire, dans le bon ordre. On prépare avant de cuire, et on laisse reposer à la fin. Logique et précis !'
+  },
+  {
+    id: 'vf3',
+    title: '✉️ Algorithme : Envoyer un message',
+    steps: ['1. Écrire le message', '2. Ouvrir l\'application de messagerie', '3. Choisir le destinataire', '4. Appuyer sur Envoyer', '5. Allumer son téléphone'],
+    correct: false,
+    explanation: '❌ Mauvais algorithme ! On ne peut pas écrire le message AVANT d\'ouvrir l\'application, et on ne peut pas utiliser le téléphone s\'il est éteint. L\'ordre correct : Allumer le téléphone → Ouvrir l\'application → Choisir le destinataire → Écrire le message → Envoyer.'
+  },
+  {
+    id: 'vf4',
+    title: '📚 Algorithme : Faire ses devoirs',
+    steps: ['1. Sortir ses affaires et cahiers', '2. Lire l\'énoncé de l\'exercice', '3. Réfléchir et rédiger la réponse', '4. Vérifier et corriger si nécessaire', '5. Ranger ses affaires'],
+    correct: true,
+    explanation: '✅ Parfait ! On prépare, on lit, on réfléchit, on écrit, on vérifie, et on range. Chaque étape suit logiquement la précédente. C\'est un bel algorithme !'
+  }
+];
+
+var vfAnswered = {};
+
+function buildVF() {
+  var container = document.getElementById('vf-container');
+  if (!container) return;
+  container.innerHTML = VF_DATA.map(function(item, idx) {
+    var stepsHtml = item.steps.map(function(s) {
+      return '<div style="font-size:.83rem;color:var(--text2);padding:3px 0;">' + s + '</div>';
+    }).join('');
+    return '<div id="vf-card-' + item.id + '" style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,74,173,.06);">' +
+      '<div style="font-family:var(--font-display);font-size:1rem;color:var(--text);margin-bottom:12px;">' + (idx+1) + '. ' + item.title + '</div>' +
+      '<div style="background:var(--card2);border-radius:10px;padding:12px 16px;margin-bottom:14px;border:1px solid var(--border);">' + stepsHtml + '</div>' +
+      '<div style="font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:8px;">C\'est un algorithme correct ?</div>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+        '<button onclick="answerVF(\'' + item.id + '\',true)" id="vfbtn-' + item.id + '-ok" style="display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:30px;border:2px solid rgba(45,155,79,.3);background:rgba(45,155,79,.06);color:var(--green);font-weight:700;font-size:.86rem;cursor:pointer;transition:all .15s;">✅ Bon algorithme</button>' +
+        '<button onclick="answerVF(\'' + item.id + '\',false)" id="vfbtn-' + item.id + '-ko" style="display:flex;align-items:center;gap:6px;padding:9px 18px;border-radius:30px;border:2px solid rgba(220,38,38,.25);background:rgba(220,38,38,.05);color:var(--red);font-weight:700;font-size:.86rem;cursor:pointer;transition:all .15s;">❌ Mauvais algorithme</button>' +
+      '</div>' +
+      '<div id="vf-fb-' + item.id + '" style="display:none;margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.85rem;line-height:1.65;font-weight:600;"></div>' +
+    '</div>';
+  }).join('');
+}
+
+function answerVF(id, userSaysCorrect) {
+  if (vfAnswered[id]) return;
+  vfAnswered[id] = true;
+  var item = VF_DATA.filter(function(x){ return x.id === id; })[0];
+  var fb = document.getElementById('vf-fb-' + id);
+  var btnOk = document.getElementById('vfbtn-' + id + '-ok');
+  var btnKo = document.getElementById('vfbtn-' + id + '-ko');
+  btnOk.style.pointerEvents = 'none';
+  btnKo.style.pointerEvents = 'none';
+  var isRight = (userSaysCorrect === item.correct);
+  if (isRight) {
+    fb.style.background = 'rgba(45,155,79,.07)';
+    fb.style.border = '1.5px solid rgba(45,155,79,.2)';
+    fb.style.color = 'var(--green)';
+    fb.textContent = '🎉 Bonne réponse ! ' + item.explanation;
+    addXP(15); burst();
+    showToast('✅ +15 XP !', 't-ok');
+  } else {
+    fb.style.background = 'rgba(220,38,38,.06)';
+    fb.style.border = '1.5px solid rgba(220,38,38,.18)';
+    fb.style.color = 'var(--red)';
+    fb.textContent = '🤔 Pas tout à fait… ' + item.explanation;
+  }
+  fb.style.display = 'block';
+  // Highlight chosen button
+  if (userSaysCorrect) {
+    btnOk.style.background = isRight ? 'rgba(45,155,79,.15)' : 'rgba(220,38,38,.1)';
+    btnOk.style.borderColor = isRight ? 'var(--green)' : 'var(--red)';
+  } else {
+    btnKo.style.background = isRight ? 'rgba(45,155,79,.15)' : 'rgba(220,38,38,.1)';
+    btnKo.style.borderColor = isRight ? 'var(--green)' : 'var(--red)';
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   ACTIVITÉ 3 — CRÉE TON ALGO
+══════════════════════════════════════════════════════ */
+var algoWriteSteps = [];
+
+function setAlgoTopic(topic) {
+  document.getElementById('algo-topic-input').value = topic;
+}
+
+function addAlgoStep() {
+  algoWriteSteps.push('');
+  renderAlgoWrite();
+  var inputs = document.getElementById('algo-steps-write').querySelectorAll('input');
+  if (inputs.length) inputs[inputs.length - 1].focus();
+}
+
+function renderAlgoWrite() {
+  var el = document.getElementById('algo-steps-write');
+  if (!el) return;
+  el.innerHTML = algoWriteSteps.map(function(s, i) {
+    return '<div style="display:flex;align-items:center;gap:8px;">' +
+      '<div style="width:26px;height:26px;border-radius:50%;background:var(--blue);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.8rem;font-weight:700;flex-shrink:0;">' + (i+1) + '</div>' +
+      '<input value="' + escAttr(s) + '" oninput="updateStep(' + i + ',this.value)" placeholder="Étape ' + (i+1) + '…" ' +
+        'style="flex:1;background:white;border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.87rem;color:var(--text);outline:none;" />' +
+      '<button onclick="removeStep(' + i + ')" style="background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:6px;color:var(--red);cursor:pointer;padding:4px 9px;font-size:.8rem;">✕</button>' +
+    '</div>';
+  }).join('');
+}
+
+function escAttr(s) { return s.replace(/"/g, '&quot;'); }
+
+function updateStep(i, val) { algoWriteSteps[i] = val; }
+
+function removeStep(i) {
+  algoWriteSteps.splice(i, 1);
+  renderAlgoWrite();
+}
+
+function checkAlgoWrite() {
+  var topic = (document.getElementById('algo-topic-input').value || '').trim();
+  var steps = algoWriteSteps.filter(function(s){ return s.trim().length > 0; });
+  var fb = document.getElementById('algo-write-fb');
+  if (!topic) {
+    fb.textContent = '⚠️ Écris d\'abord le sujet de ton algorithme !';
+    fb.style.color = 'var(--orange2)'; return;
+  }
+  if (steps.length < 2) {
+    fb.textContent = '⚠️ Un algorithme a besoin d\'au moins 2 étapes ! Ajoute des étapes.';
+    fb.style.color = 'var(--orange2)'; return;
+  }
+  var robi_comments = [
+    'Les étapes semblent bien ordonnées. Vérifie que chaque étape est claire et qu\'une personne qui ne connaît pas l\'action pourrait la suivre !',
+    'Super travail ! Assure-toi que chaque étape ne peut pas être mal interprétée.',
+    'Bel effort ! N\'oublie pas : un bon algorithme doit avoir une étape de début et une étape de fin clairement identifiées.',
+    'Excellent début ! Est-ce que toutes les étapes sont nécessaires ? Y en a-t-il une que tu pourrais enlever sans changer le résultat ?'
+  ];
+  var comment = robi_comments[Math.floor(Math.random() * robi_comments.length)];
+  fb.innerHTML = '<div style="background:rgba(0,74,173,.05);border:1.5px solid rgba(0,74,173,.15);border-radius:12px;padding:14px 16px;">' +
+    '<div style="font-family:var(--font-display);font-size:.95rem;color:var(--blue);margin-bottom:8px;">🤖 ROBI a évalué ton algorithme « ' + topic + ' » (' + steps.length + ' étapes) :</div>' +
+    '<div style="font-size:.86rem;color:var(--text2);line-height:1.75;">' + comment + '</div>' +
+    '<div style="margin-top:10px;font-size:.82rem;color:var(--green);font-weight:600;">✅ Algorithme enregistré ! +20 XP</div>' +
+    '</div>';
+  addXP(20);
+  showToast('🤖 ROBI a évalué ton algo ! +20 XP', 't-ok');
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  // Inject burst keyframe
+  var s=document.createElement('style');
+  s.textContent='@keyframes burstAnim{0%{opacity:1;transform:scale(.6)translateY(0)}100%{opacity:0;transform:scale(1.8)translateY(-100px)}}';
+  document.head.appendChild(s);
+
+  initDrag();
+  initFiles();
+  resetTyping();
+  buildExcel();
+  initAlgo();
+  buildVisio();
+  buildDailyAlgo('teeth', 'steps-teeth');
+  buildDailyAlgo('hands', 'steps-hands');
+  buildDailyAlgo('sandwich', 'steps-sandwich');
+  initSort('school');
+  buildVF();
+});
+</script>
+</body>
+</html>
