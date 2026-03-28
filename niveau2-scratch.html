@@ -434,8 +434,6 @@
         <button class="cat-btn active" style="background:var(--blue)" data-sec="intro">🖥️ Scratch</button>
         <button class="cat-btn inactive" data-sec="move">🔵 Mouvement</button>
         <button class="cat-btn inactive" data-sec="look">🟣 Apparence</button>
-        <button class="cat-btn inactive" data-sec="costumes">👗 Costumes</button>
-        <button class="cat-btn inactive" data-sec="transitions">🔀 Transitions</button>
         <button class="cat-btn inactive" data-sec="sound">🩷 Son</button>
         <button class="cat-btn inactive" data-sec="event">🟡 Événements</button>
         <button class="cat-btn inactive" data-sec="messages">📨 Messages</button>
@@ -444,6 +442,8 @@
         <button class="cat-btn inactive" data-sec="op">🟢 Opérateurs</button>
         <button class="cat-btn inactive" data-sec="var">🟤 Variables</button>
         <button class="cat-btn inactive" data-sec="myblocks">🩸 Mes Blocs</button>
+        <button class="cat-btn inactive" data-sec="costumes">👗 Costumes</button>
+        <button class="cat-btn inactive" data-sec="transitions">🔀 Transitions</button>
         <button class="cat-btn inactive" data-sec="final">🚀 Projet Final</button>
         <button class="cat-btn inactive" data-sec="libre">💭 À toi de jouer !</button>
         <button class="cat-btn inactive" data-sec="summary">🏆 Bilan</button>
@@ -875,724 +875,10 @@
 
     <div class="nav-actions">
         <button class="nav-btn-action btn-prev" data-prev="move">← Mouvement</button>
-        <button class="nav-btn-action btn-next" data-next="costumes">Suivant : Les Costumes →</button>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════
-     SECTION COSTUMES
-══════════════════════════════════════════════ -->
-<section class="cat-section" id="sec-costumes">
-    <div class="sec-header">
-        <div class="sec-tag" style="background:#9966FF">👗 Focus Pratique</div>
-        <h2 class="sec-title">👗 Les Costumes en détail</h2>
-        <p class="sec-subtitle">Comprends, explore et pratique les costumes pour créer de vraies animations !</p>
-    </div>
-
-    <!-- C'est quoi un costume -->
-    <div class="card">
-        <h3 class="card-title" style="color:#6B46C1">💡 C'est quoi un costume ?</h3>
-        <p>Un <strong style="color:#6B46C1">costume</strong>, c'est une <strong>apparence différente</strong> d'un même sprite. Un sprite peut avoir plusieurs costumes, comme un acteur qui change de vêtements entre deux scènes.</p>
-        <div class="analogy">
-            <span class="analogy-icon">🎭</span>
-            <div>
-                <h4>Pense à un acteur de cinéma !</h4>
-                <p>Dans un film, le même acteur peut jouer un enfant au début, puis un adulte à la fin. Il porte des costumes différents mais c'est toujours la même personne. Ton sprite, c'est pareil : même sprite, plusieurs costumes !</p>
-            </div>
-        </div>
-
-        <h4 style="font-family:'Fredoka One',cursive; color:#6B46C1; margin:16px 0 10px;">🌟 Le chat Scratch a déjà 2 costumes !</h4>
-        <div class="costume-strip">
-            <div class="costume-card">
-                <div class="cc-num">1</div>
-                <span class="cc-emoji">🐱</span>
-                <div class="cc-name">costume1</div>
-                <div class="cc-desc">Patte gauche levée</div>
-            </div>
-            <div class="costume-card">
-                <div class="cc-num">2</div>
-                <span class="cc-emoji">😺</span>
-                <div class="cc-name">costume2</div>
-                <div class="cc-desc">Patte droite levée</div>
-            </div>
-            <div class="costume-card" style="border-style:dashed; border-color:#CBD5E0; background:#F7FAFC;">
-                <div class="cc-num" style="background:#CBD5E0">+</div>
-                <span class="cc-emoji" style="font-size:1.6rem; color:#CBD5E0">✏️</span>
-                <div class="cc-name" style="color:#A0AEC0">nouveau</div>
-                <div class="cc-desc">Tu peux en créer autant que tu veux !</div>
-            </div>
-        </div>
-        <div class="info-box blue">
-            <span class="info-box-icon">🔑</span>
-            <div>
-                <h4>La clé de l'animation !</h4>
-                <p>En alternant rapidement entre 2 costumes (patte gauche → patte droite → patte gauche…), le chat donne l'<strong>illusion de marcher</strong>. C'est exactement le principe des dessins animés : des images légèrement différentes affichées très vite !</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- L'onglet Costumes dans Scratch -->
-    <div class="card">
-        <h3 class="card-title" style="color:#6B46C1">🖥️ L'onglet Costumes dans Scratch</h3>
-        <p>Pour voir et modifier les costumes d'un sprite, clique sur l'<strong>onglet "Costumes"</strong> en haut à gauche de Scratch (à côté de "Code" et "Sons").</p>
-
-        <div class="tab-mockup">
-            <div class="tab-bar">
-                <div class="tab inactive-tab">💻 Code</div>
-                <div class="tab active-tab">👗 Costumes</div>
-                <div class="tab inactive-tab">🔊 Sons</div>
-            </div>
-            <div class="tab-content">
-                <div class="mini-costume selected-c">
-                    <span>🐱</span>
-                    <small>costume1</small>
-                </div>
-                <div class="mini-costume">
-                    <span>😺</span>
-                    <small>costume2</small>
-                </div>
-                <div class="mini-costume" style="border-style:dashed; border-color:#4A5568;">
-                    <span style="color:#718096; font-size:1.2rem;">＋</span>
-                    <small style="color:#718096;">nouveau</small>
-                </div>
-                <div style="color:#A0AEC0; font-size:.8rem; margin-left:10px; font-style:italic;">← Clique sur un costume pour l'éditer dans le dessinateur</div>
-            </div>
-        </div>
-
-        <table class="blocks-table" style="margin-top:16px;">
-            <thead><tr><th>Action</th><th>Comment faire dans l'onglet Costumes</th></tr></thead>
-            <tbody>
-                <tr><td>👀 Voir les costumes</td><td>Clique sur l'onglet <strong>Costumes</strong> — tous les costumes du sprite actif apparaissent à gauche</td></tr>
-                <tr><td>✏️ Modifier un costume</td><td>Clique sur un costume dans la liste → il s'ouvre dans l'éditeur de dessin</td></tr>
-                <tr><td>➕ Ajouter un costume</td><td>Clique sur l'icône <strong>+</strong> en bas à gauche → choisir depuis la bibliothèque, ou dessiner, ou importer une image</td></tr>
-                <tr><td>🗑️ Supprimer un costume</td><td>Clic droit sur le costume → Supprimer (⚠️ attention, au moins 1 costume obligatoire !)</td></tr>
-                <tr><td>✂️ Dupliquer un costume</td><td>Clic droit sur le costume → Dupliquer → modifie légèrement la copie</td></tr>
-                <tr><td>🔄 Renommer un costume</td><td>Double-clique sur le nom sous le costume et tape le nouveau nom</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Les blocs qui utilisent les costumes -->
-    <div class="card">
-        <h3 class="card-title" style="color:#6B46C1">🧱 Les blocs pour manipuler les costumes</h3>
-        <p>Ces blocs de la catégorie <strong style="color:#9966FF">Apparence</strong> permettent de changer de costume depuis ton programme :</p>
-        <table class="blocks-table">
-            <thead><tr><th>Bloc</th><th>Ce qu'il fait</th><th>Utilisation typique</th></tr></thead>
-            <tbody>
-                <tr>
-                    <td><span class="sb sb-look">basculer sur le costume <span class="param">costume1</span></span></td>
-                    <td>Passe directement à un costume précis</td>
-                    <td>Changer d'apparence à un moment clé de l'histoire</td>
-                </tr>
-                <tr>
-                    <td><span class="sb sb-look">costume suivant</span></td>
-                    <td>Passe au costume d'après dans la liste (revient au début quand on arrive au dernier)</td>
-                    <td>Créer une animation en boucle — le plus utilisé !</td>
-                </tr>
-                <tr>
-                    <td><span class="sb sb-sense">numéro du costume</span></td>
-                    <td>Bloc ovale : donne le numéro du costume actuel (1, 2, 3…)</td>
-                    <td>Vérifier quel costume est actif dans un "si alors"</td>
-                </tr>
-                <tr>
-                    <td><span class="sb sb-sense">nom du costume</span></td>
-                    <td>Donne le nom du costume actuel ("costume1", "marche", etc.)</td>
-                    <td>Déclencher des actions selon le costume affiché</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Animation demo -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#6B46C1; margin:16px 0 8px;">🎬 Comment fonctionne une animation ?</h4>
-        <p style="font-size:.9rem; margin-bottom:10px;">En mettant <span class="sb sb-look" style="font-size:.78rem; display:inline-flex">costume suivant</span> dans une boucle avec <span class="sb sb-ctrl" style="font-size:.78rem; display:inline-flex">attendre <span class="param">0.2</span> sec</span>, on crée l'animation :</p>
-        <div class="anim-demo">
-            <div class="anim-frame active-frame"><span>🐱</span><small>costume1</small></div>
-            <div class="anim-arrow">→</div>
-            <div class="anim-frame"><span>😺</span><small>costume2</small></div>
-            <div class="anim-arrow">→</div>
-            <div class="anim-frame"><span>🐱</span><small>costume1</small></div>
-            <div class="anim-arrow">→</div>
-            <div class="anim-frame"><span>😺</span><small>costume2</small></div>
-            <div class="anim-arrow">→</div>
-            <div style="color:#A0AEC0; font-size:.8rem; font-style:italic;">en boucle !</div>
-        </div>
-
-        <div class="blocks-wrap" style="margin-top:12px;">
-            <span class="sb sb-event hat">quand ⚑ cliqué</span>
-            <span class="sb sb-ctrl">répéter indéfiniment</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">costume suivant</span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.2</span> secondes</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Exercice 1 : Explorer l'onglet costumes -->
-    <div class="card">
-        <h3 class="card-title" style="color:#6B46C1">🔬 Exercice 1 — Explore l'onglet Costumes</h3>
-        <p>Avant de programmer, <strong>explore d'abord l'onglet Costumes</strong> dans Scratch pour comprendre ce qu'il contient.</p>
-        <div class="save-steps">
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">A</div><p>Ouvre Scratch sur ton ordinateur et crée un nouveau projet.</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">B</div><p>Clique sur l'onglet <strong>"Costumes"</strong> en haut à gauche. Tu vois les 2 costumes du chat.</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">C</div><p>Clique sur <strong>costume1</strong> dans la liste à gauche. Observe le dessin du chat dans l'éditeur.</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">D</div><p>Clique sur <strong>costume2</strong>. Remarque la différence : la patte est de l'autre côté !</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">E</div><p>Fais <strong>clic droit → Dupliquer</strong> sur costume1. Un troisième costume apparaît. Dessine quelque chose dessus (un chapeau 🎩, des lunettes…) avec les outils de dessin.</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">F</div><p>Double-clique sur le nom du nouveau costume et renomme-le <strong>"fete"</strong>.</p></div>
-        </div>
-        <div class="info-box green" style="margin-top:12px;">
-            <span class="info-box-icon">✅</span>
-            <div>
-                <h4>Résultat attendu</h4>
-                <p>Tu dois avoir 3 costumes dans la liste : costume1, costume2, et fete. Ton chat a maintenant une tenue de fête !</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- MINI PROJET COSTUMES -->
-    <div class="mini-project">
-        <div class="mp-header">
-            <span class="mp-badge">🎯 Mini-Projet Costumes</span>
-            <h3 class="mp-title">🦋 Le papillon de Bamendou</h3>
-        </div>
-        <p style="background:rgba(255,255,255,.9); border-radius:12px; padding:12px; margin-bottom:14px; font-size:.9rem; color:#44337A;">
-            Un papillon vole à travers le village de Bamendou, battant des ailes et changeant de couleur au fil du trajet. Tu vas créer <strong>4 costumes différents</strong> et les animer !
-        </p>
-        <div class="mp-setup">
-            <h4>⚙️ Prépare Scratch sur ta machine</h4>
-            <ul class="setup-list">
-                <li class="setup-item">🖥️ Nouveau projet Scratch</li>
-                <li class="setup-item">🦋 Sprite : "Butterfly 1" (bibliothèque)</li>
-                <li class="setup-item">🌿 Arrière-plan : "Forest" ou "Garden Rock"</li>
-                <li class="setup-item">💾 Sauvegarde : "papillon_bamendou.sb3"</li>
-            </ul>
-        </div>
-        <ol class="steps-list">
-            <li>
-                <strong>Explore les costumes du papillon</strong>
-                Clique sur l'onglet <em>Costumes</em>. Le papillon a déjà plusieurs costumes (ailes ouvertes, ailes fermées). Compte combien il en a.
-            </li>
-            <li>
-                <strong>Crée 2 costumes supplémentaires colorés</strong>
-                Fais <em>clic droit → Dupliquer</em> sur le costume1. Ouvre l'éditeur du doublon. Sélectionne les ailes et change leur couleur (outil pot de peinture 🎨) : rouge pour le 3e costume, jaune pour le 4e. Renomme-les <strong>"rouge"</strong> et <strong>"jaune"</strong>.
-            </li>
-            <li>
-                <strong>Programme le battement d'ailes de base</strong>
-                Dans l'onglet <em>Code</em>, crée :
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-event hat">quand ⚑ cliqué</span>
-                    <span class="sb sb-look">mettre la taille à <span class="param">60</span> %</span>
-                    <span class="sb sb-move">aller à x: <span class="param">-180</span> y: <span class="param">0</span></span>
-                    <span class="sb sb-ctrl">répéter indéfiniment</span>
-                    <div class="indent">
-                        <span class="sb sb-look">costume suivant</span>
-                        <span class="sb sb-ctrl">attendre <span class="param">0.15</span> secondes</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <strong>Fais-le traverser la scène</strong>
-                Dans la même boucle, ajoute après "attendre" :
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-move">avancer de <span class="param">3</span> pas</span>
-                    <span class="sb sb-move">rebondir si le bord est atteint</span>
-                </div>
-            </li>
-            <li>
-                <strong>Change de couleur quand il touche le bord</strong>
-                Crée un <strong>deuxième programme séparé</strong> :
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-event hat">quand ⚑ cliqué</span>
-                    <span class="sb sb-ctrl">répéter indéfiniment</span>
-                    <div class="indent">
-                        <span class="sb sb-ctrl">si &lt;touching <span class="param">Edge</span> ?&gt; alors</span>
-                        <div class="indent">
-                            <span class="sb sb-look">basculer sur le costume <span class="param">rouge</span></span>
-                            <span class="sb sb-ctrl">attendre <span class="param">1</span> secondes</span>
-                            <span class="sb sb-look">basculer sur le costume <span class="param">jaune</span></span>
-                            <span class="sb sb-ctrl">attendre <span class="param">1</span> secondes</span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <strong>Ajoute un deuxième sprite : une fleur</strong>
-                Ajoute le sprite <em>"Flower"</em>. Programme-le avec <span class="sb sb-event hat" style="font-size:.75rem">quand ⚑ cliqué</span> → <span class="sb sb-ctrl" style="font-size:.75rem">répéter indéfiniment</span> → <span class="sb sb-look" style="font-size:.75rem">costume suivant</span> → <span class="sb sb-ctrl" style="font-size:.75rem">attendre <span class="param">0.5</span> secondes</span>. La fleur s'animera aussi !
-            </li>
-            <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
-        </ol>
-        <div class="mp-result">
-            <span class="mp-result-icon">🎉</span>
-            <div>
-                <h4>Ce que tu dois voir :</h4>
-                <p>Le papillon vole en battant des ailes (grâce aux costumes en boucle), traverse la scène, et change de couleur chaque fois qu'il touche un bord — comme un vrai papillon de Bamendou ! 🦋🌿</p>
-            </div>
-        </div>
-        <div class="bonus">
-            <span class="bonus-icon">⭐</span>
-            <div>
-                <h4>Challenge bonus !</h4>
-                <p>Utilise le bloc <span class="sb sb-sense" style="font-size:.72rem; display:inline-flex">nom du costume</span> dans un "si alors" pour faire dire au papillon <em>"Je suis rouge !"</em> ou <em>"Je suis jaune !"</em> selon le costume qu'il porte.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Exercice 2 : Personnage émotions -->
-    <div class="card">
-        <h3 class="card-title" style="color:#6B46C1">🎭 Exercice 2 — Le personnage aux 4 émotions</h3>
-        <p>Crée un personnage qui change d'expression selon la touche appuyée. C'est un excellent exercice pour maîtriser <strong>basculer sur le costume</strong> !</p>
-
-        <div class="info-box orange">
-            <span class="info-box-icon">🎯</span>
-            <div>
-                <h4>Objectif</h4>
-                <p>Appuie sur <strong>1 → 😊 Heureux</strong> · <strong>2 → 😢 Triste</strong> · <strong>3 → 😠 En colère</strong> · <strong>4 → 😲 Surpris</strong></p>
-            </div>
-        </div>
-
-        <div class="save-steps" style="margin-top:14px;">
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">1</div><p>Choisis le sprite <strong>"Avery"</strong> ou <strong>"Casey"</strong> dans la bibliothèque. Il a plusieurs costumes d'émotions.</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">2</div><p>Dans l'onglet <em>Costumes</em>, <strong>renomme</strong> les 4 premiers costumes : <em>heureux</em>, <em>triste</em>, <em>colere</em>, <em>surpris</em>.</p></div>
-            <div class="save-step"><div class="save-step-num" style="background:#9966FF">3</div><p>Crée 4 programmes séparés (un par touche) :</p></div>
-        </div>
-
-        <div class="blocks-wrap" style="margin: 12px 0;">
-            <span class="sb sb-event hat">quand la touche <span class="param">1</span> est pressée</span>
-            <span class="sb sb-look">basculer sur le costume <span class="param">heureux</span></span>
-            <span class="sb sb-look">dire <span class="param">Je suis heureux ! 😊</span> pendant <span class="param">2</span> secondes</span>
-        </div>
-        <p style="font-size:.88rem; color:var(--mid); margin-bottom:12px;">Répète la même structure pour les touches 2, 3 et 4 avec les costumes correspondants.</p>
-
-        <div class="bonus" style="margin-top:0;">
-            <span class="bonus-icon">⭐</span>
-            <div>
-                <h4>Challenge bonus !</h4>
-                <p>Ajoute un son différent pour chaque émotion (par ex. un son joyeux pour "heureux" et un son grave pour "triste") et fais changer l'arrière-plan aussi.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="nav-actions">
-        <button class="nav-btn-action btn-prev" data-prev="look">← Apparence</button>
-        <button class="nav-btn-action btn-next" data-next="transitions">Suivant : Transitions →</button>
-    </div>
-</section>
-
-
-
-<!-- ══════════════════════════════════════════════
-     SECTION : TRANSITIONS
-══════════════════════════════════════════════ -->
-<section class="cat-section" id="sec-transitions">
-    <div class="sec-header">
-        <div class="sec-tag" style="background:#805AD5">🔀 Focus Pratique</div>
-        <h2 class="sec-title">🔀 Les Transitions dans Scratch</h2>
-        <p class="sec-subtitle">Passe d'un costume à un autre, d'une scène à une autre — avec style !</p>
-    </div>
-
-    <!-- C'est quoi une transition -->
-    <div class="card">
-        <h3 class="card-title" style="color:#553C9A">💡 C'est quoi une transition ?</h3>
-        <p>Une <strong style="color:#553C9A">transition</strong>, c'est le <strong>passage d'un état à un autre</strong> dans ton projet. Par exemple passer du costume "debout" au costume "courant", ou changer l'arrière-plan de la forêt vers la ville.</p>
-        <p style="margin-top:8px;">Une bonne transition rend ton projet <strong>plus vivant, plus fluide, plus professionnel</strong>. Elle peut être instantanée, progressive, ou accompagnée d'effets visuels !</p>
-        <div class="analogy">
-            <span class="analogy-icon">📺</span>
-            <div>
-                <h4>Pense aux dessins animés !</h4>
-                <p>Quand un personnage court dans un dessin animé, ses jambes ne sautent pas d'un seul coup d'une position à l'autre : elles passent par plusieurs positions intermédiaires très vite. C'est une <strong>transition animée</strong>. Scratch te permet de faire exactement ça avec tes sprites !</p>
-            </div>
-        </div>
-
-        <h4 style="font-family:'Fredoka One',cursive; color:#553C9A; margin:16px 0 10px;">🗂️ Les 3 types de transitions dans Scratch</h4>
-        <table class="blocks-table">
-            <thead><tr><th>Type</th><th>Ce qui change</th><th>Blocs utilisés</th></tr></thead>
-            <tbody>
-                <tr>
-                    <td>👗 <strong>Transition de costume</strong></td>
-                    <td>L'apparence du sprite change (marche, saute, parle…)</td>
-                    <td><span class="sb sb-look" style="font-size:.75rem; display:inline-flex">costume suivant</span> · <span class="sb sb-look" style="font-size:.75rem; display:inline-flex">basculer sur le costume</span></td>
-                </tr>
-                <tr>
-                    <td>🖼️ <strong>Transition d'arrière-plan</strong></td>
-                    <td>Le décor change (forêt → ville → espace…)</td>
-                    <td><span class="sb sb-look" style="font-size:.75rem; display:inline-flex">basculer sur l'arrière-plan</span> · <span class="sb sb-look" style="font-size:.75rem; display:inline-flex">arrière-plan suivant</span></td>
-                </tr>
-                <tr>
-                    <td>✨ <strong>Transition avec effet visuel</strong></td>
-                    <td>Un effet graphique accompagne le changement (fondu, couleur…)</td>
-                    <td><span class="sb sb-look" style="font-size:.75rem; display:inline-flex">mettre l'effet <span class="param">fantôme</span> à</span> · <span class="sb sb-look" style="font-size:.75rem; display:inline-flex">annuler les effets</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- TYPE 1 : Transition de costume -->
-    <div class="card">
-        <h3 class="card-title" style="color:#553C9A">👗 Type 1 — Transitions de costume</h3>
-        <p>Il existe <strong>3 façons</strong> de basculer d'un costume à un autre, selon ce que tu veux obtenir :</p>
-
-        <!-- Instantanée -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:14px 0 8px;">⚡ 1a — Transition instantanée</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Le changement est immédiat. Idéal pour réagir à un événement (appui sur une touche, collision).</p>
-        <div class="trans-demo">
-            <div class="trans-frame tf-from"><span>🐱</span><small>costume1</small></div>
-            <div class="trans-arrow">→</div>
-            <div class="trans-frame tf-to"><span>😺</span><small>costume2</small></div>
-        </div>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand la touche <span class="param">espace</span> est pressée</span>
-            <span class="sb sb-look">basculer sur le costume <span class="param">costume2</span></span>
-        </div>
-
-        <!-- Animée en boucle -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🔄 1b — Transition animée en boucle</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Les costumes défilent automatiquement pour créer l'illusion du mouvement. La vitesse se règle avec <span class="sb sb-ctrl" style="font-size:.78rem; display:inline-flex">attendre <span class="param">X</span> secondes</span>.</p>
-        <div class="trans-demo">
-            <div class="trans-frame tf-from"><span>🐱</span><small>costume1</small></div>
-            <div class="trans-arrow">→</div>
-            <div class="trans-frame tf-to"><span>😺</span><small>costume2</small></div>
-            <div class="trans-arrow">→</div>
-            <div class="trans-frame tf-from"><span>🐱</span><small>costume1</small></div>
-            <div class="trans-arrow" style="color:#A0AEC0; font-size:1.2rem;">∞</div>
-        </div>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand ⚑ cliqué</span>
-            <span class="sb sb-ctrl">répéter indéfiniment</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">costume suivant</span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.2</span> secondes</span>
-            </div>
-        </div>
-        <div class="info-box orange" style="margin-top:10px;">
-            <span class="info-box-icon">⏱️</span>
-            <div>
-                <h4>Le réglage de la vitesse</h4>
-                <p><strong>0.05 sec</strong> = très rapide (explosion, vibration) · <strong>0.2 sec</strong> = marche normale · <strong>0.5 sec</strong> = lent (respiration, flottement) · <strong>1 sec</strong> = très lent (transformation magique)</p>
-            </div>
-        </div>
-
-        <!-- Conditionnelle -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🎯 1c — Transition conditionnelle</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Le costume change <strong>seulement si une condition est vraie</strong>. Utile pour montrer des réactions (content si score monte, blessé si touché).</p>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand ⚑ cliqué</span>
-            <span class="sb sb-ctrl">répéter indéfiniment</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-ctrl">si &lt;touching <span class="param">Asteroid</span> ?&gt; alors</span>
-                <div class="indent blocks-wrap">
-                    <span class="sb sb-look">basculer sur le costume <span class="param">blessé</span></span>
-                    <span class="sb sb-ctrl">attendre <span class="param">0.5</span> secondes</span>
-                    <span class="sb sb-look">basculer sur le costume <span class="param">normal</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TYPE 2 : Effets visuels -->
-    <div class="card">
-        <h3 class="card-title" style="color:#553C9A">✨ Type 2 — Transitions avec effets visuels</h3>
-        <p>Scratch propose <strong>7 effets graphiques</strong> que tu peux appliquer à n'importe quel sprite pour créer des transitions spectaculaires !</p>
-
-        <div class="effect-grid">
-            <div class="effect-card">
-                <span class="ec-preview" style="opacity:.3">👻</span>
-                <div class="ec-name">Fantôme</div>
-                <div class="ec-desc">Rend le sprite transparent. 0 = visible, 100 = invisible. Parfait pour apparaître ou disparaître en fondu !</div>
-            </div>
-            <div class="effect-card">
-                <span class="ec-preview" style="filter:hue-rotate(120deg)">🐱</span>
-                <div class="ec-name">Couleur</div>
-                <div class="ec-desc">Change la couleur du sprite. Tourne de 0 à 200. Utile pour montrer un changement d'état (colère, magie…)</div>
-            </div>
-            <div class="effect-card">
-                <span class="ec-preview" style="filter:brightness(2)">⭐</span>
-                <div class="ec-name">Luminosité</div>
-                <div class="ec-desc">Rend le sprite plus clair ou plus sombre. Négatif = sombre, positif = brillant.</div>
-            </div>
-            <div class="effect-card">
-                <span class="ec-preview" style="transform:scaleX(1.4)">🦋</span>
-                <div class="ec-name">Pixelliser</div>
-                <div class="ec-desc">Déforme le sprite en pixel art. Augmente pour un effet "téléporation" ou "glitch" !</div>
-            </div>
-            <div class="effect-card">
-                <span class="ec-preview" style="filter:blur(2px)">🌟</span>
-                <div class="ec-name">Tourbillon</div>
-                <div class="ec-desc">Tord le sprite comme un tourbillon. Très efficace pour les transformations magiques !</div>
-            </div>
-            <div class="effect-card">
-                <span class="ec-preview">🎨</span>
-                <div class="ec-name">Œil de poisson</div>
-                <div class="ec-desc">Distord le centre du sprite comme une loupe ou un miroir bombé.</div>
-            </div>
-        </div>
-
-        <!-- Fondu apparition -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:16px 0 8px;">🌅 Technique : Apparition en fondu (fade in)</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Au lieu d'apparaître d'un coup, le sprite devient progressivement visible. Très professionnel !</p>
-        <div class="trans-demo">
-            <div class="trans-frame tf-from"><span style="opacity:.1">🐱</span><small>fantôme 100</small></div>
-            <div class="trans-arrow">→</div>
-            <div class="trans-frame" style="background:#3D2C6E; border-color:#9966FF;"><span style="opacity:.5">🐱</span><small style="color:#D6BCFA">fantôme 50</small></div>
-            <div class="trans-arrow">→</div>
-            <div class="trans-frame tf-to"><span>🐱</span><small>fantôme 0</small></div>
-        </div>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand ⚑ cliqué</span>
-            <span class="sb sb-look">mettre l'effet <span class="param">fantôme</span> à <span class="param">100</span></span>
-            <span class="sb sb-look">montrer</span>
-            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-            </div>
-            <span class="sb sb-look">annuler les effets graphiques</span>
-        </div>
-
-        <!-- Disparition en fondu -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🌇 Technique : Disparition en fondu (fade out)</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Le sprite disparaît progressivement. Même principe, mais dans le sens inverse !</p>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">fin_scène</span></span>
-            <span class="sb sb-look">annuler les effets graphiques</span>
-            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">10</span></span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-            </div>
-            <span class="sb sb-look">cacher</span>
-        </div>
-
-        <!-- Flash de couleur -->
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">💥 Technique : Flash de couleur (impact, victoire)</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Un bref flash coloré pour signaler un événement : collision, score, victoire !</p>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">touché</span></span>
-            <span class="sb sb-ctrl">répéter <span class="param">3</span> fois</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">mettre l'effet <span class="param">couleur</span> à <span class="param">50</span></span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.1</span> secondes</span>
-                <span class="sb sb-look">annuler les effets graphiques</span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.1</span> secondes</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- TYPE 3 : Transitions d'arrière-plan -->
-    <div class="card">
-        <h3 class="card-title" style="color:#553C9A">🖼️ Type 3 — Transitions d'arrière-plan (changer de scène)</h3>
-        <p>Changer d'arrière-plan, c'est changer de <strong>décor</strong> — comme dans une pièce de théâtre entre deux actes. Scratch propose deux approches selon ton besoin.</p>
-
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:14px 0 8px;">🔀 Méthode A — Basculer directement</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Le changement est immédiat. Simple et efficace !</p>
-        <div class="bg-strip">
-            <div class="bg-card" style="background:linear-gradient(135deg,#C6F6D5,#9AE6B4); border-color:#48BB78;">
-                <span>🌲</span>
-                <div class="bc-name" style="color:#276749;">Forêt</div>
-                <div class="bc-msg" style="color:#276749;">Scène 1</div>
-            </div>
-            <div style="display:flex; align-items:center; font-size:1.8rem; color:#805AD5; font-weight:900;">→</div>
-            <div class="bg-card" style="background:linear-gradient(135deg,#BEE3F8,#90CDF4); border-color:#3182CE;">
-                <span>🏙️</span>
-                <div class="bc-name" style="color:#2B6CB0;">Ville</div>
-                <div class="bc-msg" style="color:#2B6CB0;">Scène 2</div>
-            </div>
-            <div style="display:flex; align-items:center; font-size:1.8rem; color:#805AD5; font-weight:900;">→</div>
-            <div class="bg-card" style="background:linear-gradient(135deg,#E9D8FD,#D6BCFA); border-color:#9966FF;">
-                <span>🌌</span>
-                <div class="bc-name" style="color:#553C9A;">Espace</div>
-                <div class="bc-msg" style="color:#553C9A;">Scène 3</div>
-            </div>
-        </div>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">aller_ville</span></span>
-            <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">City</span></span>
-        </div>
-
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🔄 Méthode B — Arrière-plan suivant (séquence automatique)</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Les arrière-plans défilent dans l'ordre où ils sont dans la liste, comme les pages d'un livre !</p>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand la touche <span class="param">flèche droite</span> est pressée</span>
-            <span class="sb sb-look">arrière-plan suivant</span>
-        </div>
-
-        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🌅 Méthode C — Transition avec fondu sur l'arrière-plan</h4>
-        <p style="font-size:.9rem; margin-bottom:8px;">Pour une transition douce, cache tous les sprites avec un fondu, change le décor, puis fais réapparaître les sprites.</p>
-        <div class="blocks-wrap">
-            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">changer_scène</span></span>
-            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">10</span></span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-            </div>
-            <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">Space</span></span>
-            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-            <div class="indent blocks-wrap">
-                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
-                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-            </div>
-            <span class="sb sb-look">annuler les effets graphiques</span>
-        </div>
-        <div class="info-box blue" style="margin-top:10px;">
-            <span class="info-box-icon">💡</span>
-            <div>
-                <h4>Astuce : programme ce bloc sur le sprite principal</h4>
-                <p>Le bloc <span class="sb sb-look" style="font-size:.78rem; display:inline-flex">basculer sur l'arrière-plan</span> peut être utilisé depuis <strong>n'importe quel sprite</strong>. Mais pour une transition qui affecte toute la scène, il vaut mieux la programmer sur ton sprite principal ou directement sur l'arrière-plan.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- EXERCICE PRATIQUE -->
-    <div class="card">
-        <h3 class="card-title" style="color:#553C9A">✏️ Exercice — Le catalogue des transitions</h3>
-        <p style="margin-bottom:14px;">Avant le mini-projet, pratique chaque technique séparément. Ouvre Scratch et reproduis chacune de ces transitions :</p>
-        <table class="blocks-table">
-            <thead><tr><th>#</th><th>Transition à reproduire</th><th>Blocs clés</th></tr></thead>
-            <tbody>
-                <tr>
-                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">①</td>
-                    <td><strong>Clic sur le sprite → costume change</strong><br><small style="color:var(--mid)">Le chat passe de costume1 à costume2 quand on clique dessus</small></td>
-                    <td><span class="sb sb-event hat" style="font-size:.72rem; display:inline-flex">quand ce sprite est cliqué</span> + <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">basculer sur le costume</span></td>
-                </tr>
-                <tr>
-                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">②</td>
-                    <td><strong>Animation de marche en boucle</strong><br><small style="color:var(--mid)">Le sprite marche automatiquement en alternant 2 costumes</small></td>
-                    <td><span class="sb sb-ctrl" style="font-size:.72rem; display:inline-flex">répéter indéfiniment</span> + <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">costume suivant</span> + <span class="sb sb-ctrl" style="font-size:.72rem; display:inline-flex">attendre 0.2 sec</span></td>
-                </tr>
-                <tr>
-                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">③</td>
-                    <td><strong>Apparition en fondu (fade in)</strong><br><small style="color:var(--mid)">Le sprite part de invisible et devient progressivement visible</small></td>
-                    <td><span class="sb sb-look" style="font-size:.72rem; display:inline-flex">effet fantôme à 100</span> + boucle 10 fois <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">changer fantôme de -10</span></td>
-                </tr>
-                <tr>
-                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">④</td>
-                    <td><strong>Flash rouge sur collision</strong><br><small style="color:var(--mid)">Quand le sprite touche un bord, il clignote en rouge 3 fois</small></td>
-                    <td><span class="sb sb-sense" style="font-size:.72rem; display:inline-flex">touching Edge ?</span> dans un <span class="sb sb-ctrl" style="font-size:.72rem; display:inline-flex">si alors</span> + boucle effet couleur</td>
-                </tr>
-                <tr>
-                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">⑤</td>
-                    <td><strong>Changement de décor au clavier</strong><br><small style="color:var(--mid)">Touche D = scène suivante, Touche A = scène précédente</small></td>
-                    <td><span class="sb sb-event hat" style="font-size:.72rem; display:inline-flex">quand la touche D est pressée</span> + <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">arrière-plan suivant</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- MINI PROJET TRANSITIONS -->
-    <div class="mini-project">
-        <div class="mp-header">
-            <span class="mp-badge">🎯 Mini-Projet Transitions</span>
-            <h3 class="mp-title">🦋 La métamorphose magique de Bamendou</h3>
-        </div>
-        <p style="background:rgba(255,255,255,.9); border-radius:12px; padding:12px; margin-bottom:14px; font-size:.9rem; color:#44337A;">
-            Un personnage traverse 3 scènes du village de Bamendou avec des transitions fluides entre chaque : apparition en fondu, changement de costume conditionnel, et basculement d'arrière-plan avec effet. Tu vas combiner <strong>les 3 types de transitions</strong> en un seul projet !
-        </p>
-        <div class="mp-setup">
-            <h4>⚙️ Prépare Scratch sur ta machine</h4>
-            <ul class="setup-list">
-                <li class="setup-item">🖥️ Nouveau projet Scratch</li>
-                <li class="setup-item">🧒 Sprite : "Avery" ou "Pico"</li>
-                <li class="setup-item">🌿 Arrière-plan 1 : "Forest"</li>
-                <li class="setup-item">🏙️ Arrière-plan 2 : "City With Water"</li>
-                <li class="setup-item">🌌 Arrière-plan 3 : "Stars"</li>
-                <li class="setup-item">💾 Sauvegarde : "metamorphose_bamendou.sb3"</li>
-            </ul>
-        </div>
-        <ol class="steps-list">
-            <li>
-                <strong>Scène 1 — Apparition en fondu dans la forêt</strong>
-                Crée le programme de démarrage. Le personnage apparaît progressivement :
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-event hat">quand ⚑ cliqué</span>
-                    <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">Forest</span></span>
-                    <span class="sb sb-look">basculer sur le costume <span class="param">avery-a</span></span>
-                    <span class="sb sb-look">mettre l'effet <span class="param">fantôme</span> à <span class="param">100</span></span>
-                    <span class="sb sb-look">montrer</span>
-                    <span class="sb sb-look">dire <span class="param">Je suis dans la forêt de Bamendou 🌿</span> pendant <span class="param">2</span> secondes</span>
-                    <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-                    <div class="indent blocks-wrap">
-                        <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
-                        <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-                    </div>
-                    <span class="sb sb-look">annuler les effets graphiques</span>
-                </div>
-            </li>
-            <li>
-                <strong>Attendre l'action du joueur</strong>
-                Après l'apparition, le personnage attend que le joueur appuie sur Espace :
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-look">dire <span class="param">Appuie sur ESPACE pour continuer →</span> pendant <span class="param">3</span> secondes</span>
-                    <span class="sb sb-ctrl">attendre jusqu'à ce que &lt;key <span class="param">space</span> pressed ?&gt;</span>
-                </div>
-            </li>
-            <li>
-                <strong>Transition vers la Scène 2 — avec effet tourbillon</strong>
-                Le personnage change de costume ET l'arrière-plan change avec un effet :
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-ctrl">répéter <span class="param">15</span> fois</span>
-                    <div class="indent blocks-wrap">
-                        <span class="sb sb-look">changer l'effet <span class="param">tourbillon</span> de <span class="param">20</span></span>
-                        <span class="sb sb-ctrl">attendre <span class="param">0.03</span> secondes</span>
-                    </div>
-                    <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">City With Water</span></span>
-                    <span class="sb sb-look">basculer sur le costume <span class="param">avery-b</span></span>
-                    <span class="sb sb-ctrl">répéter <span class="param">15</span> fois</span>
-                    <div class="indent blocks-wrap">
-                        <span class="sb sb-look">changer l'effet <span class="param">tourbillon</span> de <span class="param">-20</span></span>
-                        <span class="sb sb-ctrl">attendre <span class="param">0.03</span> secondes</span>
-                    </div>
-                    <span class="sb sb-look">annuler les effets graphiques</span>
-                    <span class="sb sb-look">dire <span class="param">Me voilà en ville ! 🏙️</span> pendant <span class="param">2</span> secondes</span>
-                </div>
-            </li>
-            <li>
-                <strong>Attendre à nouveau, puis transition finale vers l'espace</strong>
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-look">dire <span class="param">Encore une fois ? Appuie sur ESPACE !</span> pendant <span class="param">2</span> secondes</span>
-                    <span class="sb sb-ctrl">attendre jusqu'à ce que &lt;key <span class="param">space</span> pressed ?&gt;</span>
-                </div>
-            </li>
-            <li>
-                <strong>Transition finale vers l'espace — fondu sortie + fondu entrée</strong>
-                <div class="blocks-wrap" style="margin-top:6px;">
-                    <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-                    <div class="indent blocks-wrap">
-                        <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">10</span></span>
-                        <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-                    </div>
-                    <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">Stars</span></span>
-                    <span class="sb sb-look">basculer sur le costume <span class="param">avery-c</span></span>
-                    <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
-                    <div class="indent blocks-wrap">
-                        <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
-                        <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
-                    </div>
-                    <span class="sb sb-look">annuler les effets graphiques</span>
-                    <span class="sb sb-look">dire <span class="param">Je suis dans l'espace ! 🌌✨</span> pendant <span class="param">3</span> secondes</span>
-                    <span class="sb sb-ctrl">arrêter <span class="param">tout</span></span>
-                </div>
-            </li>
-        </ol>
-        <div class="mp-result">
-            <span class="mp-result-icon">🎉</span>
-            <div>
-                <h4>Ce que tu dois voir :</h4>
-                <p>Le personnage apparaît en fondu dans la forêt, tourne comme un tourbillon pour arriver en ville avec un nouveau costume, puis fond dans l'obscurité avant de réapparaître dans l'espace. Trois scènes, trois types de transitions, un seul projet ! 🦋🌟</p>
-            </div>
-        </div>
-        <div class="bonus">
-            <span class="bonus-icon">⭐</span>
-            <div>
-                <h4>Challenge bonus !</h4>
-                <p>Ajoute un <strong>son différent pour chaque transition</strong> (un son de vent pour la forêt, un son de ville pour la scène 2, un son spatial pour la scène 3) en utilisant <span class="sb sb-sound" style="font-size:.72rem; display:inline-flex">jouer le son jusqu'à la fin</span> juste avant chaque changement d'arrière-plan.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="nav-actions">
-        <button class="nav-btn-action btn-prev" data-prev="costumes">← Costumes</button>
         <button class="nav-btn-action btn-next" data-next="sound">Suivant : Son →</button>
     </div>
 </section>
+
 
 <!-- ══════════════════════════════════════════════
      SECTION 3 : SON
@@ -1683,7 +969,7 @@
     </div>
 
     <div class="nav-actions">
-        <button class="nav-btn-action btn-prev" data-prev="transitions">← Transitions</button>
+        <button class="nav-btn-action btn-prev" data-prev="look">← Apparence</button>
         <button class="nav-btn-action btn-next" data-next="event">Suivant : Événements →</button>
     </div>
 </section>
@@ -2567,7 +1853,723 @@
 
     <div class="nav-actions">
         <button class="nav-btn-action btn-prev" data-prev="var">← Variables</button>
-        <button class="nav-btn-action btn-next" data-next="final">Suivant : Projet Final 🚀 →</button>
+        <button class="nav-btn-action btn-next" data-next="transitions">Suivant : Transitions →</button>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION COSTUMES
+══════════════════════════════════════════════ -->
+<section class="cat-section" id="sec-costumes">
+    <div class="sec-header">
+        <div class="sec-tag" style="background:#9966FF">👗 Focus Pratique</div>
+        <h2 class="sec-title">👗 Les Costumes en détail</h2>
+        <p class="sec-subtitle">Comprends, explore et pratique les costumes pour créer de vraies animations !</p>
+    </div>
+
+    <!-- C'est quoi un costume -->
+    <div class="card">
+        <h3 class="card-title" style="color:#6B46C1">💡 C'est quoi un costume ?</h3>
+        <p>Un <strong style="color:#6B46C1">costume</strong>, c'est une <strong>apparence différente</strong> d'un même sprite. Un sprite peut avoir plusieurs costumes, comme un acteur qui change de vêtements entre deux scènes.</p>
+        <div class="analogy">
+            <span class="analogy-icon">🎭</span>
+            <div>
+                <h4>Pense à un acteur de cinéma !</h4>
+                <p>Dans un film, le même acteur peut jouer un enfant au début, puis un adulte à la fin. Il porte des costumes différents mais c'est toujours la même personne. Ton sprite, c'est pareil : même sprite, plusieurs costumes !</p>
+            </div>
+        </div>
+
+        <h4 style="font-family:'Fredoka One',cursive; color:#6B46C1; margin:16px 0 10px;">🌟 Le chat Scratch a déjà 2 costumes !</h4>
+        <div class="costume-strip">
+            <div class="costume-card">
+                <div class="cc-num">1</div>
+                <span class="cc-emoji">🐱</span>
+                <div class="cc-name">costume1</div>
+                <div class="cc-desc">Patte gauche levée</div>
+            </div>
+            <div class="costume-card">
+                <div class="cc-num">2</div>
+                <span class="cc-emoji">😺</span>
+                <div class="cc-name">costume2</div>
+                <div class="cc-desc">Patte droite levée</div>
+            </div>
+            <div class="costume-card" style="border-style:dashed; border-color:#CBD5E0; background:#F7FAFC;">
+                <div class="cc-num" style="background:#CBD5E0">+</div>
+                <span class="cc-emoji" style="font-size:1.6rem; color:#CBD5E0">✏️</span>
+                <div class="cc-name" style="color:#A0AEC0">nouveau</div>
+                <div class="cc-desc">Tu peux en créer autant que tu veux !</div>
+            </div>
+        </div>
+        <div class="info-box blue">
+            <span class="info-box-icon">🔑</span>
+            <div>
+                <h4>La clé de l'animation !</h4>
+                <p>En alternant rapidement entre 2 costumes (patte gauche → patte droite → patte gauche…), le chat donne l'<strong>illusion de marcher</strong>. C'est exactement le principe des dessins animés : des images légèrement différentes affichées très vite !</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- L'onglet Costumes dans Scratch -->
+    <div class="card">
+        <h3 class="card-title" style="color:#6B46C1">🖥️ L'onglet Costumes dans Scratch</h3>
+        <p>Pour voir et modifier les costumes d'un sprite, clique sur l'<strong>onglet "Costumes"</strong> en haut à gauche de Scratch (à côté de "Code" et "Sons").</p>
+
+        <div class="tab-mockup">
+            <div class="tab-bar">
+                <div class="tab inactive-tab">💻 Code</div>
+                <div class="tab active-tab">👗 Costumes</div>
+                <div class="tab inactive-tab">🔊 Sons</div>
+            </div>
+            <div class="tab-content">
+                <div class="mini-costume selected-c">
+                    <span>🐱</span>
+                    <small>costume1</small>
+                </div>
+                <div class="mini-costume">
+                    <span>😺</span>
+                    <small>costume2</small>
+                </div>
+                <div class="mini-costume" style="border-style:dashed; border-color:#4A5568;">
+                    <span style="color:#718096; font-size:1.2rem;">＋</span>
+                    <small style="color:#718096;">nouveau</small>
+                </div>
+                <div style="color:#A0AEC0; font-size:.8rem; margin-left:10px; font-style:italic;">← Clique sur un costume pour l'éditer dans le dessinateur</div>
+            </div>
+        </div>
+
+        <table class="blocks-table" style="margin-top:16px;">
+            <thead><tr><th>Action</th><th>Comment faire dans l'onglet Costumes</th></tr></thead>
+            <tbody>
+                <tr><td>👀 Voir les costumes</td><td>Clique sur l'onglet <strong>Costumes</strong> — tous les costumes du sprite actif apparaissent à gauche</td></tr>
+                <tr><td>✏️ Modifier un costume</td><td>Clique sur un costume dans la liste → il s'ouvre dans l'éditeur de dessin</td></tr>
+                <tr><td>➕ Ajouter un costume</td><td>Clique sur l'icône <strong>+</strong> en bas à gauche → choisir depuis la bibliothèque, ou dessiner, ou importer une image</td></tr>
+                <tr><td>🗑️ Supprimer un costume</td><td>Clic droit sur le costume → Supprimer (⚠️ attention, au moins 1 costume obligatoire !)</td></tr>
+                <tr><td>✂️ Dupliquer un costume</td><td>Clic droit sur le costume → Dupliquer → modifie légèrement la copie</td></tr>
+                <tr><td>🔄 Renommer un costume</td><td>Double-clique sur le nom sous le costume et tape le nouveau nom</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Les blocs qui utilisent les costumes -->
+    <div class="card">
+        <h3 class="card-title" style="color:#6B46C1">🧱 Les blocs pour manipuler les costumes</h3>
+        <p>Ces blocs de la catégorie <strong style="color:#9966FF">Apparence</strong> permettent de changer de costume depuis ton programme :</p>
+        <table class="blocks-table">
+            <thead><tr><th>Bloc</th><th>Ce qu'il fait</th><th>Utilisation typique</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td><span class="sb sb-look">basculer sur le costume <span class="param">costume1</span></span></td>
+                    <td>Passe directement à un costume précis</td>
+                    <td>Changer d'apparence à un moment clé de l'histoire</td>
+                </tr>
+                <tr>
+                    <td><span class="sb sb-look">costume suivant</span></td>
+                    <td>Passe au costume d'après dans la liste (revient au début quand on arrive au dernier)</td>
+                    <td>Créer une animation en boucle — le plus utilisé !</td>
+                </tr>
+                <tr>
+                    <td><span class="sb sb-sense">numéro du costume</span></td>
+                    <td>Bloc ovale : donne le numéro du costume actuel (1, 2, 3…)</td>
+                    <td>Vérifier quel costume est actif dans un "si alors"</td>
+                </tr>
+                <tr>
+                    <td><span class="sb sb-sense">nom du costume</span></td>
+                    <td>Donne le nom du costume actuel ("costume1", "marche", etc.)</td>
+                    <td>Déclencher des actions selon le costume affiché</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Animation demo -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#6B46C1; margin:16px 0 8px;">🎬 Comment fonctionne une animation ?</h4>
+        <p style="font-size:.9rem; margin-bottom:10px;">En mettant <span class="sb sb-look" style="font-size:.78rem; display:inline-flex">costume suivant</span> dans une boucle avec <span class="sb sb-ctrl" style="font-size:.78rem; display:inline-flex">attendre <span class="param">0.2</span> sec</span>, on crée l'animation :</p>
+        <div class="anim-demo">
+            <div class="anim-frame active-frame"><span>🐱</span><small>costume1</small></div>
+            <div class="anim-arrow">→</div>
+            <div class="anim-frame"><span>😺</span><small>costume2</small></div>
+            <div class="anim-arrow">→</div>
+            <div class="anim-frame"><span>🐱</span><small>costume1</small></div>
+            <div class="anim-arrow">→</div>
+            <div class="anim-frame"><span>😺</span><small>costume2</small></div>
+            <div class="anim-arrow">→</div>
+            <div style="color:#A0AEC0; font-size:.8rem; font-style:italic;">en boucle !</div>
+        </div>
+
+        <div class="blocks-wrap" style="margin-top:12px;">
+            <span class="sb sb-event hat">quand ⚑ cliqué</span>
+            <span class="sb sb-ctrl">répéter indéfiniment</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">costume suivant</span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.2</span> secondes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercice 1 : Explorer l'onglet costumes -->
+    <div class="card">
+        <h3 class="card-title" style="color:#6B46C1">🔬 Exercice 1 — Explore l'onglet Costumes</h3>
+        <p>Avant de programmer, <strong>explore d'abord l'onglet Costumes</strong> dans Scratch pour comprendre ce qu'il contient.</p>
+        <div class="save-steps">
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">A</div><p>Ouvre Scratch sur ton ordinateur et crée un nouveau projet.</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">B</div><p>Clique sur l'onglet <strong>"Costumes"</strong> en haut à gauche. Tu vois les 2 costumes du chat.</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">C</div><p>Clique sur <strong>costume1</strong> dans la liste à gauche. Observe le dessin du chat dans l'éditeur.</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">D</div><p>Clique sur <strong>costume2</strong>. Remarque la différence : la patte est de l'autre côté !</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">E</div><p>Fais <strong>clic droit → Dupliquer</strong> sur costume1. Un troisième costume apparaît. Dessine quelque chose dessus (un chapeau 🎩, des lunettes…) avec les outils de dessin.</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">F</div><p>Double-clique sur le nom du nouveau costume et renomme-le <strong>"fete"</strong>.</p></div>
+        </div>
+        <div class="info-box green" style="margin-top:12px;">
+            <span class="info-box-icon">✅</span>
+            <div>
+                <h4>Résultat attendu</h4>
+                <p>Tu dois avoir 3 costumes dans la liste : costume1, costume2, et fete. Ton chat a maintenant une tenue de fête !</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MINI PROJET COSTUMES -->
+    <div class="mini-project">
+        <div class="mp-header">
+            <span class="mp-badge">🎯 Mini-Projet Costumes</span>
+            <h3 class="mp-title">🦋 Le papillon de Bamendou</h3>
+        </div>
+        <p style="background:rgba(255,255,255,.9); border-radius:12px; padding:12px; margin-bottom:14px; font-size:.9rem; color:#44337A;">
+            Un papillon vole à travers le village de Bamendou, battant des ailes et changeant de couleur au fil du trajet. Tu vas créer <strong>4 costumes différents</strong> et les animer !
+        </p>
+        <div class="mp-setup">
+            <h4>⚙️ Prépare Scratch sur ta machine</h4>
+            <ul class="setup-list">
+                <li class="setup-item">🖥️ Nouveau projet Scratch</li>
+                <li class="setup-item">🦋 Sprite : "Butterfly 1" (bibliothèque)</li>
+                <li class="setup-item">🌿 Arrière-plan : "Forest" ou "Garden Rock"</li>
+                <li class="setup-item">💾 Sauvegarde : "papillon_bamendou.sb3"</li>
+            </ul>
+        </div>
+        <ol class="steps-list">
+            <li>
+                <strong>Explore les costumes du papillon</strong>
+                Clique sur l'onglet <em>Costumes</em>. Le papillon a déjà plusieurs costumes (ailes ouvertes, ailes fermées). Compte combien il en a.
+            </li>
+            <li>
+                <strong>Crée 2 costumes supplémentaires colorés</strong>
+                Fais <em>clic droit → Dupliquer</em> sur le costume1. Ouvre l'éditeur du doublon. Sélectionne les ailes et change leur couleur (outil pot de peinture 🎨) : rouge pour le 3e costume, jaune pour le 4e. Renomme-les <strong>"rouge"</strong> et <strong>"jaune"</strong>.
+            </li>
+            <li>
+                <strong>Programme le battement d'ailes de base</strong>
+                Dans l'onglet <em>Code</em>, crée :
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-event hat">quand ⚑ cliqué</span>
+                    <span class="sb sb-look">mettre la taille à <span class="param">60</span> %</span>
+                    <span class="sb sb-move">aller à x: <span class="param">-180</span> y: <span class="param">0</span></span>
+                    <span class="sb sb-ctrl">répéter indéfiniment</span>
+                    <div class="indent">
+                        <span class="sb sb-look">costume suivant</span>
+                        <span class="sb sb-ctrl">attendre <span class="param">0.15</span> secondes</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <strong>Fais-le traverser la scène</strong>
+                Dans la même boucle, ajoute après "attendre" :
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-move">avancer de <span class="param">3</span> pas</span>
+                    <span class="sb sb-move">rebondir si le bord est atteint</span>
+                </div>
+            </li>
+            <li>
+                <strong>Change de couleur quand il touche le bord</strong>
+                Crée un <strong>deuxième programme séparé</strong> :
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-event hat">quand ⚑ cliqué</span>
+                    <span class="sb sb-ctrl">répéter indéfiniment</span>
+                    <div class="indent">
+                        <span class="sb sb-ctrl">si &lt;touching <span class="param">Edge</span> ?&gt; alors</span>
+                        <div class="indent">
+                            <span class="sb sb-look">basculer sur le costume <span class="param">rouge</span></span>
+                            <span class="sb sb-ctrl">attendre <span class="param">1</span> secondes</span>
+                            <span class="sb sb-look">basculer sur le costume <span class="param">jaune</span></span>
+                            <span class="sb sb-ctrl">attendre <span class="param">1</span> secondes</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <strong>Ajoute un deuxième sprite : une fleur</strong>
+                Ajoute le sprite <em>"Flower"</em>. Programme-le avec <span class="sb sb-event hat" style="font-size:.75rem">quand ⚑ cliqué</span> → <span class="sb sb-ctrl" style="font-size:.75rem">répéter indéfiniment</span> → <span class="sb sb-look" style="font-size:.75rem">costume suivant</span> → <span class="sb sb-ctrl" style="font-size:.75rem">attendre <span class="param">0.5</span> secondes</span>. La fleur s'animera aussi !
+            </li>
+            <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
+        </ol>
+        <div class="mp-result">
+            <span class="mp-result-icon">🎉</span>
+            <div>
+                <h4>Ce que tu dois voir :</h4>
+                <p>Le papillon vole en battant des ailes (grâce aux costumes en boucle), traverse la scène, et change de couleur chaque fois qu'il touche un bord — comme un vrai papillon de Bamendou ! 🦋🌿</p>
+            </div>
+        </div>
+        <div class="bonus">
+            <span class="bonus-icon">⭐</span>
+            <div>
+                <h4>Challenge bonus !</h4>
+                <p>Utilise le bloc <span class="sb sb-sense" style="font-size:.72rem; display:inline-flex">nom du costume</span> dans un "si alors" pour faire dire au papillon <em>"Je suis rouge !"</em> ou <em>"Je suis jaune !"</em> selon le costume qu'il porte.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercice 2 : Personnage émotions -->
+    <div class="card">
+        <h3 class="card-title" style="color:#6B46C1">🎭 Exercice 2 — Le personnage aux 4 émotions</h3>
+        <p>Crée un personnage qui change d'expression selon la touche appuyée. C'est un excellent exercice pour maîtriser <strong>basculer sur le costume</strong> !</p>
+
+        <div class="info-box orange">
+            <span class="info-box-icon">🎯</span>
+            <div>
+                <h4>Objectif</h4>
+                <p>Appuie sur <strong>1 → 😊 Heureux</strong> · <strong>2 → 😢 Triste</strong> · <strong>3 → 😠 En colère</strong> · <strong>4 → 😲 Surpris</strong></p>
+            </div>
+        </div>
+
+        <div class="save-steps" style="margin-top:14px;">
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">1</div><p>Choisis le sprite <strong>"Avery"</strong> ou <strong>"Casey"</strong> dans la bibliothèque. Il a plusieurs costumes d'émotions.</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">2</div><p>Dans l'onglet <em>Costumes</em>, <strong>renomme</strong> les 4 premiers costumes : <em>heureux</em>, <em>triste</em>, <em>colere</em>, <em>surpris</em>.</p></div>
+            <div class="save-step"><div class="save-step-num" style="background:#9966FF">3</div><p>Crée 4 programmes séparés (un par touche) :</p></div>
+        </div>
+
+        <div class="blocks-wrap" style="margin: 12px 0;">
+            <span class="sb sb-event hat">quand la touche <span class="param">1</span> est pressée</span>
+            <span class="sb sb-look">basculer sur le costume <span class="param">heureux</span></span>
+            <span class="sb sb-look">dire <span class="param">Je suis heureux ! 😊</span> pendant <span class="param">2</span> secondes</span>
+        </div>
+        <p style="font-size:.88rem; color:var(--mid); margin-bottom:12px;">Répète la même structure pour les touches 2, 3 et 4 avec les costumes correspondants.</p>
+
+        <div class="bonus" style="margin-top:0;">
+            <span class="bonus-icon">⭐</span>
+            <div>
+                <h4>Challenge bonus !</h4>
+                <p>Ajoute un son différent pour chaque émotion (par ex. un son joyeux pour "heureux" et un son grave pour "triste") et fais changer l'arrière-plan aussi.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-actions">
+        <button class="nav-btn-action btn-prev" data-prev="costumes">← Costumes</button>
+        <button class="nav-btn-action btn-next" data-next="costumes">Suivant : Costumes →</button>
+    </div>
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION : TRANSITIONS
+══════════════════════════════════════════════ -->
+<section class="cat-section" id="sec-transitions">
+    <div class="sec-header">
+        <div class="sec-tag" style="background:#805AD5">🔀 Focus Pratique</div>
+        <h2 class="sec-title">🔀 Les Transitions dans Scratch</h2>
+        <p class="sec-subtitle">Passe d'un costume à un autre, d'une scène à une autre — avec style !</p>
+    </div>
+
+    <!-- C'est quoi une transition -->
+    <div class="card">
+        <h3 class="card-title" style="color:#553C9A">💡 C'est quoi une transition ?</h3>
+        <p>Une <strong style="color:#553C9A">transition</strong>, c'est le <strong>passage d'un état à un autre</strong> dans ton projet. Par exemple passer du costume "debout" au costume "courant", ou changer l'arrière-plan de la forêt vers la ville.</p>
+        <p style="margin-top:8px;">Une bonne transition rend ton projet <strong>plus vivant, plus fluide, plus professionnel</strong>. Elle peut être instantanée, progressive, ou accompagnée d'effets visuels !</p>
+        <div class="analogy">
+            <span class="analogy-icon">📺</span>
+            <div>
+                <h4>Pense aux dessins animés !</h4>
+                <p>Quand un personnage court dans un dessin animé, ses jambes ne sautent pas d'un seul coup d'une position à l'autre : elles passent par plusieurs positions intermédiaires très vite. C'est une <strong>transition animée</strong>. Scratch te permet de faire exactement ça avec tes sprites !</p>
+            </div>
+        </div>
+
+        <h4 style="font-family:'Fredoka One',cursive; color:#553C9A; margin:16px 0 10px;">🗂️ Les 3 types de transitions dans Scratch</h4>
+        <table class="blocks-table">
+            <thead><tr><th>Type</th><th>Ce qui change</th><th>Blocs utilisés</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>👗 <strong>Transition de costume</strong></td>
+                    <td>L'apparence du sprite change (marche, saute, parle…)</td>
+                    <td><span class="sb sb-look" style="font-size:.75rem; display:inline-flex">costume suivant</span> · <span class="sb sb-look" style="font-size:.75rem; display:inline-flex">basculer sur le costume</span></td>
+                </tr>
+                <tr>
+                    <td>🖼️ <strong>Transition d'arrière-plan</strong></td>
+                    <td>Le décor change (forêt → ville → espace…)</td>
+                    <td><span class="sb sb-look" style="font-size:.75rem; display:inline-flex">basculer sur l'arrière-plan</span> · <span class="sb sb-look" style="font-size:.75rem; display:inline-flex">arrière-plan suivant</span></td>
+                </tr>
+                <tr>
+                    <td>✨ <strong>Transition avec effet visuel</strong></td>
+                    <td>Un effet graphique accompagne le changement (fondu, couleur…)</td>
+                    <td><span class="sb sb-look" style="font-size:.75rem; display:inline-flex">mettre l'effet <span class="param">fantôme</span> à</span> · <span class="sb sb-look" style="font-size:.75rem; display:inline-flex">annuler les effets</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TYPE 1 : Transition de costume -->
+    <div class="card">
+        <h3 class="card-title" style="color:#553C9A">👗 Type 1 — Transitions de costume</h3>
+        <p>Il existe <strong>3 façons</strong> de basculer d'un costume à un autre, selon ce que tu veux obtenir :</p>
+
+        <!-- Instantanée -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:14px 0 8px;">⚡ 1a — Transition instantanée</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Le changement est immédiat. Idéal pour réagir à un événement (appui sur une touche, collision).</p>
+        <div class="trans-demo">
+            <div class="trans-frame tf-from"><span>🐱</span><small>costume1</small></div>
+            <div class="trans-arrow">→</div>
+            <div class="trans-frame tf-to"><span>😺</span><small>costume2</small></div>
+        </div>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand la touche <span class="param">espace</span> est pressée</span>
+            <span class="sb sb-look">basculer sur le costume <span class="param">costume2</span></span>
+        </div>
+
+        <!-- Animée en boucle -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🔄 1b — Transition animée en boucle</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Les costumes défilent automatiquement pour créer l'illusion du mouvement. La vitesse se règle avec <span class="sb sb-ctrl" style="font-size:.78rem; display:inline-flex">attendre <span class="param">X</span> secondes</span>.</p>
+        <div class="trans-demo">
+            <div class="trans-frame tf-from"><span>🐱</span><small>costume1</small></div>
+            <div class="trans-arrow">→</div>
+            <div class="trans-frame tf-to"><span>😺</span><small>costume2</small></div>
+            <div class="trans-arrow">→</div>
+            <div class="trans-frame tf-from"><span>🐱</span><small>costume1</small></div>
+            <div class="trans-arrow" style="color:#A0AEC0; font-size:1.2rem;">∞</div>
+        </div>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand ⚑ cliqué</span>
+            <span class="sb sb-ctrl">répéter indéfiniment</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">costume suivant</span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.2</span> secondes</span>
+            </div>
+        </div>
+        <div class="info-box orange" style="margin-top:10px;">
+            <span class="info-box-icon">⏱️</span>
+            <div>
+                <h4>Le réglage de la vitesse</h4>
+                <p><strong>0.05 sec</strong> = très rapide (explosion, vibration) · <strong>0.2 sec</strong> = marche normale · <strong>0.5 sec</strong> = lent (respiration, flottement) · <strong>1 sec</strong> = très lent (transformation magique)</p>
+            </div>
+        </div>
+
+        <!-- Conditionnelle -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🎯 1c — Transition conditionnelle</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Le costume change <strong>seulement si une condition est vraie</strong>. Utile pour montrer des réactions (content si score monte, blessé si touché).</p>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand ⚑ cliqué</span>
+            <span class="sb sb-ctrl">répéter indéfiniment</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-ctrl">si &lt;touching <span class="param">Asteroid</span> ?&gt; alors</span>
+                <div class="indent blocks-wrap">
+                    <span class="sb sb-look">basculer sur le costume <span class="param">blessé</span></span>
+                    <span class="sb sb-ctrl">attendre <span class="param">0.5</span> secondes</span>
+                    <span class="sb sb-look">basculer sur le costume <span class="param">normal</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TYPE 2 : Effets visuels -->
+    <div class="card">
+        <h3 class="card-title" style="color:#553C9A">✨ Type 2 — Transitions avec effets visuels</h3>
+        <p>Scratch propose <strong>7 effets graphiques</strong> que tu peux appliquer à n'importe quel sprite pour créer des transitions spectaculaires !</p>
+
+        <div class="effect-grid">
+            <div class="effect-card">
+                <span class="ec-preview" style="opacity:.3">👻</span>
+                <div class="ec-name">Fantôme</div>
+                <div class="ec-desc">Rend le sprite transparent. 0 = visible, 100 = invisible. Parfait pour apparaître ou disparaître en fondu !</div>
+            </div>
+            <div class="effect-card">
+                <span class="ec-preview" style="filter:hue-rotate(120deg)">🐱</span>
+                <div class="ec-name">Couleur</div>
+                <div class="ec-desc">Change la couleur du sprite. Tourne de 0 à 200. Utile pour montrer un changement d'état (colère, magie…)</div>
+            </div>
+            <div class="effect-card">
+                <span class="ec-preview" style="filter:brightness(2)">⭐</span>
+                <div class="ec-name">Luminosité</div>
+                <div class="ec-desc">Rend le sprite plus clair ou plus sombre. Négatif = sombre, positif = brillant.</div>
+            </div>
+            <div class="effect-card">
+                <span class="ec-preview" style="transform:scaleX(1.4)">🦋</span>
+                <div class="ec-name">Pixelliser</div>
+                <div class="ec-desc">Déforme le sprite en pixel art. Augmente pour un effet "téléporation" ou "glitch" !</div>
+            </div>
+            <div class="effect-card">
+                <span class="ec-preview" style="filter:blur(2px)">🌟</span>
+                <div class="ec-name">Tourbillon</div>
+                <div class="ec-desc">Tord le sprite comme un tourbillon. Très efficace pour les transformations magiques !</div>
+            </div>
+            <div class="effect-card">
+                <span class="ec-preview">🎨</span>
+                <div class="ec-name">Œil de poisson</div>
+                <div class="ec-desc">Distord le centre du sprite comme une loupe ou un miroir bombé.</div>
+            </div>
+        </div>
+
+        <!-- Fondu apparition -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:16px 0 8px;">🌅 Technique : Apparition en fondu (fade in)</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Au lieu d'apparaître d'un coup, le sprite devient progressivement visible. Très professionnel !</p>
+        <div class="trans-demo">
+            <div class="trans-frame tf-from"><span style="opacity:.1">🐱</span><small>fantôme 100</small></div>
+            <div class="trans-arrow">→</div>
+            <div class="trans-frame" style="background:#3D2C6E; border-color:#9966FF;"><span style="opacity:.5">🐱</span><small style="color:#D6BCFA">fantôme 50</small></div>
+            <div class="trans-arrow">→</div>
+            <div class="trans-frame tf-to"><span>🐱</span><small>fantôme 0</small></div>
+        </div>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand ⚑ cliqué</span>
+            <span class="sb sb-look">mettre l'effet <span class="param">fantôme</span> à <span class="param">100</span></span>
+            <span class="sb sb-look">montrer</span>
+            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+            </div>
+            <span class="sb sb-look">annuler les effets graphiques</span>
+        </div>
+
+        <!-- Disparition en fondu -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🌇 Technique : Disparition en fondu (fade out)</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Le sprite disparaît progressivement. Même principe, mais dans le sens inverse !</p>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">fin_scène</span></span>
+            <span class="sb sb-look">annuler les effets graphiques</span>
+            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">10</span></span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+            </div>
+            <span class="sb sb-look">cacher</span>
+        </div>
+
+        <!-- Flash de couleur -->
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">💥 Technique : Flash de couleur (impact, victoire)</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Un bref flash coloré pour signaler un événement : collision, score, victoire !</p>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">touché</span></span>
+            <span class="sb sb-ctrl">répéter <span class="param">3</span> fois</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">mettre l'effet <span class="param">couleur</span> à <span class="param">50</span></span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.1</span> secondes</span>
+                <span class="sb sb-look">annuler les effets graphiques</span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.1</span> secondes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TYPE 3 : Transitions d'arrière-plan -->
+    <div class="card">
+        <h3 class="card-title" style="color:#553C9A">🖼️ Type 3 — Transitions d'arrière-plan (changer de scène)</h3>
+        <p>Changer d'arrière-plan, c'est changer de <strong>décor</strong> — comme dans une pièce de théâtre entre deux actes. Scratch propose deux approches selon ton besoin.</p>
+
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:14px 0 8px;">🔀 Méthode A — Basculer directement</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Le changement est immédiat. Simple et efficace !</p>
+        <div class="bg-strip">
+            <div class="bg-card" style="background:linear-gradient(135deg,#C6F6D5,#9AE6B4); border-color:#48BB78;">
+                <span>🌲</span>
+                <div class="bc-name" style="color:#276749;">Forêt</div>
+                <div class="bc-msg" style="color:#276749;">Scène 1</div>
+            </div>
+            <div style="display:flex; align-items:center; font-size:1.8rem; color:#805AD5; font-weight:900;">→</div>
+            <div class="bg-card" style="background:linear-gradient(135deg,#BEE3F8,#90CDF4); border-color:#3182CE;">
+                <span>🏙️</span>
+                <div class="bc-name" style="color:#2B6CB0;">Ville</div>
+                <div class="bc-msg" style="color:#2B6CB0;">Scène 2</div>
+            </div>
+            <div style="display:flex; align-items:center; font-size:1.8rem; color:#805AD5; font-weight:900;">→</div>
+            <div class="bg-card" style="background:linear-gradient(135deg,#E9D8FD,#D6BCFA); border-color:#9966FF;">
+                <span>🌌</span>
+                <div class="bc-name" style="color:#553C9A;">Espace</div>
+                <div class="bc-msg" style="color:#553C9A;">Scène 3</div>
+            </div>
+        </div>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">aller_ville</span></span>
+            <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">City</span></span>
+        </div>
+
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🔄 Méthode B — Arrière-plan suivant (séquence automatique)</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Les arrière-plans défilent dans l'ordre où ils sont dans la liste, comme les pages d'un livre !</p>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand la touche <span class="param">flèche droite</span> est pressée</span>
+            <span class="sb sb-look">arrière-plan suivant</span>
+        </div>
+
+        <h4 style="font-family:'Fredoka One',cursive; color:#805AD5; margin:18px 0 8px;">🌅 Méthode C — Transition avec fondu sur l'arrière-plan</h4>
+        <p style="font-size:.9rem; margin-bottom:8px;">Pour une transition douce, cache tous les sprites avec un fondu, change le décor, puis fais réapparaître les sprites.</p>
+        <div class="blocks-wrap">
+            <span class="sb sb-event hat">quand je reçois <span class="param" style="color:#333">changer_scène</span></span>
+            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">10</span></span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+            </div>
+            <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">Space</span></span>
+            <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+            <div class="indent blocks-wrap">
+                <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
+                <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+            </div>
+            <span class="sb sb-look">annuler les effets graphiques</span>
+        </div>
+        <div class="info-box blue" style="margin-top:10px;">
+            <span class="info-box-icon">💡</span>
+            <div>
+                <h4>Astuce : programme ce bloc sur le sprite principal</h4>
+                <p>Le bloc <span class="sb sb-look" style="font-size:.78rem; display:inline-flex">basculer sur l'arrière-plan</span> peut être utilisé depuis <strong>n'importe quel sprite</strong>. Mais pour une transition qui affecte toute la scène, il vaut mieux la programmer sur ton sprite principal ou directement sur l'arrière-plan.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCICE PRATIQUE -->
+    <div class="card">
+        <h3 class="card-title" style="color:#553C9A">✏️ Exercice — Le catalogue des transitions</h3>
+        <p style="margin-bottom:14px;">Avant le mini-projet, pratique chaque technique séparément. Ouvre Scratch et reproduis chacune de ces transitions :</p>
+        <table class="blocks-table">
+            <thead><tr><th>#</th><th>Transition à reproduire</th><th>Blocs clés</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">①</td>
+                    <td><strong>Clic sur le sprite → costume change</strong><br><small style="color:var(--mid)">Le chat passe de costume1 à costume2 quand on clique dessus</small></td>
+                    <td><span class="sb sb-event hat" style="font-size:.72rem; display:inline-flex">quand ce sprite est cliqué</span> + <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">basculer sur le costume</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">②</td>
+                    <td><strong>Animation de marche en boucle</strong><br><small style="color:var(--mid)">Le sprite marche automatiquement en alternant 2 costumes</small></td>
+                    <td><span class="sb sb-ctrl" style="font-size:.72rem; display:inline-flex">répéter indéfiniment</span> + <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">costume suivant</span> + <span class="sb sb-ctrl" style="font-size:.72rem; display:inline-flex">attendre 0.2 sec</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">③</td>
+                    <td><strong>Apparition en fondu (fade in)</strong><br><small style="color:var(--mid)">Le sprite part de invisible et devient progressivement visible</small></td>
+                    <td><span class="sb sb-look" style="font-size:.72rem; display:inline-flex">effet fantôme à 100</span> + boucle 10 fois <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">changer fantôme de -10</span></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">④</td>
+                    <td><strong>Flash rouge sur collision</strong><br><small style="color:var(--mid)">Quand le sprite touche un bord, il clignote en rouge 3 fois</small></td>
+                    <td><span class="sb sb-sense" style="font-size:.72rem; display:inline-flex">touching Edge ?</span> dans un <span class="sb sb-ctrl" style="font-size:.72rem; display:inline-flex">si alors</span> + boucle effet couleur</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center; font-family:'Fredoka One',cursive; color:#805AD5;">⑤</td>
+                    <td><strong>Changement de décor au clavier</strong><br><small style="color:var(--mid)">Touche D = scène suivante, Touche A = scène précédente</small></td>
+                    <td><span class="sb sb-event hat" style="font-size:.72rem; display:inline-flex">quand la touche D est pressée</span> + <span class="sb sb-look" style="font-size:.72rem; display:inline-flex">arrière-plan suivant</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MINI PROJET TRANSITIONS -->
+    <div class="mini-project">
+        <div class="mp-header">
+            <span class="mp-badge">🎯 Mini-Projet Transitions</span>
+            <h3 class="mp-title">🦋 La métamorphose magique de Bamendou</h3>
+        </div>
+        <p style="background:rgba(255,255,255,.9); border-radius:12px; padding:12px; margin-bottom:14px; font-size:.9rem; color:#44337A;">
+            Un personnage traverse 3 scènes du village de Bamendou avec des transitions fluides entre chaque : apparition en fondu, changement de costume conditionnel, et basculement d'arrière-plan avec effet. Tu vas combiner <strong>les 3 types de transitions</strong> en un seul projet !
+        </p>
+        <div class="mp-setup">
+            <h4>⚙️ Prépare Scratch sur ta machine</h4>
+            <ul class="setup-list">
+                <li class="setup-item">🖥️ Nouveau projet Scratch</li>
+                <li class="setup-item">🧒 Sprite : "Avery" ou "Pico"</li>
+                <li class="setup-item">🌿 Arrière-plan 1 : "Forest"</li>
+                <li class="setup-item">🏙️ Arrière-plan 2 : "City With Water"</li>
+                <li class="setup-item">🌌 Arrière-plan 3 : "Stars"</li>
+                <li class="setup-item">💾 Sauvegarde : "metamorphose_bamendou.sb3"</li>
+            </ul>
+        </div>
+        <ol class="steps-list">
+            <li>
+                <strong>Scène 1 — Apparition en fondu dans la forêt</strong>
+                Crée le programme de démarrage. Le personnage apparaît progressivement :
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-event hat">quand ⚑ cliqué</span>
+                    <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">Forest</span></span>
+                    <span class="sb sb-look">basculer sur le costume <span class="param">avery-a</span></span>
+                    <span class="sb sb-look">mettre l'effet <span class="param">fantôme</span> à <span class="param">100</span></span>
+                    <span class="sb sb-look">montrer</span>
+                    <span class="sb sb-look">dire <span class="param">Je suis dans la forêt de Bamendou 🌿</span> pendant <span class="param">2</span> secondes</span>
+                    <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+                    <div class="indent blocks-wrap">
+                        <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
+                        <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+                    </div>
+                    <span class="sb sb-look">annuler les effets graphiques</span>
+                </div>
+            </li>
+            <li>
+                <strong>Attendre l'action du joueur</strong>
+                Après l'apparition, le personnage attend que le joueur appuie sur Espace :
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-look">dire <span class="param">Appuie sur ESPACE pour continuer →</span> pendant <span class="param">3</span> secondes</span>
+                    <span class="sb sb-ctrl">attendre jusqu'à ce que &lt;key <span class="param">space</span> pressed ?&gt;</span>
+                </div>
+            </li>
+            <li>
+                <strong>Transition vers la Scène 2 — avec effet tourbillon</strong>
+                Le personnage change de costume ET l'arrière-plan change avec un effet :
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-ctrl">répéter <span class="param">15</span> fois</span>
+                    <div class="indent blocks-wrap">
+                        <span class="sb sb-look">changer l'effet <span class="param">tourbillon</span> de <span class="param">20</span></span>
+                        <span class="sb sb-ctrl">attendre <span class="param">0.03</span> secondes</span>
+                    </div>
+                    <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">City With Water</span></span>
+                    <span class="sb sb-look">basculer sur le costume <span class="param">avery-b</span></span>
+                    <span class="sb sb-ctrl">répéter <span class="param">15</span> fois</span>
+                    <div class="indent blocks-wrap">
+                        <span class="sb sb-look">changer l'effet <span class="param">tourbillon</span> de <span class="param">-20</span></span>
+                        <span class="sb sb-ctrl">attendre <span class="param">0.03</span> secondes</span>
+                    </div>
+                    <span class="sb sb-look">annuler les effets graphiques</span>
+                    <span class="sb sb-look">dire <span class="param">Me voilà en ville ! 🏙️</span> pendant <span class="param">2</span> secondes</span>
+                </div>
+            </li>
+            <li>
+                <strong>Attendre à nouveau, puis transition finale vers l'espace</strong>
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-look">dire <span class="param">Encore une fois ? Appuie sur ESPACE !</span> pendant <span class="param">2</span> secondes</span>
+                    <span class="sb sb-ctrl">attendre jusqu'à ce que &lt;key <span class="param">space</span> pressed ?&gt;</span>
+                </div>
+            </li>
+            <li>
+                <strong>Transition finale vers l'espace — fondu sortie + fondu entrée</strong>
+                <div class="blocks-wrap" style="margin-top:6px;">
+                    <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+                    <div class="indent blocks-wrap">
+                        <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">10</span></span>
+                        <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+                    </div>
+                    <span class="sb sb-look">basculer sur l'arrière-plan <span class="param">Stars</span></span>
+                    <span class="sb sb-look">basculer sur le costume <span class="param">avery-c</span></span>
+                    <span class="sb sb-ctrl">répéter <span class="param">10</span> fois</span>
+                    <div class="indent blocks-wrap">
+                        <span class="sb sb-look">changer l'effet <span class="param">fantôme</span> de <span class="param">-10</span></span>
+                        <span class="sb sb-ctrl">attendre <span class="param">0.05</span> secondes</span>
+                    </div>
+                    <span class="sb sb-look">annuler les effets graphiques</span>
+                    <span class="sb sb-look">dire <span class="param">Je suis dans l'espace ! 🌌✨</span> pendant <span class="param">3</span> secondes</span>
+                    <span class="sb sb-ctrl">arrêter <span class="param">tout</span></span>
+                </div>
+            </li>
+        </ol>
+        <div class="mp-result">
+            <span class="mp-result-icon">🎉</span>
+            <div>
+                <h4>Ce que tu dois voir :</h4>
+                <p>Le personnage apparaît en fondu dans la forêt, tourne comme un tourbillon pour arriver en ville avec un nouveau costume, puis fond dans l'obscurité avant de réapparaître dans l'espace. Trois scènes, trois types de transitions, un seul projet ! 🦋🌟</p>
+            </div>
+        </div>
+        <div class="bonus">
+            <span class="bonus-icon">⭐</span>
+            <div>
+                <h4>Challenge bonus !</h4>
+                <p>Ajoute un <strong>son différent pour chaque transition</strong> (un son de vent pour la forêt, un son de ville pour la scène 2, un son spatial pour la scène 3) en utilisant <span class="sb sb-sound" style="font-size:.72rem; display:inline-flex">jouer le son jusqu'à la fin</span> juste avant chaque changement d'arrière-plan.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-actions">
+        <button class="nav-btn-action btn-prev" data-prev="transitions">← Transitions</button>
+        <button class="nav-btn-action btn-next" data-next="final">Suivant : Projet Final →</button>
     </div>
 </section>
 
