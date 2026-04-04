@@ -156,6 +156,124 @@
         .ui-stage   { background: #4C97FF; }
         .ui-zone .zone-name { font-family: 'Fredoka One', cursive; font-size: 1rem; margin-bottom: 4px; }
         .ui-zone .zone-num  { display: inline-block; background: rgba(255,255,255,.25); border-radius: 20px; padding: 2px 10px; font-size: .75rem; }
+
+
+        /* ── Inline condition block inside si/alors head ── */
+        .sc-cond {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 3px 9px; border-radius: 20px;
+            font-weight: 800; font-size: .78rem;
+            color: #fff; vertical-align: middle;
+            box-shadow: 0 2px 0 rgba(0,0,0,.3);
+            margin: 0 3px;
+        }
+        .sc-cond.sense { background: #5CB1D6; color: #fff; }
+        .sc-cond.op    { background: #59C059; color: #fff; }
+        /* ── Inline sensor VALUE used inside another block ── */
+        .sc-val {
+            display: inline-flex; align-items: center; gap: 3px;
+            padding: 2px 7px; border-radius: 10px;
+            font-weight: 800; font-size: .76rem;
+            vertical-align: middle; margin: 0 2px;
+        }
+        .sc-val.sense { background: #5CB1D6; color: #fff; }
+        .sc-val.op    { background: #59C059; color: #fff; }
+        /* ════════════════════════════════════════
+           PROGRAMME ASSEMBLÉ — Scratch-like stack
+           ════════════════════════════════════════ */
+        .assembled-programs {
+            margin: 20px 0 10px;
+        }
+        .assembled-label {
+            display: flex; align-items: center; gap: 8px;
+            font-family: 'Fredoka One', cursive; font-size: .95rem;
+            color: #fff; background: #2D3748;
+            padding: 8px 16px; border-radius: 12px 12px 0 0;
+            border-bottom: 2px solid #1A202C;
+        }
+        .assembled-panel {
+            background: #1A202C; border-radius: 0 12px 12px 12px;
+            padding: 18px 16px 14px; display: flex;
+            gap: 24px; flex-wrap: wrap; align-items: flex-start;
+        }
+        /* one independent script column */
+        .sc-script {
+            display: flex; flex-direction: column;
+            align-items: flex-start; gap: 0;
+            min-width: 200px;
+        }
+        .sc-script-label {
+            font-family: 'Fredoka One', cursive; font-size: .72rem;
+            color: #718096; margin-bottom: 6px; padding-left: 4px;
+        }
+        /* ── single block ── */
+        .sc-b {
+            display: flex; align-items: center; gap: 5px;
+            padding: 7px 12px; border-radius: 6px;
+            color: #fff; font-family: 'Nunito', sans-serif;
+            font-weight: 800; font-size: .82rem;
+            box-shadow: 0 3px 0 rgba(0,0,0,.35);
+            white-space: nowrap; position: relative;
+            margin-bottom: 2px;
+        }
+        .sc-b::before {
+            content: ''; display: block;
+            width: 8px; height: 8px;
+            background: rgba(255,255,255,.25); border-radius: 50%;
+            flex-shrink: 0;
+        }
+        /* hat block (rounded top) */
+        .sc-b.hat { border-radius: 20px 8px 6px 6px; margin-bottom: 4px; }
+        .sc-b.hat::before { display: none; }
+        /* param pill inside assembled block */
+        .sc-p {
+            background: rgba(255,255,255,.22); border-radius: 4px;
+            padding: 1px 7px; font-size: .78rem; display: inline-block;
+        }
+        /* block colors */
+        .sc-b.move  { background: #4C97FF; }
+        .sc-b.look  { background: #9966FF; }
+        .sc-b.sound { background: #CF63CF; }
+        .sc-b.ev    { background: #FFAB19; color: #333; }
+        .sc-b.ev::before { background: rgba(0,0,0,.12); }
+        .sc-b.ctrl  { background: #FFAB19; }
+        .sc-b.sense { background: #5CB1D6; }
+        .sc-b.op    { background: #59C059; }
+        .sc-b.var   { background: #FF8C1A; }
+        .sc-b.mb    { background: #FF6680; }
+        /* ── container block (loop / if) ── */
+        .sc-wrap { display: flex; flex-direction: column; margin-bottom: 2px; }
+        .sc-wrap-head {
+            display: flex; align-items: center; gap: 5px;
+            padding: 7px 12px 7px 12px; border-radius: 6px 6px 0 0;
+            color: #fff; font-family: 'Nunito', sans-serif;
+            font-weight: 800; font-size: .82rem;
+            box-shadow: 2px 0 0 rgba(0,0,0,.2);
+            white-space: nowrap;
+        }
+        .sc-wrap-head::before {
+            content: ''; display: block;
+            width: 8px; height: 8px;
+            background: rgba(255,255,255,.25); border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sc-wrap-body {
+            border-left: 8px solid rgba(0,0,0,.25);
+            margin-left: 14px;
+            padding: 3px 0 3px 8px;
+            display: flex; flex-direction: column; gap: 2px;
+        }
+        .sc-wrap-foot {
+            width: 32px; height: 10px;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 3px 0 rgba(0,0,0,.3);
+            margin-bottom: 2px;
+        }
+        /* container colors */
+        .sc-wrap-head.ctrl, .sc-wrap-foot.ctrl { background: #FFAB19; }
+        .sc-wrap-body.ctrl { border-color: #C07800; }
+        .sc-wrap-head.ev, .sc-wrap-foot.ev { background: #FFAB19; color: #333; }
+
         @media(max-width:600px) {
             .scratch-ui-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
             .ui-menu { grid-column: 1/-1; }
@@ -774,6 +892,12 @@
             <li><strong>Ajoute le rebond</strong> Après tout ça, ajoute <span class="sb sb-move" style="font-size:.75rem">rebondir si le bord est atteint</span>. Clique sur ⚑ et observe !</li>
             <li><strong>Sauvegarde ton travail !</strong> Appuie sur <span class="key">Ctrl</span> + <span class="key">S</span> pour sauvegarder.</li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🐱 Programme du Chat</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b move">aller à x: <span class="sc-p">0</span> y: <span class="sc-p">0</span></div><div class="sc-b move">avancer de <span class="sc-p">100</span> pas</div><div class="sc-b move">tourner de <span class="sc-p">90</span> degrés ↻</div><div class="sc-b move">avancer de <span class="sc-p">100</span> pas</div><div class="sc-b move">tourner de <span class="sc-p">90</span> degrés ↻</div><div class="sc-b move">avancer de <span class="sc-p">100</span> pas</div><div class="sc-b move">tourner de <span class="sc-p">90</span> degrés ↻</div><div class="sc-b move">avancer de <span class="sc-p">100</span> pas</div><div class="sc-b move">tourner de <span class="sc-p">90</span> degrés ↻</div><div class="sc-b move">rebondir si le bord est atteint</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -857,6 +981,12 @@
             <li><strong>Il grandit d'un coup !</strong> Ajoute <span class="sb sb-look" style="font-size:.75rem">mettre la taille à <span class="param">150</span> %</span>, puis <span class="sb sb-look" style="font-size:.75rem">dire <span class="param">TADA ! ✨</span> pendant <span class="param">2</span> secondes</span>.</li>
             <li><strong>Il reprend sa taille normale</strong> Ajoute <span class="sb sb-look" style="font-size:.75rem">mettre la taille à <span class="param">100</span> %</span>. Puis <strong>sauvegarde</strong> avec <span class="key">Ctrl</span>+<span class="key">S</span>.</li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🐱 Programme du Chat</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">dire <span class="sc-p">Bonjour ! Je suis un magicien !</span> pendant <span class="sc-p">3</span> sec</div><div class="sc-b look">cacher</div><div class="sc-b ctrl">attendre <span class="sc-p">1</span> secondes</div><div class="sc-b look">basculer sur le costume <span class="sc-p">costume2</span></div><div class="sc-b look">montrer</div><div class="sc-b look">mettre la taille à <span class="sc-p">150</span> %</div><div class="sc-b look">dire <span class="sc-p">TADA ! ✨</span> pendant <span class="sc-p">2</span> secondes</div><div class="sc-b look">mettre la taille à <span class="sc-p">100</span> %</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -952,6 +1082,12 @@
             <li><strong>Note longue pour finir</strong> <span class="sb sb-sound" style="font-size:.75rem">jouer la note <span class="param">72</span> pendant <span class="param">2</span> temps</span></li>
             <li><strong>Le bravo final !</strong> <span class="sb sb-look" style="font-size:.75rem">dire <span class="param">Merci ! 👏</span> pendant <span class="param">2</span> secondes</span> puis <strong>sauvegarde</strong>.</li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🎤 Programme du sprite</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">dire <span class="sc-p">🎵 Bienvenue à mon concert !</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-b sound">jouer la note <span class="sc-p">60</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">62</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">64</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">65</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">67</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">69</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">71</span> pendant <span class="sc-p">0.5</span> temps</div><div class="sc-b sound">jouer la note <span class="sc-p">72</span> pendant <span class="sc-p">2</span> temps</div><div class="sc-b look">dire <span class="sc-p">Merci ! 👏</span> pendant <span class="sc-p">2</span> secondes</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1033,6 +1169,12 @@
             <li><strong>Clic sur le robot</strong> Chapeau <span class="sb sb-event hat" style="font-size:.75rem">quand ce sprite est cliqué</span> → <span class="sb sb-look" style="font-size:.75rem">dire <span class="param">Bip bip ! À vos ordres ! 🤖</span> pendant <span class="param">2</span> sec</span>.</li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">→ Droite</div><div class="sc-b hat ev">quand la touche <span class="sc-p">→ droite</span> pressée</div><div class="sc-b move">s'orienter à <span class="sc-p">90</span></div><div class="sc-b move">avancer de <span class="sc-p">10</span> pas</div></div><div class="sc-script"><div class="sc-script-label">← Gauche</div><div class="sc-b hat ev">quand la touche <span class="sc-p">← gauche</span> pressée</div><div class="sc-b move">s'orienter à <span class="sc-p">-90</span></div><div class="sc-b move">avancer de <span class="sc-p">10</span> pas</div></div><div class="sc-script"><div class="sc-script-label">↑ Haut</div><div class="sc-b hat ev">quand la touche <span class="sc-p">↑ haut</span> pressée</div><div class="sc-b move">s'orienter à <span class="sc-p">0</span></div><div class="sc-b move">avancer de <span class="sc-p">10</span> pas</div></div><div class="sc-script"><div class="sc-script-label">↓ Bas + Clic</div><div class="sc-b hat ev">quand la touche <span class="sc-p">↓ bas</span> pressée</div><div class="sc-b move">s'orienter à <span class="sc-p">180</span></div><div class="sc-b move">avancer de <span class="sc-p">10</span> pas</div><div class="sc-b hat ev">quand ce sprite est cliqué</div><div class="sc-b look">dire <span class="sc-p">Bip bip ! À vos ordres ! 🤖</span> pendant <span class="sc-p">2</span> sec</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1316,6 +1458,16 @@
             </li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span> puis clique ▶️ et observe le spectacle !</li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🎤 Avery</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">dire <span class="sc-p">🎤 Bonsoir !</span> pendant <span class="sc-p">3</span> sec</div><div class="sc-b ev">envoyer à tous <span class="sc-p">lion_entre</span> et attendre</div><div class="sc-b look">dire <span class="sc-p">Et maintenant Butterfly !</span> pendant <span class="sc-p">3</span> sec</div><div class="sc-b ev">envoyer à tous <span class="sc-p">butterfly_entre</span> et attendre</div><div class="sc-b look">dire <span class="sc-p">Merci ! 👏</span> pendant <span class="sc-p">3</span> sec</div></div><div class="sc-script"><div class="sc-script-label">🦁 Lion (init + réaction)</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">cacher</div><div class="sc-b move">aller à x: <span class="sc-p">150</span> y: <span class="sc-p">-40</span></div><div class="sc-b hat ev">quand je reçois <span class="sc-p">lion_entre</span></div><div class="sc-b look">montrer</div><div class="sc-b look">dire <span class="sc-p">ROAAAR ! 🦁</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-b move">avancer de <span class="sc-p">40</span> pas</div><div class="sc-b ctrl">attendre <span class="sc-p">1</span> sec</div><div class="sc-b look">cacher</div></div><div class="sc-script"><div class="sc-script-label">🦋 Butterfly + Fin</div><div class="sc-b hat ev">quand je reçois <span class="sc-p">butterfly_entre</span></div><div class="sc-b look">montrer</div><div class="sc-b look">dire <span class="sc-p">Bonjour ! 🦋</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">5</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">costume suivant</div><div class="sc-b move">avancer de <span class="sc-p">10</span> pas</div><div class="sc-b ctrl">attendre <span class="sc-p">0.2</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b ev">envoyer à tous <span class="sc-p">fin_spectacle</span></div><div class="sc-b hat ev">quand je reçois <span class="sc-p">fin_spectacle</span></div><div class="sc-b look">dire <span class="sc-p">🎊 Fin !</span> pendant <span class="sc-p">3</span> sec</div><div class="sc-b ctrl">arrêter <span class="sc-p">tout</span></div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1425,6 +1577,16 @@
             <li><strong>Fais-le bouger</strong> Dans la boucle : <span class="sb sb-move" style="font-size:.75rem">avancer de <span class="param">5</span> pas</span> puis <span class="sb sb-move" style="font-size:.75rem">rebondir si le bord est atteint</span></li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">💃 Programme du sprite</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b move">aller à x: <span class="sc-p">0</span> y: <span class="sc-p">0</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">costume suivant</div><div class="sc-b ctrl">attendre <span class="sc-p">0.3</span> secondes</div><div class="sc-b move">avancer de <span class="sc-p">5</span> pas</div><div class="sc-b move">rebondir si le bord est atteint</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1508,6 +1670,24 @@
             <li><strong>Quand le chat attrape la souris</strong> Dans le "si alors" : <span class="sb sb-look" style="font-size:.75rem">dire <span class="param">Attrapée ! 😹</span> pendant <span class="param">2</span> secondes</span> → <span class="sb sb-look" style="font-size:.75rem">cacher</span>.</li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🐱 Chat</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b move">aller à x: <span class="sc-val sense">mouse x</span> y: <span class="sc-val sense">mouse y</span></div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div><div class="sc-script"><div class="sc-script-label">🐭 Souris</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b move">aller à <span class="sc-p">position aléatoire</span></div><div class="sc-b ctrl">attendre <span class="sc-p">1</span> secondes</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">si <span class="sc-cond sense">touching <span class="sc-p">Chat</span> ?</span> alors</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">dire <span class="sc-p">Attrapée ! 😹</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-b look">cacher</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1591,6 +1771,12 @@
             <li><strong>Calcule et affiche</strong> <span class="sb sb-look" style="font-size:.75rem">dire <span class="param">regrouper "La somme est : " (nombre1 + nombre2)</span> pendant <span class="param">4</span> secondes</span></li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🤖 Programme de ROBI</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">dire <span class="sc-p">Je suis ROBI ! 🤖</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-b sense">ask <span class="sc-p">Quel est ton premier nombre ?</span> and wait</div><div class="sc-b var">mettre <span class="sc-p">nombre1</span> à <span class="sc-val sense">answer</span></div><div class="sc-b sense">ask <span class="sc-p">Et le deuxième nombre ?</span> and wait</div><div class="sc-b var">mettre <span class="sc-p">nombre2</span> à <span class="sc-val sense">answer</span></div><div class="sc-b look">dire <span class="sc-p">regrouper</span> <span class="sc-p">La somme est :</span> <span class="sc-cond op"><span class="sc-val op">nombre1</span> + <span class="sc-val op">nombre2</span></span> pendant <span class="sc-p">4</span> sec</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1675,6 +1861,28 @@
             <li><strong>Condition de victoire</strong> Ajoute un autre <span class="sb sb-ctrl" style="font-size:.75rem">si &lt;score = 5&gt; alors</span> → <span class="sb sb-look" style="font-size:.75rem">dire <span class="param">🏆 Bravo ! 5 étoiles !</span></span> → <span class="sb sb-ctrl" style="font-size:.75rem">arrêter <span class="param">tout</span></span>.</li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🐱 Chat</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b var">mettre <span class="sc-p">score</span> à <span class="sc-p">0</span></div><div class="sc-b var">montrer la variable <span class="sc-p">score</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b move">aller à x: <span class="sc-val sense">mouse x</span> y: <span class="sc-val sense">mouse y</span></div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div><div class="sc-script"><div class="sc-script-label">⭐ Étoile</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b move">aller à <span class="sc-p">position aléatoire</span></div><div class="sc-b ctrl">attendre <span class="sc-p">2</span> secondes</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">si <span class="sc-cond sense">touching <span class="sc-p">Chat</span> ?</span> alors</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b var">ajouter <span class="sc-p">1</span> à <span class="sc-p">score</span></div><div class="sc-b sound">jouer le son <span class="sc-p">pop</span></div><div class="sc-b move">aller à <span class="sc-p">position aléatoire</span></div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">si <span class="sc-cond op"><span class="sc-p">score</span> = <span class="sc-p">5</span></span> alors</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">dire <span class="sc-p">🏆 Bravo ! 5 étoiles !</span></div><div class="sc-b ctrl">arrêter <span class="sc-p">tout</span></div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -1835,6 +2043,16 @@
             </li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">📋 Définir "saluer"</div><div class="sc-b hat mb">définir <span class="sc-p">saluer</span></div><div class="sc-b look">dire <span class="sc-p">Bonjour ! 👋</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-b look">mettre la taille à <span class="sc-p">120</span> %</div><div class="sc-b ctrl">attendre <span class="sc-p">0.5</span> sec</div><div class="sc-b look">mettre la taille à <span class="sc-p">100</span> %</div></div><div class="sc-script"><div class="sc-script-label">📋 Définir "danser"</div><div class="sc-b hat mb">définir <span class="sc-p">danser</span></div><div class="sc-b look">costume suivant</div><div class="sc-b ctrl">attendre <span class="sc-p">0.3</span> sec</div><div class="sc-b look">costume suivant</div><div class="sc-b ctrl">attendre <span class="sc-p">0.3</span> sec</div><div class="sc-b move">avancer de <span class="sc-p">20</span> pas</div><div class="sc-b move">rebondir si le bord est atteint</div></div><div class="sc-script"><div class="sc-script-label">📋 Définir "faire_la_fête"</div><div class="sc-b hat mb">définir <span class="sc-p">faire_la_fête</span></div><div class="sc-b look">effet couleur à <span class="sc-p">25</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.2</span> sec</div><div class="sc-b look">effet couleur à <span class="sc-p">50</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.2</span> sec</div><div class="sc-b look">annuler les effets</div></div><div class="sc-script"><div class="sc-script-label">▶️ Programme principal</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b mb">saluer</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">5</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b mb">danser</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b mb">faire_la_fête</div><div class="sc-b mb">saluer</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -2099,6 +2317,28 @@
             </li>
             <li><strong>Sauvegarde !</strong> <span class="key">Ctrl</span>+<span class="key">S</span></li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🦋 Papillon — animation</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">mettre la taille à <span class="sc-p">60</span> %</div><div class="sc-b move">aller à x: <span class="sc-p">-180</span> y: <span class="sc-p">0</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">costume suivant</div><div class="sc-b ctrl">attendre <span class="sc-p">0.15</span> sec</div><div class="sc-b move">avancer de <span class="sc-p">3</span> pas</div><div class="sc-b move">rebondir si le bord est atteint</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div><div class="sc-script"><div class="sc-script-label">🦋 Papillon — couleurs</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">si <span class="sc-cond sense">touching <span class="sc-p">Edge</span> ?</span> alors</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">basculer sur le costume <span class="sc-p">rouge</span></div><div class="sc-b ctrl">attendre <span class="sc-p">1</span> sec</div><div class="sc-b look">basculer sur le costume <span class="sc-p">jaune</span></div><div class="sc-b ctrl">attendre <span class="sc-p">1</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div><div class="sc-script"><div class="sc-script-label">🌸 Fleur</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter indéfiniment</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">costume suivant</div><div class="sc-b ctrl">attendre <span class="sc-p">0.5</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
@@ -2551,6 +2791,32 @@
                 </div>
             </li>
         </ol>
+        <div class="assembled-programs">
+            <div class="assembled-label">🧩 Ton programme complet assemblé — copie exactement ce que tu vois !</div>
+            <div class="assembled-panel">
+                <div class="sc-script"><div class="sc-script-label">🧒 Programme principal</div><div class="sc-b hat ev">quand ⚑ cliqué</div><div class="sc-b look">basculer sur l'arrière-plan <span class="sc-p">Forest</span></div><div class="sc-b look">effet fantôme à <span class="sc-p">100</span></div><div class="sc-b look">montrer</div><div class="sc-b look">dire <span class="sc-p">Je suis dans la forêt 🌿</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">10</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">changer effet <span class="sc-p">fantôme</span> de <span class="sc-p">-10</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.05</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b look">annuler les effets</div><div class="sc-b look">dire <span class="sc-p">Appuie sur ESPACE →</span> pendant <span class="sc-p">3</span> sec</div><div class="sc-b ctrl">attendre jusqu'à ce que <span class="sc-cond sense">key <span class="sc-p">space</span> pressed ?</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">15</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">changer effet <span class="sc-p">tourbillon</span> de <span class="sc-p">20</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.03</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b look">basculer sur l'arrière-plan <span class="sc-p">City With Water</span></div><div class="sc-b look">basculer sur le costume <span class="sc-p">avery-b</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">15</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">changer effet <span class="sc-p">tourbillon</span> de <span class="sc-p">-20</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.03</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b look">annuler les effets</div><div class="sc-b look">dire <span class="sc-p">Me voilà en ville ! 🏙️</span> pendant <span class="sc-p">2</span> sec</div><div class="sc-b ctrl">attendre jusqu'à ce que <span class="sc-cond sense">key <span class="sc-p">space</span> pressed ?</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">10</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">changer effet <span class="sc-p">fantôme</span> de <span class="sc-p">10</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.05</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b look">basculer sur l'arrière-plan <span class="sc-p">Stars</span></div><div class="sc-b look">basculer sur le costume <span class="sc-p">avery-c</span></div><div class="sc-wrap">
+  <div class="sc-wrap-head ctrl">répéter <span class="sc-p">10</span> fois</div>
+  <div class="sc-wrap-body ctrl"><div class="sc-b look">changer effet <span class="sc-p">fantôme</span> de <span class="sc-p">-10</span></div><div class="sc-b ctrl">attendre <span class="sc-p">0.05</span> sec</div></div>
+  <div class="sc-wrap-foot ctrl"></div>
+</div><div class="sc-b look">annuler les effets</div><div class="sc-b look">dire <span class="sc-p">Je suis dans l'espace ! 🌌</span> pendant <span class="sc-p">3</span> sec</div><div class="sc-b ctrl">arrêter <span class="sc-p">tout</span></div></div>
+            </div>
+        </div>
         <div class="mp-result">
             <span class="mp-result-icon">🎉</span>
             <div>
